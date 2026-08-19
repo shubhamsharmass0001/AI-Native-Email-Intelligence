@@ -1,0 +1,10 @@
+{
+  "node": "Technical",
+  "templates": [
+    {
+      "id": "tpl-technical-001",
+      "name": "Bug Report Acknowledgment",
+      "template": "Hi {customer_name},\n\nThank you for reporting this issue. I've logged it as ticket #{ticket_id} with priority {priority}.\n\nOur engineering team will investigate within our SLA:\n- P0 (service down): 1-hour response\n- P1 (major feature broken): 4-hour response\n- P2 (minor issues): 48-hour response\n\nI'll keep you updated on progress via this thread.\n\nBest regards,\nSupport Team"
+    }
+  ]
+}

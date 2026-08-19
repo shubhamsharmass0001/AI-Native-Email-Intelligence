@@ -1,0 +1,29 @@
+{
+  "node": "Technical",
+  "policies": [
+    {
+      "id": "technical-001",
+      "title": "Bug Report Handling",
+      "content": "Bug reports triaged within 24 hours. P0 (service down): 1-hour response, 4-hour resolution target. P1 (major feature broken): 4-hour response, 24-hour resolution. P2 (minor issues): 48-hour response. Status updates via email and status page.",
+      "tags": ["bug", "priority", "sla"]
+    },
+    {
+      "id": "technical-002",
+      "title": "API Rate Limits",
+      "content": "Rate limits: Starter 100 req/min, Business 1000 req/min, Enterprise 10000 req/min. Rate limit headers included in all responses (X-RateLimit-Remaining). Exceeded limits return 429 with Retry-After header. Temporary limit increases available for Enterprise.",
+      "tags": ["api", "rate_limit", "429"]
+    },
+    {
+      "id": "technical-003",
+      "title": "Webhook Configuration",
+      "content": "Webhooks require HTTPS endpoints. Retry policy: 3 attempts with exponential backoff (1min, 5min, 30min). Failed webhooks logged in Developer Console. Webhook secrets rotatable without downtime. Test webhook endpoint available in sandbox mode.",
+      "tags": ["webhook", "integration", "retry"]
+    },
+    {
+      "id": "technical-004",
+      "title": "Feature Requests",
+      "content": "Feature requests logged and reviewed monthly by product team. Popular requests (100+ votes) prioritized in roadmap. Enterprise customers can submit requests via dedicated CSM. No SLA on feature delivery but acknowledgment within 5 business days.",
+      "tags": ["feature_request", "roadmap"]
+    }
+  ]
+}

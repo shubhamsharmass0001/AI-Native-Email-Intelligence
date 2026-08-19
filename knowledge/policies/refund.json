@@ -1,0 +1,23 @@
+{
+  "node": "Refund",
+  "policies": [
+    {
+      "id": "refund-001",
+      "title": "Refund Eligibility",
+      "content": "Full refunds available within 30 days of purchase for annual plans and within 14 days for monthly plans. Refunds processed to original payment method within 5-10 business days. Partial refunds considered for service outages exceeding SLA on case-by-case basis.",
+      "tags": ["refund", "eligibility", "timeline"]
+    },
+    {
+      "id": "refund-002",
+      "title": "Charge Dispute Process",
+      "content": "For billing disputes, we investigate within 48 hours. Provide transaction ID and description of dispute. If charge is confirmed erroneous, full refund plus $25 credit applied. Chargebacks filed without contacting support first may result in account review.",
+      "tags": ["dispute", "chargeback", "investigation"]
+    },
+    {
+      "id": "refund-003",
+      "title": "Partial Refund Policy",
+      "content": "Partial refunds calculated as: (unused_days / total_days) * amount_paid. Minimum partial refund is $5.00. Pro-rated credits applied to account for mid-cycle downgrades instead of cash refunds when customer retains service.",
+      "tags": ["partial_refund", "pro_rata", "credit"]
+    }
+  ]
+}

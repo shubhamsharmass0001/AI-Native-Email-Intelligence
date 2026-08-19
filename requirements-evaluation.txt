@@ -1,0 +1,11 @@
+# Optional evaluation stack — NOT installed on Render production
+# Install locally when running /evaluate with full BERTScore + embedding models:
+#   pip install -r requirements-evaluation.txt
+
+-r requirements.txt
+
+# PyPI torch only — never use download.pytorch.org
+torch==2.5.1
+sentence-transformers==3.4.1
+bert-score==0.3.13
+rapidfuzz==3.12.2

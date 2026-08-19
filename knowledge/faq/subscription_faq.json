@@ -1,0 +1,8 @@
+{
+  "node": "Subscription",
+  "faqs": [
+    {"question": "How do I upgrade my plan?", "answer": "Settings > Billing > Change Plan. Upgrades take effect immediately with prorated billing."},
+    {"question": "How do I cancel my subscription?", "answer": "Settings > Billing > Cancel Subscription. Access continues until end of billing period."},
+    {"question": "Can I pause my subscription?", "answer": "Subscription pauses not available. Cancel and resubscribe when ready."}
+  ]
+}

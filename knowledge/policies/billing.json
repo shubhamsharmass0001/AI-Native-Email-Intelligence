@@ -1,0 +1,29 @@
+{
+  "node": "Billing",
+  "policies": [
+    {
+      "id": "billing-001",
+      "title": "Invoice Generation",
+      "content": "Invoices are generated automatically on the billing date. Enterprise customers receive invoices 15 days before due date. Business customers receive invoices on the billing date. Invoices can be downloaded from Settings > Billing > Invoices. PDF and CSV formats are available.",
+      "tags": ["invoice", "billing", "download"]
+    },
+    {
+      "id": "billing-002",
+      "title": "Payment Methods",
+      "content": "We accept credit cards (Visa, MasterCard, Amex), ACH bank transfers (US only), and wire transfers for Enterprise plans. Payment methods can be updated in Settings > Billing > Payment Methods. Failed payments retry automatically 3 times over 7 days before account suspension.",
+      "tags": ["payment", "credit_card", "ach"]
+    },
+    {
+      "id": "billing-003",
+      "title": "Failed Payment Policy",
+      "content": "When a payment fails, we send email notifications on day 1, 3, and 5. After 3 failed attempts over 7 days, the account enters a grace period of 14 days with limited functionality. Full suspension occurs after grace period unless payment is resolved.",
+      "tags": ["payment_failed", "grace_period", "suspension"]
+    },
+    {
+      "id": "billing-004",
+      "title": "Pricing and Plans",
+      "content": "Plans: Starter ($29/mo), Business ($79/mo), Enterprise (custom). Annual billing receives 20% discount. Plan changes take effect immediately for upgrades (prorated) and at end of billing cycle for downgrades. Volume discounts available for 50+ seats.",
+      "tags": ["pricing", "plans", "upgrade", "downgrade"]
+    }
+  ]
+}

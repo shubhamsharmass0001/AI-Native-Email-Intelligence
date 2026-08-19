@@ -1,0 +1,397 @@
+[
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "integration_error",
+    "generated_reply": {
+      "reply": "Subject: Re: Shared Inbox Emails Not Syncing After Gmail Update – Urgent\n\nHi Maria,\n\nThank you for reaching out, and I'm truly sorry to hear about the disruption your team is experiencing. I completely understand how critical this is — having 12 agents unable to sync your shared inbox with SLAs actively breaching is a serious situation, and we're treating it with the highest urgency.\n\nBased on what you've described — a major integration feature broken across your entire workspace — this qualifies as a **P1 incident** under our Bug Report Handling policy, which carries a **4-hour response target and a 24-hour resolution target**. I am escalating this to our engineering team immediately for investigation.\n\n**What's happening on our end:**\n- Your case is being escalated for urgent investigation to determine whether this is related to a broader Gmail API change or specific to your workspace configuration.\n- You will receive status updates via email as our investigation progresses. You can also monitor our status page for any service-wide notices.\n\n**What would help us resolve this faster — please reply with the following:**\n1. The exact date and approximate time the sync stopped (you mentioned yesterday — a precise timestamp helps).\n2. Any error messages displayed in your inbox settings or integration panel.\n3. Whether any Gmail or Google Workspace admin changes were made around the same time (e.g., OAuth re-authorization, permission changes).\n4. A screenshot of the current sync status from your Admin Console, if accessible.\n\nMaria, I want to assure you that your team's ability to serve your customers is our top priority right now. We will be in touch within our P1 response window with an update.\n\nWarm regards,\n\n[Your Name]\nSenior Customer Support Engineer\n[Company Name] Support Team\n\nP.S. If the situation worsens or you experience any data loss in the interim, please reply immediately and flag it — we will escalate further without delay.",
+      "confidence": 0.78,
+      "reasoning": "This is a high-priority P1 incident (major feature broken, multiple users affected, SLAs breaching) per the Bug Report Handling policy [technical-001]. The Gmail sync failure affecting 12 agents maps most closely to a 'service_outage' or major integration failure, warranting Engineering On-Call escalation per the escalation rules. The reply acknowledges the very negative sentiment with strong empathy, clearly communicates the P1 SLA commitments, triggers the appropriate escalation path, and requests diagnostic information needed to resolve the issue. Confidence is not higher (0.78) because the knowledge base does not contain specific Gmail integration troubleshooting steps or confirmation that this is a known issue — the temporary workaround suggested is reasonable but not policy-backed, which is noted implicitly. No policies were invented beyond what was retrieved.",
+      "citations": [
+        "[technical-001] Bug Report Handling: P1 (major feature broken) — 4-hour response, 24-hour resolution target. Status updates via email and status page.",
+        "Escalation Rules — service_outage: escalate to Engineering On-Call (SLA: 1h)"
+      ],
+      "knowledge_used": [
+        "technical-001"
+      ],
+      "tokens": 1665,
+      "latency_ms": 19003.29
+    },
+    "validated_reply": {
+      "original_reply": "Subject: Re: Shared Inbox Emails Not Syncing After Gmail Update – Urgent\n\nHi Maria,\n\nThank you for reaching out, and I'm truly sorry to hear about the disruption your team is experiencing. I completely understand how critical this is — having 12 agents unable to sync your shared inbox with SLAs actively breaching is a serious situation, and we're treating it with the highest urgency.\n\nBased on what you've described (a major integration feature broken across your entire workspace following a Gmail update), this qualifies as a **P1 incident** under our Bug Report Handling policy, which carries a **4-hour response target and a 24-hour resolution target**. I am escalating this immediately to our Engineering On-Call team right now.\n\n**What's happening on our end:**\n- Your case is being escalated to our Engineering On-Call team with a 1-hour SLA for initial response.\n- Our team will investigate whether this is related to a broader Gmail API change or specific to your workspace configuration.\n- You will receive status updates via email as our investigation progresses. You can also monitor our status page for any service-wide notices.\n\n**What would help us resolve this faster — please reply with the following:**\n1. The exact date and approximate time the sync stopped (you mentioned yesterday — a precise timestamp helps).\n2. Any error messages displayed in your inbox settings or integration panel.\n3. Whether any Gmail or Google Workspace admin changes were made around the same time (OAuth re-authorization, permission changes, etc.).\n4. A screenshot of the current sync status from your Admin Console, if accessible.\n\nIn the meantime, as a temporary workaround, you may want to check whether manually re-authorizing the Gmail integration under **Admin Console → Integrations → Gmail** restores connectivity — though please note this is a suggested first step and may not resolve the underlying issue.\n\nMaria, I want to assure you that your team's ability to serve your customers is our top priority right now. We will be in touch shortly with an update.\n\nWarm regards,\n\n[Your Name]\nSenior Customer Support Engineer\n[Company Name] Support Team\n\nP.S. If the situation worsens or you experience any data loss in the interim, please reply immediately and flag it — we will escalate further without delay.",
+      "final_reply": "Subject: Re: Shared Inbox Emails Not Syncing After Gmail Update – Urgent\n\nHi Maria,\n\nThank you for reaching out, and I'm truly sorry to hear about the disruption your team is experiencing. I completely understand how critical this is — having 12 agents unable to sync your shared inbox with SLAs actively breaching is a serious situation, and we're treating it with the highest urgency.\n\nBased on what you've described — a major integration feature broken across your entire workspace — this qualifies as a **P1 incident** under our Bug Report Handling policy, which carries a **4-hour response target and a 24-hour resolution target**. I am escalating this to our engineering team immediately for investigation.\n\n**What's happening on our end:**\n- Your case is being escalated for urgent investigation to determine whether this is related to a broader Gmail API change or specific to your workspace configuration.\n- You will receive status updates via email as our investigation progresses. You can also monitor our status page for any service-wide notices.\n\n**What would help us resolve this faster — please reply with the following:**\n1. The exact date and approximate time the sync stopped (you mentioned yesterday — a precise timestamp helps).\n2. Any error messages displayed in your inbox settings or integration panel.\n3. Whether any Gmail or Google Workspace admin changes were made around the same time (e.g., OAuth re-authorization, permission changes).\n4. A screenshot of the current sync status from your Admin Console, if accessible.\n\nMaria, I want to assure you that your team's ability to serve your customers is our top priority right now. We will be in touch within our P1 response window with an update.\n\nWarm regards,\n\n[Your Name]\nSenior Customer Support Engineer\n[Company Name] Support Team\n\nP.S. If the situation worsens or you experience any data loss in the interim, please reply immediately and flag it — we will escalate further without delay.",
+      "validation": {
+        "passed": false,
+        "overall_score": 0.72,
+        "checks": [
+          {
+            "check": "no_hallucination",
+            "passed": false,
+            "score": 0.4,
+            "details": "The reply contains two hallucinated claims not supported by the knowledge base: (1) It states the Engineering On-Call team has a '1-hour SLA for initial response' for this case — but per policy, the 1-hour SLA applies to the 'service_outage' escalation rule, and this issue has not been confirmed as a full service outage; it is classified as a P1 (major feature broken), which carries a 4-hour response target. Conflating these two is inaccurate. (2) The reply states 'I am escalating this immediately to our Engineering On-Call team' — the correct escalation target for a service_outage is Engineering On-Call, but for a P1 bug that is workspace-specific, this escalation path is not confirmed by policy. The reply also invents a specific workaround path ('Admin Console → Integrations → Gmail') not referenced anywhere in the knowledge base."
+          },
+          {
+            "check": "action_items_present",
+            "passed": true,
+            "score": 0.95,
+            "details": "The reply provides excellent, clearly numbered action items for the customer (timestamp, error messages, admin changes, screenshot). It also outlines what the support team is doing internally and offers a suggested workaround. Next steps are unambiguous and actionable."
+          },
+          {
+            "check": "professional_tone",
+            "passed": true,
+            "score": 0.95,
+            "details": "The tone is empathetic, urgent, and professional throughout. The opening acknowledges the customer's pain, the body is structured and clear, and the closing is warm and reassuring. The P.S. adds a thoughtful safety net for escalation. No inappropriate language or tone issues detected."
+          },
+          {
+            "check": "grammar",
+            "passed": true,
+            "score": 1.0,
+            "details": "No grammatical, spelling, or punctuation errors detected. Sentence structure is clear and well-formed throughout the reply."
+          },
+          {
+            "check": "completeness",
+            "passed": true,
+            "score": 0.9,
+            "details": "The reply addresses the urgency, acknowledges the scope (12 agents, SLA breach), classifies the issue, outlines internal actions, requests diagnostic information, and offers a workaround. It covers the customer's concern thoroughly. Minor gap: it does not explicitly acknowledge the customer's Pro plan (25 seats) or confirm whether Pro plan customers receive any specific SLA guarantees — though this is not contradicted by available knowledge."
+          },
+          {
+            "check": "policy_compliance",
+            "passed": false,
+            "score": 0.5,
+            "details": "Two compliance issues: (1) The reply correctly identifies this as a P1 incident (4-hour response, 24-hour resolution per technical-001), but then contradicts itself by stating a '1-hour SLA for initial response' from Engineering On-Call — mixing the service_outage escalation SLA (1h) with the P1 bug SLA (4h response). This creates a false commitment. (2) The escalation to 'Engineering On-Call' is only policy-justified if this is confirmed as a 'service_outage'. Since the issue may be workspace-specific (not confirmed service-wide), the correct escalation path is not yet determined. The reply should have stated escalation is being assessed or that the issue is being investigated to determine the correct escalation tier."
+          }
+        ],
+        "issues": [
+          "Hallucinated '1-hour SLA for initial response' from Engineering On-Call — this conflicts with the P1 policy (4-hour response target) and creates a false commitment to the customer.",
+          "Incorrectly escalates to Engineering On-Call without confirming this is a service_outage; the issue may be workspace-specific, requiring a different escalation path.",
+          "Invented specific UI navigation path ('Admin Console → Integrations → Gmail') not referenced in the knowledge base — this could mislead the customer if the UI differs.",
+          "Conflates two separate SLA frameworks (Bug Report Handling policy vs. Escalation Rules) in a way that is internally inconsistent and potentially misleading."
+        ]
+      }
+    },
+    "bertscore": {
+      "precision": 0.33195706028075966,
+      "recall": 0.33195706028075966,
+      "f1": 0.33195706028075966
+    },
+    "embedding_score": {
+      "cosine_similarity": 0.6682
+    },
+    "judge_score": {
+      "correctness": 0.82,
+      "completeness": 0.85,
+      "empathy": 0.95,
+      "professionalism": 0.9,
+      "actionability": 0.8,
+      "safety": 1.0,
+      "hallucination": 0.65,
+      "policy_adherence": 0.75,
+      "overall": 0.82,
+      "feedback": "The generated reply is warm, empathetic, and professionally written, and it correctly identifies this as a P1 incident per the Bug Report Handling policy (4-hour response, 24-hour resolution target). However, there are several notable issues:\n\n1. **Hallucination (moderate):** The reply references a '2-hour update' commitment in the P.S. area and implies a specific internal escalation workflow ('Platform Team', 'Engineering On-Call') that is not explicitly stated in the knowledge base for this scenario. More critically, the reply states 'You can also monitor our status page for any service-wide notices' — while the policy does mention status updates via status page, the generated reply presents this as a confirmed feature of the product without direct knowledge base confirmation. The reference reply promised a 2-hour status update, but the generated reply does not match this and instead defers to the P1 4-hour window, which is technically correct per policy but inconsistent with the reference.\n\n2. **Missing Immediate Troubleshooting Steps:** The reference reply includes three concrete self-service troubleshooting steps (disconnect/reconnect Gmail integration, clear browser cache, check Google Workspace admin policies). The generated reply omits these actionable interim steps entirely, instead focusing on information gathering. This reduces actionability — the customer could potentially self-resolve while waiting for engineering.\n\n3. **Policy Adherence:** The P1 classification and SLA targets are correctly cited from the knowledge base. However, the escalation rules in the knowledge base suggest an 'api_outage' or 'service_outage' scenario might warrant escalation to Platform Team or Engineering On-Call with a 1-hour SLA — the generated reply does not consider this tighter SLA, which could be more appropriate given the scope (12 agents, SLA breaching).\n\n4. **Completeness:** The information-gathering questions are a good addition not present in the reference, adding diagnostic value. However, the absence of immediate remediation steps is a gap.\n\n5. **Tone and Empathy:** Excellent — the reply is warm, urgent, and reassuring without being over-the-top. The P.S. about data loss escalation is a thoughtful touch.\n\n6. **Overall:** A strong reply that would benefit from adding the immediate troubleshooting steps from the reference, reconsidering the escalation SLA tier, and removing or qualifying the unverified 'status page' and internal workflow references."
+    },
+    "overall_score": 0.6205,
+    "feedback": "The generated reply is warm, empathetic, and professionally written, and it correctly identifies this as a P1 incident per the Bug Report Handling policy (4-hour response, 24-hour resolution target). However, there are several notable issues:\n\n1. **Hallucination (moderate):** The reply references a '2-hour update' commitment in the P.S. area and implies a specific internal escalation workflow ('Platform Team', 'Engineering On-Call') that is not explicitly stated in the knowledge base for this scenario. More critically, the reply states 'You can also monitor our status page for any service-wide notices' — while the policy does mention status updates via status page, the generated reply presents this as a confirmed feature of the product without direct knowledge base confirmation. The reference reply promised a 2-hour status update, but the generated reply does not match this and instead defers to the P1 4-hour window, which is technically correct per policy but inconsistent with the reference.\n\n2. **Missing Immediate Troubleshooting Steps:** The reference reply includes three concrete self-service troubleshooting steps (disconnect/reconnect Gmail integration, clear browser cache, check Google Workspace admin policies). The generated reply omits these actionable interim steps entirely, instead focusing on information gathering. This reduces actionability — the customer could potentially self-resolve while waiting for engineering.\n\n3. **Policy Adherence:** The P1 classification and SLA targets are correctly cited from the knowledge base. However, the escalation rules in the knowledge base suggest an 'api_outage' or 'service_outage' scenario might warrant escalation to Platform Team or Engineering On-Call with a 1-hour SLA — the generated reply does not consider this tighter SLA, which could be more appropriate given the scope (12 agents, SLA breaching).\n\n4. **Completeness:** The information-gathering questions are a good addition not present in the reference, adding diagnostic value. However, the absence of immediate remediation steps is a gap.\n\n5. **Tone and Empathy:** Excellent — the reply is warm, urgent, and reassuring without being over-the-top. The P.S. about data loss escalation is a thoughtful touch.\n\n6. **Overall:** A strong reply that would benefit from adding the immediate troubleshooting steps from the reference, reconsidering the escalation SLA tier, and removing or qualifying the unverified 'status page' and internal workflow references. | Validation issues: Hallucinated '1-hour SLA for initial response' from Engineering On-Call — this conflicts with the P1 policy (4-hour response target) and creates a false commitment to the customer.; Incorrectly escalates to Engineering On-Call without confirming this is a service_outage; the issue may be workspace-specific, requiring a different escalation path.; Invented specific UI navigation path ('Admin Console → Integrations → Gmail') not referenced in the knowledge base — this could mislead the customer if the UI differs.; Conflates two separate SLA frameworks (Bug Report Handling policy vs. Escalation Rules) in a way that is internally inconsistent and potentially misleading.",
+    "node_metrics": {
+      "intent_agent": {
+        "node": "intent_agent",
+        "latency_ms": 3878.5,
+        "tokens": 527,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "integration_error",
+        "error": null,
+        "model": "claude-sonnet-4-6"
+      },
+      "priority_agent": {
+        "node": "priority_agent",
+        "latency_ms": 7940.21,
+        "tokens": 423,
+        "input_summary": "integration_error",
+        "output_summary": "high",
+        "error": null,
+        "model": "claude-sonnet-4-6"
+      },
+      "sentiment_agent": {
+        "node": "sentiment_agent",
+        "latency_ms": 2608.02,
+        "tokens": 333,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "very_negative",
+        "error": null,
+        "model": "claude-sonnet-4-6"
+      },
+      "customer_agent": {
+        "node": "customer_agent",
+        "latency_ms": 3760.17,
+        "tokens": 469,
+        "input_summary": "",
+        "output_summary": "business",
+        "error": null,
+        "model": "claude-sonnet-4-6"
+      },
+      "knowledge_agent": {
+        "node": "knowledge_agent",
+        "latency_ms": 649.18,
+        "tokens": 0,
+        "input_summary": "Shared inbox emails not syncing after Gmail update Hi Support,\n\nSince yesterday our shared mailbox (support@acme.io) stopped syncing new Gmail threads. 12 agents are affected and SLAs are breaching.\n\n",
+        "output_summary": "retrieved 3 docs",
+        "error": null
+      },
+      "prompt_builder": {
+        "node": "prompt_builder",
+        "latency_ms": 0.17,
+        "tokens": 0,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "prompt built",
+        "error": null
+      },
+      "generator_agent": {
+        "node": "generator_agent",
+        "latency_ms": 19003.08,
+        "tokens": 1665,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "Subject: Re: Shared Inbox Emails Not Syncing After Gmail Update – Urgent\n\nHi Maria,\n\nThank you for reaching out, and I'm truly sorry to hear about the disruption your team is experiencing. I completel",
+        "error": null,
+        "model": "claude-sonnet-4-6"
+      },
+      "validator_agent": {
+        "node": "validator_agent",
+        "latency_ms": 25789.08,
+        "tokens": 2855,
+        "input_summary": "Subject: Re: Shared Inbox Emails Not Syncing After Gmail Update – Urgent\n\nHi Maria,\n\nThank you for reaching out, and I'm truly sorry to hear about the disruption your team is experiencing. I completel",
+        "output_summary": "passed=False",
+        "error": null,
+        "model": "claude-sonnet-4-6"
+      },
+      "embedding_evaluation": {
+        "node": "embedding_evaluation",
+        "latency_ms": 20092.08,
+        "tokens": 0,
+        "input_summary": "Subject: Re: Shared Inbox Emails Not Syncing After Gmail Update – Urgent\n\nHi Maria,\n\nThank you for r",
+        "output_summary": "similarity=0.6682",
+        "error": null
+      },
+      "bertscore": {
+        "node": "bertscore",
+        "latency_ms": 94.53,
+        "tokens": 0,
+        "input_summary": "Subject: Re: Shared Inbox Emails Not Syncing After Gmail Update – Urgent\n\nHi Maria,\n\nThank you for r",
+        "output_summary": "f1=0.33195706028075966",
+        "error": null
+      },
+      "judge_agent": {
+        "node": "judge_agent",
+        "latency_ms": 17135.72,
+        "tokens": 2109,
+        "input_summary": "Subject: Re: Shared Inbox Emails Not Syncing After Gmail Update – Urgent\n\nHi Maria,\n\nThank you for reaching out, and I'm truly sorry to hear about the disruption your team is experiencing. I completel",
+        "output_summary": "overall=0.82",
+        "error": null,
+        "model": "claude-sonnet-4-6"
+      },
+      "final_report": {
+        "node": "final_report",
+        "latency_ms": 0.26,
+        "tokens": 0,
+        "input_summary": "",
+        "output_summary": "overall=0.6205",
+        "error": null
+      }
+    }
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "bug_report",
+    "generated_reply": {
+      "reply": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new Gmail threads, especially with 12 agents affected and SLAs breaching. I understand this is a critical issue impacting your team's operations, and we recognize the urgency.\n\nThank you for reporting this bug. We've received your report and are treating this as a P0 (service down) issue. According to our Bug Report Handling policy, P0 issues receive a 1-hour response and have a 4-hour resolution target. Our engineering team is actively investigating this with the highest priority.\n\nWe will provide status updates via email and our status page as we work to resolve this as quickly as possible.\n\nPlease don't hesitate to reply to this email if you have any further questions or information to add.\n\nSincerely,\n\n[Your Name]\nSenior Customer Support Engineer",
+      "confidence": 1,
+      "reasoning": "The reply addresses Maria by name and acknowledges her concern with appropriate empathy, given the very negative sentiment and critical impact. It clearly states the issue is being treated as a P0 (service down) bug and outlines the expected response and resolution targets based on the 'Bug Report Handling' policy. It also informs her about how status updates will be provided. The reply is concise, actionable, and closes professionally, using only information from the retrieved knowledge.",
+      "citations": [
+        "technical-001"
+      ],
+      "knowledge_used": [
+        "technical-001"
+      ],
+      "tokens": 1942,
+      "latency_ms": 10834.28
+    },
+    "validated_reply": {
+      "original_reply": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new Gmail threads, especially with 12 agents affected and SLAs breaching. I understand this is a critical issue impacting your team's operations, and we recognize the urgency.\n\nThank you for reporting this bug. We've received your report and are treating this as a P0 (service down) issue. According to our Bug Report Handling policy, P0 issues receive a 1-hour response and have a 4-hour resolution target. Our engineering team is actively investigating this with the highest priority.\n\nWe will provide status updates via email and our status page as we work to resolve this as quickly as possible.\n\nPlease don't hesitate to reply to this email if you have any further questions or information to add.\n\nSincerely,\n\n[Your Name]\nSenior Customer Support Engineer",
+      "final_reply": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new Gmail threads, especially with 12 agents affected and SLAs breaching. I understand this is a critical issue impacting your team's operations, and we recognize the urgency.\n\nThank you for reporting this bug. We've received your report and are treating this as a P0 (service down) issue. According to our Bug Report Handling policy, P0 issues receive a 1-hour response and have a 4-hour resolution target. Our engineering team is actively investigating this with the highest priority.\n\nWe will provide status updates via email and our status page as we work to resolve this as quickly as possible.\n\nPlease don't hesitate to reply to this email if you have any further questions or information to add.\n\nSincerely,\n\n[Your Name]\nSenior Customer Support Engineer",
+      "validation": {
+        "passed": true,
+        "overall_score": 1,
+        "checks": [
+          {
+            "check": "no_hallucination",
+            "passed": true,
+            "score": 1,
+            "details": "The reply accurately uses information from the 'Bug Report Handling' policy regarding P0 issues, response times, resolution targets, and status update methods. No information was invented."
+          },
+          {
+            "check": "action_items_present",
+            "passed": true,
+            "score": 1,
+            "details": "The reply clearly states the company's next steps (engineering investigation, status updates via email and status page) and provides a clear action for the customer (reply with further questions/info)."
+          },
+          {
+            "check": "professional_tone",
+            "passed": true,
+            "score": 1,
+            "details": "The reply is empathetic ('I'm very sorry to hear', 'I understand this is a critical issue'), courteous ('Thank you for reporting this bug'), and maintains a professional tone throughout."
+          },
+          {
+            "check": "grammar",
+            "passed": true,
+            "score": 1,
+            "details": "The reply has correct grammar and spelling with no discernible errors."
+          },
+          {
+            "check": "completeness",
+            "passed": true,
+            "score": 1,
+            "details": "The reply fully addresses the customer's concern by acknowledging the issue's severity, classifying it correctly as a P0 bug, outlining the expected response and resolution times based on policy, confirming active investigation, and detailing how updates will be provided. It also offers further assistance."
+          },
+          {
+            "check": "policy_compliance",
+            "passed": true,
+            "score": 1,
+            "details": "The reply correctly identifies the issue as a P0 (service down) bug and accurately cites the 'Bug Report Handling' policy's 1-hour response and 4-hour resolution target, as well as the method for status updates. This aligns perfectly with the provided knowledge."
+          }
+        ],
+        "issues": []
+      }
+    },
+    "bertscore": {
+      "precision": 0.4809741248097412,
+      "recall": 0.4809741248097412,
+      "f1": 0.4809741248097412
+    },
+    "embedding_score": {
+      "cosine_similarity": 0.5815
+    },
+    "judge_score": {
+      "correctness": 1.0,
+      "completeness": 0.6,
+      "empathy": 1.0,
+      "professionalism": 1.0,
+      "actionability": 0.3,
+      "safety": 1.0,
+      "hallucination": 1.0,
+      "policy_adherence": 0.8,
+      "overall": 0.8,
+      "feedback": "The generated reply is highly empathetic and professional, effectively acknowledging the customer's critical issue and urgency. It correctly identifies the problem as a P0 (service down) issue and accurately cites the Bug Report Handling policy regarding response and resolution targets, as well as status updates. This demonstrates strong adherence to the provided knowledge base regarding internal processes.\n\nHowever, the reply falls short in completeness and actionability. Unlike the expected reference reply, it does not provide any immediate, actionable troubleshooting steps for the customer to try while the engineering team investigates. For a critical issue affecting 12 agents and breaching SLAs, providing such steps (e.g., reconnecting accounts, clearing cache, checking admin policies) is crucial for empowering the customer and potentially mitigating the impact sooner. The reply focuses solely on internal actions, leaving the customer without any immediate recourse. While it adheres to the bug reporting policy, it misses the opportunity to provide proactive customer support, which is a key aspect of the reference reply and good support practice for urgent issues."
+    },
+    "overall_score": 0.6278,
+    "feedback": "The generated reply is highly empathetic and professional, effectively acknowledging the customer's critical issue and urgency. It correctly identifies the problem as a P0 (service down) issue and accurately cites the Bug Report Handling policy regarding response and resolution targets, as well as status updates. This demonstrates strong adherence to the provided knowledge base regarding internal processes.\n\nHowever, the reply falls short in completeness and actionability. Unlike the expected reference reply, it does not provide any immediate, actionable troubleshooting steps for the customer to try while the engineering team investigates. For a critical issue affecting 12 agents and breaching SLAs, providing such steps (e.g., reconnecting accounts, clearing cache, checking admin policies) is crucial for empowering the customer and potentially mitigating the impact sooner. The reply focuses solely on internal actions, leaving the customer without any immediate recourse. While it adheres to the bug reporting policy, it misses the opportunity to provide proactive customer support, which is a key aspect of the reference reply and good support practice for urgent issues.",
+    "node_metrics": {
+      "intent_agent": {
+        "node": "intent_agent",
+        "latency_ms": 3921.5,
+        "tokens": 925,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "bug_report",
+        "error": null,
+        "model": "gemini-2.5-flash",
+        "provider": "gemini"
+      },
+      "priority_agent": {
+        "node": "priority_agent",
+        "latency_ms": 4695.44,
+        "tokens": 994,
+        "input_summary": "bug_report",
+        "output_summary": "high",
+        "error": null,
+        "model": "gemini-2.5-flash",
+        "provider": "gemini"
+      },
+      "sentiment_agent": {
+        "node": "sentiment_agent",
+        "latency_ms": 2239.1,
+        "tokens": 423,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "very_negative",
+        "error": null,
+        "model": "gemini-2.5-flash",
+        "provider": "gemini"
+      },
+      "customer_agent": {
+        "node": "customer_agent",
+        "latency_ms": 4012.73,
+        "tokens": 800,
+        "input_summary": "",
+        "output_summary": "enterprise",
+        "error": null,
+        "model": "gemini-2.5-flash",
+        "provider": "gemini"
+      },
+      "knowledge_agent": {
+        "node": "knowledge_agent",
+        "latency_ms": 1761.8,
+        "tokens": 0,
+        "input_summary": "Shared inbox emails not syncing after Gmail update Hi Support,\n\nSince yesterday our shared mailbox (support@acme.io) stopped syncing new Gmail threads. 12 agents are affected and SLAs are breaching.\n\n",
+        "output_summary": "retrieved 3 docs",
+        "error": null
+      },
+      "prompt_builder": {
+        "node": "prompt_builder",
+        "latency_ms": 0.19,
+        "tokens": 0,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "prompt built",
+        "error": null
+      },
+      "generator_agent": {
+        "node": "generator_agent",
+        "latency_ms": 6441.0,
+        "tokens": 1942,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new Gmail threads, especially with 12 agents affected and SLAs breaching. I understand this is a critic",
+        "error": null,
+        "model": "gemini-2.5-flash",
+        "provider": "gemini"
+      },
+      "validator_agent": {
+        "node": "validator_agent",
+        "latency_ms": 9204.0,
+        "tokens": 2606,
+        "input_summary": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new Gmail threads, especially with 12 agents affected and SLAs breaching. I understand this is a critic",
+        "output_summary": "passed=True",
+        "error": null,
+        "model": "gemini-2.5-flash",
+        "provider": "gemini"
+      },
+      "embedding_evaluation": {
+        "node": "embedding_evaluation",
+        "latency_ms": 19323.5,
+        "tokens": 0,
+        "input_summary": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new",
+        "output_summary": "similarity=0.5815",
+        "error": null
+      },
+      "bertscore": {
+        "node": "bertscore",
+        "latency_ms": 137.12,
+        "tokens": 0,
+        "input_summary": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new",
+        "output_summary": "f1=0.4809741248097412",
+        "error": null
+      },
+      "judge_agent": {
+        "node": "judge_agent",
+        "latency_ms": 11838.22,
+        "tokens": 3257,
+        "input_summary": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new Gmail threads, especially with 12 agents affected and SLAs breaching. I understand this is a critic",
+        "output_summary": "overall=0.8",
+        "error": null,
+        "model": "gemini-2.5-flash",
+        "provider": "gemini"
+      },
+      "final_report": {
+        "node": "final_report",
+        "latency_ms": 0.53,
+        "tokens": 0,
+        "input_summary": "",
+        "output_summary": "overall=0.6278",
+        "error": null
+      }
+    }
+  }
+]

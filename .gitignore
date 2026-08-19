@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+knowledge/embeddings/
+# Prebuilt vector store (commit after: python scripts/build_vector_store.py)
+# knowledge/vectorstore/ is intentionally NOT ignored
+*.log
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+checkpoint.json

@@ -1,0 +1,23 @@
+{
+  "node": "Shipping",
+  "policies": [
+    {
+      "id": "shipping-001",
+      "title": "Shipping Timelines",
+      "content": "Standard shipping: 5-7 business days (US), 10-14 business days (international). Express shipping: 2-3 business days (US), 5-7 business days (international). Orders placed before 2 PM EST ship same business day.",
+      "tags": ["shipping", "timeline", "express"]
+    },
+    {
+      "id": "shipping-002",
+      "title": "Tracking and Delays",
+      "content": "Tracking numbers sent via email within 24 hours of shipment. If tracking shows no movement for 5+ business days, contact support for investigation. Delayed shipments over 14 days qualify for free reshipment or full refund.",
+      "tags": ["tracking", "delay", "investigation"]
+    },
+    {
+      "id": "shipping-003",
+      "title": "Damaged or Missing Items",
+      "content": "Report damaged items within 48 hours of delivery with photos. Missing items reported within 7 days. Replacement shipped within 3 business days at no charge. High-value items (>$500) require signature confirmation.",
+      "tags": ["damaged", "missing", "replacement"]
+    }
+  ]
+}

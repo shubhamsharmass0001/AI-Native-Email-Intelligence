@@ -1,0 +1,8 @@
+{
+  "node": "Security",
+  "faqs": [
+    {"question": "I received a suspicious email claiming to be from you", "answer": "Forward to abuse@company.com. We never ask for passwords via email."},
+    {"question": "How do I report a security vulnerability?", "answer": "Email security@company.com with details. We acknowledge within 24 hours."},
+    {"question": "How do I request my data under GDPR?", "answer": "Submit data export request in Settings > Privacy. Delivered within 30 days."}
+  ]
+}

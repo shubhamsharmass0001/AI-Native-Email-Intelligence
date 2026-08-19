@@ -1,0 +1,10 @@
+{
+  "node": "Subscription",
+  "templates": [
+    {
+      "id": "tpl-subscription-001",
+      "name": "Cancellation Retention",
+      "template": "Hi {customer_name},\n\nI'm sorry to hear you're considering canceling. Before proceeding, I'd like to understand your concerns and explore options.\n\nYour subscription details:\n- Current plan: {plan}\n- Access continues until: {end_date}\n\nOptions available:\n1. Downgrade to a lower tier\n2. Pause features you don't use\n3. Connect you with Customer Success for a personalized review\n\nWould any of these work for you?\n\nBest regards,\nSupport Team"
+    }
+  ]
+}

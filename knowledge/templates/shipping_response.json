@@ -1,0 +1,10 @@
+{
+  "node": "Shipping",
+  "templates": [
+    {
+      "id": "tpl-shipping-001",
+      "name": "Shipping Delay",
+      "template": "Hi {customer_name},\n\nI understand your concern about the shipping delay and apologize for the inconvenience.\n\nI've checked your order status:\n- Order number: {order_number}\n- Current status: {status}\n\nIf tracking shows no movement for 5+ business days, we'll initiate an investigation. For delays exceeding 14 days, you're eligible for free reshipment or a full refund.\n\nBest regards,\nSupport Team"
+    }
+  ]
+}

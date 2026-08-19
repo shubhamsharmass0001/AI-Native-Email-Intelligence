@@ -1,0 +1,8 @@
+{
+  "node": "Permissions",
+  "faqs": [
+    {"question": "How do I change user roles?", "answer": "Admin Console > Team > Select Member > Change Role. Changes apply immediately."},
+    {"question": "Why can't I access a feature?", "answer": "Check your role permissions in Admin Console. Contact admin for role upgrade."},
+    {"question": "How do I set up SSO?", "answer": "Enterprise plans: Admin Console > Security > SSO. Supports SAML 2.0 and OIDC."}
+  ]
+}

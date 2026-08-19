@@ -1,0 +1,8 @@
+{
+  "node": "Account",
+  "faqs": [
+    {"question": "How do I reset my password?", "answer": "Click Forgot Password on login page or go to Settings > Security > Reset Password."},
+    {"question": "My account is locked, how do I unlock it?", "answer": "Wait 30 minutes after 5 failed attempts, or contact your admin to unlock."},
+    {"question": "How do I delete my account?", "answer": "Settings > Account > Delete Account. 7-day grace period before permanent deletion."}
+  ]
+}

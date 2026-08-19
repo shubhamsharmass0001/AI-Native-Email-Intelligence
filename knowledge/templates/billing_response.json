@@ -1,0 +1,15 @@
+{
+  "node": "Billing",
+  "templates": [
+    {
+      "id": "tpl-billing-001",
+      "name": "Invoice Request",
+      "template": "Hi {customer_name},\n\nThank you for reaching out regarding your invoice.\n\nYou can download your invoice from Settings > Billing > Invoices in your account dashboard. Invoices are available in both PDF and CSV formats.\n\nIf you need a specific invoice or have questions about line items, please provide your billing period and I'll locate it for you.\n\nBest regards,\nSupport Team"
+    },
+    {
+      "id": "tpl-billing-002",
+      "name": "Payment Failed",
+      "template": "Hi {customer_name},\n\nI'm sorry to hear your payment didn't go through. This can happen due to expired cards, insufficient funds, or bank security blocks.\n\nNext steps:\n1. Update your payment method at Settings > Billing > Payment Methods\n2. We'll automatically retry the charge within 24 hours\n3. You'll receive email updates on days 1, 3, and 5 if issues persist\n\nYour account remains active during the 14-day grace period.\n\nBest regards,\nSupport Team"
+    }
+  ]
+}

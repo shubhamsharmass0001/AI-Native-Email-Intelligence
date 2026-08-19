@@ -1,0 +1,10 @@
+{
+  "node": "API",
+  "templates": [
+    {
+      "id": "tpl-api-001",
+      "name": "Rate Limit Exceeded",
+      "template": "Hi {customer_name},\n\nI see you're encountering 429 rate limit errors. Here's how to resolve this:\n\nCurrent limits for your plan:\n- {plan}: {limit} requests/minute\n\nRecommendations:\n1. Implement exponential backoff when receiving 429 responses\n2. Check X-RateLimit-Remaining header to monitor usage\n3. Consider upgrading to Business (1000/min) or Enterprise (10000/min)\n\nI can request a temporary limit increase if needed.\n\nBest regards,\nSupport Team"
+    }
+  ]
+}

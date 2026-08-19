@@ -1,0 +1,10 @@
+{
+  "node": "Permissions",
+  "templates": [
+    {
+      "id": "tpl-permissions-001",
+      "name": "Permission Denied",
+      "template": "Hi {customer_name},\n\nI understand you're unable to access certain features due to permission restrictions.\n\nYour current role: {role}\nRequired role for this feature: {required_role}\n\nNext steps:\n1. Contact your workspace admin to request a role upgrade\n2. Admin can change roles via Admin Console > Team > Change Role\n3. Changes take effect immediately\n\nIf you're the admin and still experiencing issues, let me know and I'll investigate further.\n\nBest regards,\nSupport Team"
+    }
+  ]
+}

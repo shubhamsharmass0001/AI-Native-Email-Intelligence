@@ -1,0 +1,33 @@
+name: Build Vector Store
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "knowledge/policies/**"
+      - "knowledge/faq/**"
+      - "app/services/vector_manager.py"
+      - "scripts/build_vector_store.py"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build vector store
+        run: python scripts/build_vector_store.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge-vectorstore
+          path: knowledge/vectorstore/
+          retention-days: 30

@@ -1,0 +1,135 @@
+{
+  "nodes": {
+    "Billing": {
+      "description": "Billing, invoices, payments, and pricing",
+      "policies": ["billing.json"],
+      "faqs": ["billing_faq.json"],
+      "templates": ["billing_response.json"],
+      "escalation_rules": [
+        {"condition": "charge_dispute_over_1000", "escalate_to": "Billing Manager", "sla_hours": 4},
+        {"condition": "payment_failed_3_times", "escalate_to": "Finance Team", "sla_hours": 24}
+      ],
+      "related_nodes": ["Refund", "Subscription", "Account"]
+    },
+    "Refund": {
+      "description": "Refund requests, chargebacks, and credit adjustments",
+      "policies": ["refund.json"],
+      "faqs": ["refund_faq.json"],
+      "templates": ["refund_response.json"],
+      "escalation_rules": [
+        {"condition": "refund_over_500", "escalate_to": "Billing Manager", "sla_hours": 24},
+        {"condition": "chargeback_filed", "escalate_to": "Legal Team", "sla_hours": 2}
+      ],
+      "related_nodes": ["Billing", "Subscription"]
+    },
+    "Shipping": {
+      "description": "Order fulfillment, tracking, and delivery",
+      "policies": ["shipping.json"],
+      "faqs": ["shipping_faq.json"],
+      "templates": ["shipping_response.json"],
+      "escalation_rules": [
+        {"condition": "lost_shipment", "escalate_to": "Logistics Team", "sla_hours": 12},
+        {"condition": "damaged_high_value", "escalate_to": "Claims Team", "sla_hours": 8}
+      ],
+      "related_nodes": ["Account"]
+    },
+    "Technical": {
+      "description": "Product bugs, errors, and technical issues",
+      "policies": ["technical.json"],
+      "faqs": ["technical_faq.json"],
+      "templates": ["technical_response.json"],
+      "escalation_rules": [
+        {"condition": "service_outage", "escalate_to": "Engineering On-Call", "sla_hours": 1},
+        {"condition": "data_loss", "escalate_to": "Engineering Lead", "sla_hours": 2}
+      ],
+      "related_nodes": ["API", "Account", "Permissions"]
+    },
+    "Security": {
+      "description": "Security incidents, breaches, and compliance",
+      "policies": ["security.json"],
+      "faqs": ["security_faq.json"],
+      "templates": ["security_response.json"],
+      "escalation_rules": [
+        {"condition": "suspected_breach", "escalate_to": "Security Team", "sla_hours": 1},
+        {"condition": "phishing_report", "escalate_to": "Security Team", "sla_hours": 4}
+      ],
+      "related_nodes": ["Account", "API", "Permissions"]
+    },
+    "Account": {
+      "description": "Account management, login, and profile settings",
+      "policies": ["account.json"],
+      "faqs": ["account_faq.json"],
+      "templates": ["account_response.json"],
+      "escalation_rules": [
+        {"condition": "account_takeover", "escalate_to": "Security Team", "sla_hours": 1},
+        {"condition": "enterprise_account", "escalate_to": "Account Manager", "sla_hours": 4}
+      ],
+      "related_nodes": ["Security", "Permissions", "Billing"]
+    },
+    "API": {
+      "description": "API access, rate limits, webhooks, and integrations",
+      "policies": ["technical.json"],
+      "faqs": ["api_faq.json"],
+      "templates": ["api_response.json"],
+      "escalation_rules": [
+        {"condition": "api_outage", "escalate_to": "Platform Team", "sla_hours": 1},
+        {"condition": "enterprise_api", "escalate_to": "Solutions Engineer", "sla_hours": 4}
+      ],
+      "related_nodes": ["Technical", "Permissions", "Subscription"]
+    },
+    "Subscription": {
+      "description": "Plan changes, upgrades, downgrades, and cancellations",
+      "policies": ["billing.json"],
+      "faqs": ["subscription_faq.json"],
+      "templates": ["subscription_response.json"],
+      "escalation_rules": [
+        {"condition": "enterprise_downgrade", "escalate_to": "Account Manager", "sla_hours": 24},
+        {"condition": "cancellation_retention", "escalate_to": "Customer Success", "sla_hours": 12}
+      ],
+      "related_nodes": ["Billing", "Refund", "Account"]
+    },
+    "Permissions": {
+      "description": "Role-based access, team permissions, and authorization",
+      "policies": ["account.json"],
+      "faqs": ["permissions_faq.json"],
+      "templates": ["permissions_response.json"],
+      "escalation_rules": [
+        {"condition": "admin_lockout", "escalate_to": "Security Team", "sla_hours": 2},
+        {"condition": "enterprise_rbac", "escalate_to": "Solutions Engineer", "sla_hours": 8}
+      ],
+      "related_nodes": ["Account", "Security", "API"]
+    }
+  },
+  "intent_to_node_mapping": {
+    "billing_inquiry": ["Billing"],
+    "invoice_request": ["Billing"],
+    "payment_failed": ["Billing", "Account"],
+    "subscription_upgrade": ["Subscription", "Billing"],
+    "subscription_downgrade": ["Subscription", "Billing"],
+    "subscription_cancel": ["Subscription", "Billing"],
+    "refund_request": ["Refund", "Billing"],
+    "partial_refund": ["Refund"],
+    "charge_dispute": ["Refund", "Billing"],
+    "shipping_delay": ["Shipping"],
+    "shipping_tracking": ["Shipping"],
+    "order_cancellation": ["Shipping", "Refund"],
+    "order_modification": ["Shipping"],
+    "damaged_product": ["Shipping", "Refund"],
+    "missing_item": ["Shipping", "Refund"],
+    "password_reset": ["Account", "Security"],
+    "account_locked": ["Account", "Security"],
+    "two_factor_issue": ["Account", "Security"],
+    "permission_denied": ["Permissions", "Account"],
+    "role_change_request": ["Permissions"],
+    "api_rate_limit": ["API", "Technical"],
+    "api_key_rotation": ["API", "Security"],
+    "webhook_failure": ["API", "Technical"],
+    "integration_error": ["API", "Technical"],
+    "data_export_request": ["Account", "Security"],
+    "gdpr_deletion": ["Account", "Security"],
+    "security_incident": ["Security"],
+    "phishing_report": ["Security"],
+    "feature_request": ["Technical"],
+    "bug_report": ["Technical", "API"]
+  }
+}

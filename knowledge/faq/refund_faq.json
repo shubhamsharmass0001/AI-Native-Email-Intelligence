@@ -1,0 +1,8 @@
+{
+  "node": "Refund",
+  "faqs": [
+    {"question": "How long do refunds take?", "answer": "Refunds process within 5-10 business days to your original payment method."},
+    {"question": "Can I get a refund after 30 days?", "answer": "Standard refund window is 30 days for annual, 14 days for monthly. Contact support for exceptions."},
+    {"question": "How are partial refunds calculated?", "answer": "Partial refunds are pro-rated: (unused_days / total_days) * amount_paid."}
+  ]
+}

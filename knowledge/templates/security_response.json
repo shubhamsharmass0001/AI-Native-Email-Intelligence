@@ -1,0 +1,10 @@
+{
+  "node": "Security",
+  "templates": [
+    {
+      "id": "tpl-security-001",
+      "name": "Security Incident",
+      "template": "Hi {customer_name},\n\nThank you for reporting this security concern. We take all security reports seriously.\n\nImmediate actions taken:\n1. Your report has been escalated to our Security Team (SLA: 1 hour acknowledgment)\n2. We've flagged the associated accounts for review\n3. You will receive updates every 4 hours until resolution\n\nPlease do not share any credentials via email. If you suspect account compromise, reset your password immediately.\n\nBest regards,\nSecurity Team"
+    }
+  ]
+}

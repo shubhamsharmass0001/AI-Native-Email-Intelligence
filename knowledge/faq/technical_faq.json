@@ -1,0 +1,8 @@
+{
+  "node": "Technical",
+  "faqs": [
+    {"question": "Why am I getting 429 errors?", "answer": "You've exceeded your plan's rate limit. Check X-RateLimit-Remaining header. Upgrade plan for higher limits."},
+    {"question": "My webhook is failing", "answer": "Ensure HTTPS endpoint. Check Developer Console for failure logs. Retries happen at 1min, 5min, 30min."},
+    {"question": "How do I report a bug?", "answer": "Email support with steps to reproduce, expected vs actual behavior, and screenshots."}
+  ]
+}

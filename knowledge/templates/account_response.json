@@ -1,0 +1,10 @@
+{
+  "node": "Account",
+  "templates": [
+    {
+      "id": "tpl-account-001",
+      "name": "Password Reset",
+      "template": "Hi {customer_name},\n\nI can help you regain access to your account.\n\nTo reset your password:\n1. Go to the login page and click 'Forgot Password'\n2. Enter your registered email address\n3. Click the reset link within 1 hour (check spam folder)\n4. Create a new strong password\n\nIf your account is locked due to failed attempts, it will automatically unlock after 30 minutes.\n\nBest regards,\nSupport Team"
+    }
+  ]
+}

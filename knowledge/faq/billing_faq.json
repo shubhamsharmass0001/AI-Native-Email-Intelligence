@@ -1,0 +1,8 @@
+{
+  "node": "Billing",
+  "faqs": [
+    {"question": "How do I download my invoice?", "answer": "Go to Settings > Billing > Invoices and click Download PDF or CSV."},
+    {"question": "Why was my payment declined?", "answer": "Common reasons: expired card, insufficient funds, or bank security block. Update payment method in Settings > Billing."},
+    {"question": "Can I change my billing cycle?", "answer": "Switch between monthly and annual billing in Settings > Billing > Plan. Annual saves 20%."}
+  ]
+}

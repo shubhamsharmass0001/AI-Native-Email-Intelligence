@@ -1,0 +1,23 @@
+{
+  "node": "Security",
+  "policies": [
+    {
+      "id": "security-001",
+      "title": "Security Incident Response",
+      "content": "Report security incidents immediately to security@company.com. Critical incidents acknowledged within 1 hour. We follow SOC 2 Type II compliance. Incident updates provided every 4 hours until resolution. Post-incident report within 72 hours for Enterprise customers.",
+      "tags": ["security", "incident", "soc2"]
+    },
+    {
+      "id": "security-002",
+      "title": "Phishing and Fraud",
+      "content": "Forward suspicious emails to abuse@company.com. Never share passwords or 2FA codes. We will never ask for credentials via email. If account compromise suspected, immediately reset password and enable 2FA. We block reported phishing domains within 24 hours.",
+      "tags": ["phishing", "fraud", "credentials"]
+    },
+    {
+      "id": "security-003",
+      "title": "Data Protection",
+      "content": "All data encrypted at rest (AES-256) and in transit (TLS 1.3). GDPR and CCPA compliant. Data export available within 30 days request. Account deletion removes all personal data within 30 days per GDPR Article 17.",
+      "tags": ["gdpr", "encryption", "data_export", "deletion"]
+    }
+  ]
+}

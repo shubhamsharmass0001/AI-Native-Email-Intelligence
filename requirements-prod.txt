@@ -1,0 +1,3 @@
+# Legacy alias — only for Render Pre-Deploy Command if still set in dashboard.
+# DO NOT use this as the Start Command. Start Command must be: bash start.sh
+-r requirements.txt

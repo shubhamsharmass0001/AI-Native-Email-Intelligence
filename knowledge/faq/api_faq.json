@@ -1,0 +1,8 @@
+{
+  "node": "API",
+  "faqs": [
+    {"question": "How do I rotate my API key?", "answer": "Developer Console > API Keys > Generate New Key. Old key valid for 24 hours during rotation."},
+    {"question": "What are the API rate limits?", "answer": "Starter: 100/min, Business: 1000/min, Enterprise: 10000/min."},
+    {"question": "How do I set up webhooks?", "answer": "Developer Console > Webhooks > Add Endpoint. HTTPS required. Test in sandbox first."}
+  ]
+}

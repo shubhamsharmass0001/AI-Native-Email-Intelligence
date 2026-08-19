@@ -1,0 +1,58 @@
+export const SAMPLE_TICKETS = [
+  {
+    id: "enterprise-billing",
+    label: "Enterprise Billing",
+    subject: "Invoice discrepancy on Enterprise plan — Q1 renewal",
+    customer_name: "David Chen",
+    email: `Hi Finance Team,\n\nWe're on the Enterprise plan (120 seats) and our Q1 invoice shows $14,200 instead of the contracted $12,800.\n\nContract ref: ENT-2024-8842\nWorkspace: NovaTech Global\n\nPlease reconcile before our audit next week.\n\nDavid Chen\nCFO, NovaTech`,
+  },
+  {
+    id: "refund",
+    label: "Refund Request",
+    subject: "Request pro-rated refund after team downsizing",
+    customer_name: "Lisa Park",
+    email: `Hello,\n\nWe reduced from 40 to 15 seats mid-cycle. Requesting pro-rated refund for unused seats per your policy.\n\nTransaction: TXN-992841\nPlan: Business Annual\n\nLisa Park`,
+  },
+  {
+    id: "security",
+    label: "Security Incident",
+    subject: "Suspicious login attempts on shared mailbox",
+    customer_name: "James Okonkwo",
+    email: `URGENT — Security Team,\n\nWe detected 47 failed login attempts on support@company.com in the last 2 hours from IP ranges in multiple countries.\n\nPlease investigate immediately.\n\nJames Okonkwo, IT Security`,
+  },
+  {
+    id: "sso",
+    label: "SSO / SAML",
+    subject: "SAML SSO broken after IdP certificate rotation",
+    customer_name: "Emma Walsh",
+    email: `Hi,\n\nAfter rotating our Okta SAML certificate, users cannot sign in via SSO. Error: "Invalid SAML response".\n\nEnterprise workspace, 85 seats.\n\nEmma Walsh`,
+  },
+  {
+    id: "oauth",
+    label: "OAuth / Gmail",
+    subject: "Gmail OAuth token expired — shared inbox disconnected",
+    customer_name: "Maria Lopez",
+    email: `Hi Support,\n\nOur shared mailbox lost Gmail sync. Console shows OAuth token expired. 12 agents blocked.\n\nWorkspace: Acme Support\nPlan: Pro\n\nMaria Lopez`,
+  },
+  {
+    id: "api-failure",
+    label: "API Failure",
+    subject: "Webhook deliveries failing with 503 errors",
+    customer_name: "Alex Rivera",
+    email: `Dev team here — all webhook endpoints returning 503 since 06:00 UTC.\n\nAPI key: sk_live_***\nEndpoint: https://api.ourapp.com/hooks/support\n\nAlex Rivera`,
+  },
+  {
+    id: "sync-error",
+    label: "Sync Error",
+    subject: "Shared inbox emails not syncing after Gmail update",
+    customer_name: "Maria Lopez",
+    email: `Hi Support,\n\nSince yesterday our shared mailbox stopped syncing new Gmail threads. 12 agents affected, SLAs breaching.\n\nWorkspace: Acme Support | Plan: Pro (25 seats)\n\nMaria Lopez`,
+  },
+  {
+    id: "permissions",
+    label: "Permission Issue",
+    subject: "Agents cannot assign emails — role permission error",
+    customer_name: "Tom Bradley",
+    email: `Hello,\n\nSupport agents get "Permission denied" when assigning emails in the shared inbox. Admin role works fine.\n\nWorkspace: HelpDesk Pro\n\nTom Bradley`,
+  },
+] as const;

@@ -1,0 +1,8 @@
+{
+  "node": "Shipping",
+  "faqs": [
+    {"question": "Where is my tracking number?", "answer": "Tracking numbers are emailed within 24 hours of shipment. Check spam folder or order history."},
+    {"question": "My package is delayed, what should I do?", "answer": "If no tracking movement for 5+ days, contact support. Delays over 14 days qualify for reshipment or refund."},
+    {"question": "Can I change my shipping address?", "answer": "Address changes possible before shipment. Contact support immediately with order number."}
+  ]
+}

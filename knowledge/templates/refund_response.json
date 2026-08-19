@@ -1,0 +1,10 @@
+{
+  "node": "Refund",
+  "templates": [
+    {
+      "id": "tpl-refund-001",
+      "name": "Refund Request Approved",
+      "template": "Hi {customer_name},\n\nI've reviewed your refund request and approved it per our refund policy.\n\nRefund details:\n- Amount: {amount}\n- Processing time: 5-10 business days\n- Method: Original payment method\n\nYou'll receive a confirmation email once the refund is processed.\n\nBest regards,\nSupport Team"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Local development & testing — install after requirements.txt
+-r requirements.txt
+
+# CLI & scripts
+typer==0.15.2
+rich==14.0.0
+
+# Tests
+pytest==8.3.5
+pytest-asyncio==0.25.3

@@ -1,0 +1,23 @@
+{
+  "node": "Account",
+  "policies": [
+    {
+      "id": "account-001",
+      "title": "Password Reset",
+      "content": "Password reset via Settings > Security > Reset Password or 'Forgot Password' on login page. Reset link valid for 1 hour. After 5 failed login attempts, account locked for 30 minutes. Admin can unlock team member accounts from Admin Console.",
+      "tags": ["password", "reset", "lockout"]
+    },
+    {
+      "id": "account-002",
+      "title": "Two-Factor Authentication",
+      "content": "2FA supported via authenticator apps (TOTP) and SMS. Backup codes provided at setup (10 single-use codes). Lost 2FA device: verify identity via registered email + last 4 digits of payment method. Enterprise supports SSO/SAML.",
+      "tags": ["2fa", "mfa", "sso", "saml"]
+    },
+    {
+      "id": "account-003",
+      "title": "Account Management",
+      "content": "Account owners can transfer ownership to another admin. Deletion requires confirmation and 7-day grace period. Team members removed retain access until end of billing cycle. Profile updates sync across all connected services within 5 minutes.",
+      "tags": ["account", "ownership", "deletion", "team"]
+    }
+  ]
+}
