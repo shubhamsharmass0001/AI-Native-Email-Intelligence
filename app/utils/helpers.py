@@ -45,6 +45,10 @@ def append_json_array(path: Path, item: dict[str, Any]) -> None:
 def extract_json_from_text(text: str) -> dict[str, Any]:
     """Extract JSON object from LLM response text."""
     text = text.strip()
+
+    # Strip reasoning model <think>...</think> blocks (e.g. Qwen, DeepSeek)
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
+
     if text.startswith("{"):
         try:
             return json.loads(text)

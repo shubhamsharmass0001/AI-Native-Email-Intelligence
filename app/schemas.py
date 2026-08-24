@@ -13,6 +13,8 @@ class EmailInput(BaseModel):
     customer_name: str = Field(default="Customer")
     company: str = Field(default="")
     expected_response: str = Field(default="")
+    tone: str = Field(default="professional")
+    persona: str = Field(default="tier1")
 
 
 class PredictRequest(BaseModel):
@@ -29,6 +31,7 @@ class PredictResponse(BaseModel):
     priority: str
     sentiment: str
     customer_type: str
+    language: str = "English"
     latency_ms: float
 
 
@@ -41,6 +44,9 @@ class GenerateResponse(BaseModel):
     priority: str
     sentiment: str
     customer_type: str
+    language: str = "English"
+    tone: str = "professional"
+    persona: str = "tier1"
     retrieved_documents: list[dict[str, Any]]
     generated_reply: dict[str, Any]
     validated_reply: dict[str, Any]
@@ -55,6 +61,8 @@ class EvaluateRequest(BaseModel):
     expected_response: str = Field(..., min_length=10)
     customer_name: str = Field(default="Customer")
     company: str = Field(default="")
+    tone: str = Field(default="professional")
+    persona: str = Field(default="tier1")
 
 
 class EvaluateResponse(BaseModel):
@@ -62,6 +70,9 @@ class EvaluateResponse(BaseModel):
 
     subject: str
     email: str
+    language: str = "English"
+    tone: str = "professional"
+    persona: str = "tier1"
     generated_reply: dict[str, Any]
     validated_reply: dict[str, Any]
     bertscore: dict[str, Any]

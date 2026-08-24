@@ -9,6 +9,7 @@ from typing import Any, AsyncGenerator
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse
+from pydantic import BaseModel
 
 from . import __version__
 from .auth.clerk import get_current_user_id
@@ -27,6 +28,7 @@ from .services.dashboard import get_dashboard_service
 from .startup_validation import validate_production_env
 from .state import EmailState
 from .utils.logger import get_logger, setup_logging
+from .llm.gateway import get_llm_gateway
 
 logger = get_logger(__name__)
 
@@ -88,6 +90,8 @@ def _build_state(
     customer_name: str = "Customer",
     company: str = "",
     expected_response: str = "",
+    tone: str = "Professional & Formal",
+    persona: str = "Tier 1 Support Agent",
 ) -> EmailState:
     return EmailState(
         subject=subject,
@@ -95,6 +99,9 @@ def _build_state(
         customer_name=customer_name,
         company=company,
         expected_response=expected_response,
+        tone=tone,
+        persona=persona,
+        language="English",
         node_metrics={},
         errors=[],
     )
@@ -114,6 +121,38 @@ async def root() -> dict[str, str]:
 async def health_check() -> dict[str, str]:
     """Render health probe — <100ms, no Chroma / LLM / evaluation."""
     return {"status": "healthy", "version": __version__}
+
+
+class ExtractEmailRequest(BaseModel):
+    text: str
+
+
+@app.post("/extract-email")
+async def extract_email_endpoint(
+    request: ExtractEmailRequest,
+    user_id: str = Depends(get_current_user_id),
+) -> dict[str, str]:
+    """Use LLM to extract customer_name, subject and email_body from raw page text."""
+    client = get_llm_client()
+    prompt = (
+        'Extract the customer email details from this page text. '
+        'Return JSON with keys: '
+        '{"customer_name": "<sender full name or empty string>", '
+        '"subject": "<email subject or topic>", '
+        '"email_body": "<clean message body text>"}\n\n'
+        f'Page Text:\n{request.text[:4000]}'
+    )
+    try:
+        result, _ = await client.invoke(prompt, parse_json=True)
+    except Exception as exc:
+        logger.warning("LLM email extraction failed, falling back to raw text: %s", exc)
+        return {"customer_name": "", "subject": "", "email_body": ""}
+
+    return {
+        "customer_name": result.get("customer_name", ""),
+        "subject": result.get("subject", ""),
+        "email_body": result.get("email_body", ""),
+    }
 
 
 @app.get("/status")
@@ -141,8 +180,7 @@ async def predict(
     request: PredictRequest,
     user_id: str = Depends(get_current_user_id),
 ) -> PredictResponse:
-    """Classify intent, priority, sentiment, and customer type."""
-    _ = user_id
+    """Fast classification endpoint (<1s) — runs intent, priority, sentiment, customer_type in parallel."""
     start = time.perf_counter()
     state = _build_state(request.subject, request.email)
     graph = _get_graph("get_predict_graph")
@@ -162,6 +200,7 @@ async def predict(
         priority=result.get("priority", ""),
         sentiment=result.get("sentiment", ""),
         customer_type=result.get("customer_type", ""),
+        language=result.get("language", "English"),
         latency_ms=latency,
     )
 
@@ -173,7 +212,14 @@ async def generate(
 ) -> GenerateResponse:
     """Generate a validated support reply."""
     dashboard = get_dashboard_service(user_id)
-    state = _build_state(request.subject, request.email, request.customer_name, request.company)
+    state = _build_state(
+        request.subject,
+        request.email,
+        request.customer_name,
+        request.company,
+        tone=request.tone,
+        persona=request.persona,
+    )
     graph = _get_graph("get_generate_graph")
 
     try:
@@ -191,10 +237,26 @@ async def generate(
     response_data = {
         "subject": request.subject,
         "intent": result.get("intent", ""),
+        "language": result.get("language", "English"),
         "generated_reply": result.get("generated_reply", {}),
         "overall_latency_ms": latency,
     }
     dashboard.append_generation(response_data)
+
+    # Also append a lightweight evaluation record so analytics charts update
+    eval_record = {
+        "subject": request.subject,
+        "intent": result.get("intent", ""),
+        "priority": result.get("priority", ""),
+        "sentiment": result.get("sentiment", ""),
+        "customer_type": result.get("customer_type", ""),
+        "language": result.get("language", "English"),
+        "generated_reply": result.get("generated_reply", {}),
+        "overall_score": result.get("generated_reply", {}).get("confidence", 0.0),
+        "node_metrics": result.get("node_metrics", {}),
+        "overall_latency_ms": latency,
+    }
+    dashboard.append_evaluation(eval_record)
 
     return GenerateResponse(
         subject=request.subject,
@@ -203,6 +265,9 @@ async def generate(
         priority=result.get("priority", ""),
         sentiment=result.get("sentiment", ""),
         customer_type=result.get("customer_type", ""),
+        language=result.get("language", "English"),
+        tone=request.tone,
+        persona=request.persona,
         retrieved_documents=result.get("retrieved_documents", []),
         generated_reply=result.get("generated_reply", {}),
         validated_reply=result.get("validated_reply", {}),
@@ -223,6 +288,8 @@ async def evaluate(
         request.customer_name,
         request.company,
         request.expected_response,
+        tone=request.tone,
+        persona=request.persona,
     )
     graph = _get_graph("get_full_graph")
 
@@ -235,23 +302,27 @@ async def evaluate(
             detail=f"Pipeline failed: {exc}. Check LLM keys (GEMINI_API_KEY) and restart the backend after .env changes.",
         ) from exc
 
-    eval_result = {
+    eval_data = {
         "subject": request.subject,
         "intent": result.get("intent", ""),
+        "priority": result.get("priority", ""),
+        "sentiment": result.get("sentiment", ""),
+        "customer_type": result.get("customer_type", ""),
+        "language": result.get("language", "English"),
         "generated_reply": result.get("generated_reply", {}),
         "validated_reply": result.get("validated_reply", {}),
-        "bertscore": result.get("bertscore", {}),
-        "embedding_score": result.get("embedding_score", {}),
-        "judge_score": result.get("judge_score", {}),
         "overall_score": result.get("overall_score", 0.0),
-        "feedback": result.get("feedback", ""),
+        "judge_score": result.get("judge_score", {}),
         "node_metrics": result.get("node_metrics", {}),
     }
-    dashboard.append_evaluation(eval_result)
+    dashboard.append_evaluation(eval_data)
 
     return EvaluateResponse(
         subject=request.subject,
         email=request.email,
+        language=result.get("language", "English"),
+        tone=request.tone,
+        persona=request.persona,
         generated_reply=result.get("generated_reply", {}),
         validated_reply=result.get("validated_reply", {}),
         bertscore=result.get("bertscore", {}),

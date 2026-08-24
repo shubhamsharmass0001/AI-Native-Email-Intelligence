@@ -25,5 +25,6 @@ async def intent_agent(state: EmailState) -> dict:
 
         return {
             "intent": result.get("intent", "bug_report"),
+            "language": result.get("language", "English"),
             **merge_node_metrics(state, "intent_agent", {**metrics, **llm_metrics}),
         }

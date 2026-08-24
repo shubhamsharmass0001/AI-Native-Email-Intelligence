@@ -12,7 +12,7 @@ Your goals:
 
 When you don't have information in the knowledge base, say so honestly and offer to escalate."""
 
-INTENT_CLASSIFICATION_PROMPT = """Analyze this customer support email and classify its intent.
+INTENT_CLASSIFICATION_PROMPT = """Analyze this customer support email. Classify its intent and detect the primary language.
 
 Subject: {subject}
 Email: {email}
@@ -20,8 +20,10 @@ Email: {email}
 Choose the most specific intent from this list:
 {intents}
 
+Detect the primary language of the email (e.g. English, Spanish, German, French, Hindi, Japanese, Portuguese, Italian, Dutch, Chinese, etc.).
+
 Return JSON only:
-{{"intent": "<intent>", "confidence": <0-1>, "reasoning": "<brief explanation>"}}"""
+{{"intent": "<intent>", "language": "<detected language, default English>", "confidence": <0-1>, "reasoning": "<brief explanation>"}}"""
 
 PRIORITY_CLASSIFICATION_PROMPT = """Analyze this customer support email and determine urgency priority.
 
@@ -69,12 +71,16 @@ Look for signals like:
 Return JSON only:
 {{"customer_type": "<type>", "confidence": <0-1>, "reasoning": "<brief explanation>"}}"""
 
-GENERATION_PROMPT = """Draft a professional customer support reply.
+GENERATION_PROMPT = """Draft a customer support reply based on the requested Persona, Tone, and Customer Language.
 
 Customer: {customer_name}
 Company: {company}
 Subject: {subject}
-Email:
+Customer Language: {language}
+Assigned Persona: {persona}
+Desired Tone: {tone}
+
+Email / Conversation Thread:
 {email}
 
 Analysis:
@@ -87,12 +93,15 @@ Retrieved Knowledge:
 {knowledge_context}
 
 Instructions:
-1. Address the customer by name
-2. Acknowledge their concern with appropriate empathy given sentiment: {sentiment}
-3. Use ONLY the retrieved knowledge for policy information
-4. Provide clear, actionable next steps
-5. Include relevant citations from knowledge base
-6. Close professionally
+1. Address the customer ({customer_name}) by name in the opening greeting (e.g., "Hi {customer_name}," or "Hello {customer_name},"). Never address yourself or any other party found in the email body.
+2. Tone & Persona Guidelines:
+   - Persona: Adopt the perspective and technical role of: {persona} (e.g. Tier 1 Support Agent, Software Engineer, Billing Specialist, Product Specialist).
+   - Tone: Follow the style: {tone} (e.g. Professional & Formal, Friendly & Conversational, Concise & Direct, Empathetic & Reassuring).
+3. Multi-Turn Thread Awareness: If the email contains a conversation thread or prior back-and-forth messages, reference past discussion points accurately and focus on resolving the latest question.
+4. Multi-Language Reply: If Customer Language is NOT English (e.g. Spanish, German, Hindi, French, Japanese, etc.), draft the reply fluently and naturally in the customer's language ({language}), while keeping policy terms and citations grounded in the English knowledge base.
+5. Use ONLY the retrieved knowledge for policy information. Never hallucinate unauthorized commitments.
+6. Provide clear, actionable next steps and include relevant citations from knowledge base.
+7. Close professionally with a polite sign-off matching the persona and language.
 
 Return JSON only:
 {{

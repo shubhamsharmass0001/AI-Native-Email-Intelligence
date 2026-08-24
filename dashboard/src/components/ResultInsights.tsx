@@ -73,6 +73,21 @@ export function ResultInsights({ result, mode, onRegenerate }: Props) {
               <Badge label="Customer" value={result.customer_type} />
             </>
           )}
+          {result.language && (
+            <span className="flex items-center gap-1 rounded-md bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-400 border border-blue-500/20">
+              🌐 {result.language}
+            </span>
+          )}
+          {result.persona && (
+            <span className="flex items-center gap-1 rounded-md bg-purple-500/10 px-2 py-0.5 text-[10px] font-semibold text-purple-400 border border-purple-500/20">
+              🎧 {result.persona}
+            </span>
+          )}
+          {result.tone && (
+            <span className="flex items-center gap-1 rounded-md bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-400 border border-amber-500/20">
+              🎭 {result.tone}
+            </span>
+          )}
           {result.generated_reply?.confidence != null && (
             <ConfidenceBadge score={result.generated_reply.confidence} />
           )}
@@ -127,6 +142,8 @@ export function ResultInsights({ result, mode, onRegenerate }: Props) {
             reply={reply}
             citations={result.generated_reply?.citations}
             confidence={result.generated_reply?.confidence}
+            subject={result.subject}
+            emailText={"email" in result ? result.email : undefined}
             onRegenerate={onRegenerate}
           />
         )}

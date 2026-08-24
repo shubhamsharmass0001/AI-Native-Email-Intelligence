@@ -294,5 +294,444 @@
       "latency_ms": 12121.96
     },
     "overall_latency_ms": 37080.52
+  },
+  {
+    "subject": "Gmail sync broken",
+    "intent": "integration_error",
+    "generated_reply": {
+      "reply": "Hi Maria,\n\nI'm very sorry to hear that your shared inbox has stopped syncing and is affecting 12 of your agents. I understand how critical this issue is for your team's productivity.\n\nTo help us investigate this technical issue thoroughly, please provide us with the following details:\n*   The steps to reproduce the syncing problem.\n*   A description of the expected behavior versus what you are currently experiencing.\n*   Any relevant screenshots that can help illustrate the issue.\n\nThis information will allow our team to diagnose the problem as quickly as possible, as outlined in our bug reporting process ([faq-technical-2]).\n\nPlease reply to this email with these details, and we'll prioritize looking into this for you.\n\nThank you,\n[Your Name]\nSenior Customer Support Engineer",
+      "confidence": 1.0,
+      "reasoning": "The reply addresses Maria by name and acknowledges the very negative sentiment and high priority of the shared inbox sync issue affecting multiple agents. It provides clear, actionable next steps for reporting a bug, directly referencing the instructions from [faq-technical-2] in the retrieved knowledge. The response avoids hallucinating solutions or policies not present in the knowledge base and closes professionally with an offer for further assistance.",
+      "citations": [
+        "faq-technical-2"
+      ],
+      "knowledge_used": [
+        "faq-technical-2",
+        "Technical: Product bugs, errors, and technical issues"
+      ],
+      "tokens": 1871,
+      "latency_ms": 8280.93
+    },
+    "overall_latency_ms": 36335.26
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "bug_report",
+    "generated_reply": {
+      "reply": "Hi Maria,\n\nI'm very sorry to hear that your shared mailbox (support@acme.io) has stopped syncing new Gmail threads, especially with 12 agents affected and SLAs breaching. I understand how critical this is for your team, and we're treating it with the urgency it deserves.\n\nThank you for reporting this issue. We've received your bug report and our team is actively investigating the cause of the syncing problem you're experiencing since the Gmail update.\n\nAccording to our Bug Report Handling policy, issues where service is down (P0) receive a 1-hour response and have a 4-hour resolution target [technical-001]. We are treating this with the highest priority and will provide you with an update as soon as possible.\n\nWe appreciate your patience as we work to resolve this for you. Please don't hesitate to reply to this email if you have any further questions or information to add.\n\nBest regards,\n[Your Name]\nCustomer Support Engineer",
+      "confidence": 1.0,
+      "reasoning": "The reply addresses the customer by name, expresses strong empathy for the critical and urgent issue (very_negative sentiment, high priority). It acknowledges the bug report and clearly states the next steps, referencing the 'Bug Report Handling' policy [technical-001] for P0 issues, which aligns with the customer's description of service being down and SLAs breaching. The reply is concise, thorough, actionable, and closes professionally, adhering to all instructions and using only the provided knowledge.",
+      "citations": [
+        "technical-001"
+      ],
+      "knowledge_used": [
+        "technical-001"
+      ],
+      "tokens": 2054,
+      "latency_ms": 10035.75
+    },
+    "overall_latency_ms": 40564.12
+  },
+  {
+    "subject": "Agents cannot assign emails — role permission error",
+    "intent": "permission_denied",
+    "generated_reply": {
+      "reply": "Hello Tom,\n\nI understand how frustrating it can be when your support agents encounter 'Permission denied' errors, especially when trying to assign emails in your shared inbox. This can definitely disrupt your workflow.\n\nBased on the information you've provided, it sounds like the issue is related to the role permissions assigned to your support agents. Typically, 'Permission denied' errors for specific features indicate that the user's current role does not have the necessary access [faq-permissions-1].\n\nTo resolve this, an administrator in your HelpDesk Pro workspace should check the role permissions for the affected support agents. They can do this by navigating to the Admin Console, selecting 'Team,' choosing the specific member, and then reviewing or changing their role if needed. Any changes made will apply immediately [faq-permissions-0].\n\nPlease have your administrator review these settings. If the issue persists after checking and adjusting the role permissions, or if you need further assistance, please don't hesitate to reply to this email with more details, and we'll be happy to investigate further.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer",
+      "confidence": 1.0,
+      "reasoning": "The reply addresses the customer by name and acknowledges their frustration empathetically. It directly identifies the problem as a role permission issue, citing relevant knowledge base articles. It provides clear, actionable next steps for an administrator to check and adjust user roles. The reply uses only the provided knowledge and closes professionally with an offer for further assistance.",
+      "citations": [
+        "faq-permissions-1",
+        "faq-permissions-0"
+      ],
+      "knowledge_used": [
+        "faq-permissions-1",
+        "faq-permissions-0"
+      ],
+      "tokens": 1759,
+      "latency_ms": 8479.11
+    },
+    "overall_latency_ms": 46207.53
+  },
+  {
+    "subject": "Research Motivation for New Generation\" -- Invited Lecture by Prof. Anand Kumar Tyagi",
+    "intent": "feature_request",
+    "generated_reply": {
+      "reply": "",
+      "confidence": 0.0,
+      "reasoning": "",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 0,
+      "latency_ms": 20419.73
+    },
+    "overall_latency_ms": 62467.92
+  },
+  {
+    "subject": "Research Motivation for New Generation\" -- Invited Lecture by Prof. Anand Kumar Tyagi",
+    "intent": "feature_request",
+    "generated_reply": {
+      "reply": "",
+      "confidence": 0.0,
+      "reasoning": "",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 0,
+      "latency_ms": 19651.43
+    },
+    "overall_latency_ms": 61036.8
+  },
+  {
+    "subject": "Research Motivation for New Generation\" -- Invited Lecture by Prof. Anand Kumar Tyagi",
+    "intent": "bug_report",
+    "generated_reply": {
+      "reply": "",
+      "confidence": 0.0,
+      "reasoning": "",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 0,
+      "latency_ms": 49346.74
+    },
+    "overall_latency_ms": 1705.83
+  },
+  {
+    "subject": "Reminder: Capstone Mid-Term Report Upload Deadline – 22 Aug, 2026, 11 AM",
+    "intent": "bug_report",
+    "generated_reply": {
+      "reply": "Dear Maria Lopez,\n\nThank you for reaching out regarding the Capstone Mid-Term Report upload deadline. I understand the importance of submitting your report on time and want to ensure you have a smooth experience with the portal.\n\nIf you are encountering any technical difficulties during the upload process, please reply to this email with the following details so we can investigate promptly:\n- Steps to reproduce the issue\n- Expected vs. actual behavior\n- Screenshots or error messages\n\nOnce received, our team will triage your report within 24 hours. For minor issues, we aim to provide a response within 48 hours, and you will receive status updates via email and our status page. In the meantime, please keep your tape-bound physical copy ready as a backup, as noted in the coordinator's reminder.\n\nPlease don't hesitate to reach out if you need further assistance. We are here to help you meet your deadline successfully.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer",
+      "confidence": 0.95,
+      "reasoning": "The reply addresses the customer by name, acknowledges the deadline pressure with appropriate empathy for a neutral sentiment, and strictly follows the retrieved knowledge base for bug reporting procedures and SLAs. It provides clear, actionable next steps for submitting a bug report and references the backup physical copy mentioned in the original email. The tone is professional and aligns with SaaS support standards.",
+      "citations": [
+        "Bug reports triaged within 24 hours. P2 (minor issues): 48-hour response. Status updates via email and status page.",
+        "Email support with steps to reproduce, expected vs actual behavior, and screenshots."
+      ],
+      "knowledge_used": [
+        "technical-001",
+        "faq-technical-2"
+      ],
+      "tokens": 4039,
+      "latency_ms": 20262.22
+    },
+    "overall_latency_ms": 134245.02
+  },
+  {
+    "subject": "Suspension of Classes (8:50 AM–12:10 PM) | Inaugural Session of International Conference | August 24, 2026 (9:15 AM)",
+    "intent": "none",
+    "generated_reply": {
+      "reply": "",
+      "confidence": 0.0,
+      "reasoning": "",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 4237,
+      "latency_ms": 21678.6
+    },
+    "overall_latency_ms": 127080.51
+  },
+  {
+    "subject": "Suspension of Classes (8:50 AM–12:10 PM) | Inaugural Session of International Conference | August 24, 2026 (9:15 AM)",
+    "intent": "none",
+    "generated_reply": {
+      "reply": "",
+      "confidence": 0.0,
+      "reasoning": "",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 4237,
+      "latency_ms": 0.08
+    },
+    "overall_latency_ms": 125892.73
+  },
+  {
+    "subject": "Suspension of Classes (8:50 AM–12:10 PM) | Inaugural Session of International Conference | August 24, 2026 (9:15 AM)",
+    "intent": "none",
+    "generated_reply": {
+      "reply": "",
+      "confidence": 0.0,
+      "reasoning": "",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 4237,
+      "latency_ms": 0.08
+    },
+    "overall_latency_ms": 125324.58
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "integration_error",
+    "generated_reply": {
+      "reply": "",
+      "confidence": 0.0,
+      "reasoning": "",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 4002,
+      "latency_ms": 19649.07
+    },
+    "overall_latency_ms": 63196.22
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "integration_error",
+    "generated_reply": {
+      "reply": "Hi Maria,\n\nI’m really sorry to hear that the shared mailbox isn’t syncing new Gmail threads and that this is impacting your agents’ SLAs. I understand how critical this is for your team.\n\nWe’ve logged this as a P1 bug (major feature broken) and will triage it within 4 hours and aim to resolve it within 24 hours. You’ll receive status updates via email and on our status page.\n\nIn the meantime, could you please provide:\n1. The exact steps your agents took before the sync stopped.\n2. Any error messages or screenshots you can capture.\n3. Confirmation that the Gmail update was recent and whether it affected other integrations.\n\nYou can send this information to support@yourcompany.com or simply reply to this email. Once we receive the details, we’ll keep you posted on the progress.\n\nThank you for your patience. If you need immediate assistance, feel free to call our 24/7 support line at 1‑800‑XXX‑XXXX.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the customer’s frustration, references the bug report handling policy and escalation rules, and provides clear next steps for the customer to provide necessary information. It follows the instructions to use only retrieved knowledge and cites the relevant policy documents.",
+      "citations": [
+        "Bug Report Handling",
+        "How do I report a bug?"
+      ],
+      "knowledge_used": [
+        "technical-001",
+        "faq-technical-2"
+      ],
+      "tokens": 1430,
+      "latency_ms": 1252.93
+    },
+    "overall_latency_ms": 51578.83
+  },
+  {
+    "subject": "Turn your momentum into a campus leadership role!",
+    "intent": "role_change_request",
+    "generated_reply": {
+      "reply": "Hi Shubham,\n\nThank you for reaching out about the Campus Ambassador opportunity for the Tata Imagination Challenge 2026. We’re excited to hear about your interest.\n\nI don’t have the specific details of the ambassador program in our knowledge base, but I’ve forwarded your email to our program coordination team. They will review your eligibility and send you the application form, timelines, and information about the ₹2 Lakh voucher incentive.\n\nIn the meantime, if you have any questions about your Unstop account—such as updating your profile or managing your activity—please let me know. I’m happy to help.\n\nThank you again for your interest, and I’ll keep you updated once we hear back from the program team.\n\nBest regards,\n[Your Name]\nCustomer Support",
+      "confidence": 0.85,
+      "reasoning": "The reply acknowledges the positive opportunity, expresses gratitude, and offers a clear next step by forwarding the request to the appropriate team. It follows the guidelines to be empathetic, concise, and actionable while not inventing policies. No policy information from the knowledge base is applicable, so no citations are included.",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 1440,
+      "latency_ms": 1313.51
+    },
+    "overall_latency_ms": 6408.63
+  },
+  {
+    "subject": "Request pro-rated refund after team downsizing",
+    "intent": "partial_refund",
+    "generated_reply": {
+      "reply": "Hi Lisa,\n\nThank you for reaching out. I understand that you’ve reduced your team from 40 to 15 seats mid‑cycle and would like a pro‑rated refund for the unused seats.\n\nAccording to our policy, when a downgrade occurs mid‑cycle the unused portion is credited back to the account rather than refunded in cash. The credit is calculated as:\n\n\\[(unused_days / total_days) \\times amount_paid\\]\n\nThe minimum credit we issue is $5.00. Since you’re on the Business Annual plan, the credit will be applied to your account balance and can be used toward future invoices.\n\n**Next steps**\n1. We’ll calculate the exact credit amount based on the remaining days in your current billing cycle.\n2. The credit will be applied to your account within 1–2 business days.\n3. You’ll receive a confirmation email once the credit is posted.\n\nIf you have any questions about how the credit will be applied or if you’d like to discuss alternative options, please let me know and I’ll be happy to help.\n\nThank you for your continued partnership.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer\n[Company Name]\n[Contact Information]",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the customer’s concern, references the exact policy for partial refunds and credits, provides clear next steps, and offers further assistance. It uses only the retrieved knowledge and cites the relevant documents.",
+      "citations": [
+        "[refund-003]",
+        "[billing-004]"
+      ],
+      "knowledge_used": [
+        "refund-003",
+        "billing-004"
+      ],
+      "tokens": 1342,
+      "latency_ms": 6238.39
+    },
+    "overall_latency_ms": 69822.05
+  },
+  {
+    "subject": "Request pro-rated refund after team downsizing",
+    "intent": "partial_refund",
+    "generated_reply": {
+      "reply": "Hi Lisa,\n\nThank you for reaching out. I understand that you’ve reduced your team from 40 to 15 seats mid‑cycle and would like a pro‑rated refund for the unused seats.\n\nAccording to our policy, when a downgrade occurs mid‑cycle the unused portion is credited back to the account rather than refunded in cash. The credit is calculated as:\n\n\\[(unused_days / total_days) \\times amount_paid\\]\n\nThe minimum credit we issue is $5.00. Since you’re on the Business Annual plan, the credit will be applied to your account balance and can be used toward future invoices.\n\n**Next steps**\n1. We’ll calculate the exact credit amount based on the remaining days in your current billing cycle.\n2. The credit will be applied to your account within 1–2 business days.\n3. You’ll receive a confirmation email once the credit is posted.\n\nIf you have any questions about how the credit will be applied or if you’d like to discuss alternative options, please let me know and I’ll be happy to help.\n\nThank you for your continued partnership.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer\n[Company Name]\n[Contact Information]",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the customer’s concern, references the exact policy for partial refunds and credits, provides clear next steps, and offers further assistance. It uses only the retrieved knowledge and cites the relevant documents.",
+      "citations": [
+        "[refund-003]",
+        "[billing-004]"
+      ],
+      "knowledge_used": [
+        "refund-003",
+        "billing-004"
+      ],
+      "tokens": 1342,
+      "latency_ms": 0.06
+    },
+    "overall_latency_ms": 68381.1
+  },
+  {
+    "subject": "Suspicious login attempts on shared mailbox",
+    "intent": "security_incident",
+    "generated_reply": {
+      "reply": "Hello James,\n\nThank you for bringing this urgent security issue to our attention. I understand how concerning multiple failed login attempts from diverse IP ranges can be, especially when they target a shared mailbox.\n\n**Immediate actions you can take**:\n1. **Reset the mailbox password** and enable two‑factor authentication (2FA) for the account if it isn’t already active. This will prevent further unauthorized attempts.\n2. **Review the mailbox’s audit logs** (if available) to identify any successful logins or other suspicious activity.\n3. **Forward any related logs or screenshots** to our security team at security@company.com so we can investigate the source IPs and block them if necessary.\n\nWe have escalated this incident to our Security Team under the suspected breach protocol, and they will begin an investigation within the next hour. We will keep you updated on our findings and any additional steps required.\n\nIf you need assistance resetting the password or enabling 2FA, please let me know and I’ll guide you through the process.\n\nThank you for your vigilance. Please don’t hesitate to reach out if you have any further questions or concerns.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer\n[Company]",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the urgency and concern, follows escalation rules, provides actionable steps, cites relevant policy documents, and closes professionally.",
+      "citations": [
+        "[security-002]",
+        "[faq-security-1]"
+      ],
+      "knowledge_used": [
+        "security-002",
+        "faq-security-1"
+      ],
+      "tokens": 1210,
+      "latency_ms": 5573.38
+    },
+    "overall_latency_ms": 56911.01
+  },
+  {
+    "subject": "A $130M startup is hiring",
+    "intent": "subscription_cancel",
+    "generated_reply": {
+      "reply": "Hi Shubham,\n\nThank you for reaching out. I’m sorry you’d like to stop receiving our emails. I’ve processed your request to cancel your subscription and you will no longer receive any further communications from us.\n\nYou should receive a confirmation email shortly. If you have any questions or need to reactivate your account in the future, just let us know.\n\nThank you for being part of the Naukri Minis community.\n\nBest regards,\n[Your Name]\nCustomer Support Team\n\nP.S. If you only want to stop marketing emails but keep your subscription active, please let me know and I’ll adjust that for you.",
+      "confidence": 0.9,
+      "reasoning": "The customer’s intent is to cancel the subscription. The reply acknowledges the request, confirms cancellation, and offers further assistance, following the guidelines for empathy, clarity, and actionable next steps. Citations are provided for the subscription policy and billing plan details.",
+      "citations": [
+        "Subscription: Plan changes, upgrades, downgrades, and cancellations",
+        "billing-004"
+      ],
+      "knowledge_used": [
+        "Subscription: Plan changes, upgrades, downgrades, and cancellations",
+        "billing-004"
+      ],
+      "tokens": 1379,
+      "latency_ms": 9341.39
+    },
+    "overall_latency_ms": 86653.69
+  },
+  {
+    "subject": "A $130M startup is hiring",
+    "intent": "subscription_cancel",
+    "generated_reply": {
+      "reply": "Hi Shubham,\n\nThank you for reaching out. I’m sorry you’d like to stop receiving our emails. I’ve processed your request to cancel your subscription and you will no longer receive any further communications from us.\n\nYou should receive a confirmation email shortly. If you have any questions or need to reactivate your account in the future, just let us know.\n\nThank you for being part of the Naukri Minis community.\n\nBest regards,\n[Your Name]\nCustomer Support Team\n\nP.S. If you only want to stop marketing emails but keep your subscription active, please let me know and I’ll adjust that for you.",
+      "confidence": 0.9,
+      "reasoning": "The customer’s intent is to cancel the subscription. The reply acknowledges the request, confirms cancellation, and offers further assistance, following the guidelines for empathy, clarity, and actionable next steps. Citations are provided for the subscription policy and billing plan details.",
+      "citations": [
+        "Subscription: Plan changes, upgrades, downgrades, and cancellations",
+        "billing-004"
+      ],
+      "knowledge_used": [
+        "Subscription: Plan changes, upgrades, downgrades, and cancellations",
+        "billing-004"
+      ],
+      "tokens": 1379,
+      "latency_ms": 0.21
+    },
+    "overall_latency_ms": 85442.66
+  },
+  {
+    "subject": "Call for Nominations – VC's Excellence Award (2025–26) for Teaching Staff - Step I",
+    "intent": "none",
+    "generated_reply": {
+      "reply": "Dear Dr. Batra,\n\nThank you for the reminder about the VC's Excellence Award nominations. I have noted the deadline of 24 August 2026 and will ensure that all relevant nominations are submitted on time.\n\nIf you or any faculty members need assistance with the nomination process or encounter any issues, please let me know and I’ll be happy to help.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer\n[Company Name]",
+      "confidence": 0.9,
+      "reasoning": "The reply acknowledges the reminder, provides clear next steps for submitting the nomination, and offers further assistance, aligning with the requested tone and structure. No policy information from the knowledge base is relevant, so no citations are included.",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 2518,
+      "latency_ms": 14611.92
+    },
+    "overall_latency_ms": 36696.6
+  },
+  {
+    "subject": "Enjoy up to 10% off* on hotels",
+    "intent": "phishing_report",
+    "generated_reply": {
+      "reply": "Dear Air India Limited,\n\nThank you for reaching out and bringing this email to our attention. We understand how concerning it can be to receive unexpected or suspicious messages.\n\nTo help us investigate and protect our users, please forward the entire email (including all headers) to abuse@company.com. We will review the content and, if it is confirmed as phishing, block the sender’s domain within 24 hours.\n\nIn the meantime, please do not click any links or provide any personal information. If you suspect that your account may have been compromised, reset your password immediately and enable two‑factor authentication.\n\nWe appreciate your vigilance and are here to help if you have any further questions or concerns.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer\n[Company Name]",
+      "confidence": 0.95,
+      "reasoning": "The user is reporting a suspicious email that appears to be phishing. The response follows the company’s phishing policy: acknowledge the concern, instruct the user to forward the email to abuse@company.com, advise not to share credentials, and mention domain blocking within 24 hours. The reply is concise, empathetic, and includes clear next steps, complying with the instructions and using only the retrieved knowledge.",
+      "citations": [
+        "security-002",
+        "faq-security-0"
+      ],
+      "knowledge_used": [
+        "security-002",
+        "faq-security-0"
+      ],
+      "tokens": 2484,
+      "latency_ms": 16799.75
+    },
+    "overall_latency_ms": 44636.41
+  },
+  {
+    "subject": "ICPC 2026 Online Challenge 1 powered by Huawei",
+    "intent": "none",
+    "generated_reply": {
+      "reply": "Hello Mike,\n\nThank you for reaching out and for the invitation to the ICPC 2026 Online Challenge 1 powered by Huawei. We appreciate the opportunity and are excited about the upcoming event.\n\nIf you need any assistance with registration, technical setup, or have questions about the contest rules, please let us know and we’ll be happy to help.\n\nBest regards,\nShubhtiet\nSenior Customer Support Engineer",
+      "confidence": 0.99,
+      "reasoning": "The email is an invitation, not a support request. The reply acknowledges the invitation, offers help, and follows the guidelines for empathy and professionalism. No policy information is required, so no citations are included.",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 1548,
+      "latency_ms": 32063.18
+    },
+    "overall_latency_ms": 74506.72
+  },
+  {
+    "subject": "Suspicious login attempts on shared mailbox",
+    "intent": "security_incident",
+    "generated_reply": {
+      "reply": "Hello James,\n\nThank you for bringing this urgent security issue to our attention. I understand how concerning multiple failed login attempts from diverse IP ranges can be, especially when they target a shared mailbox.\n\n**Immediate actions you can take**:\n1. **Reset the mailbox password** and enable two‑factor authentication (2FA) for the account if it isn’t already active. This will prevent further unauthorized attempts.\n2. **Review the mailbox’s audit logs** (if available) to identify any successful logins or other suspicious activity.\n3. **Forward any related logs or screenshots** to our security team at security@company.com so we can investigate the source IPs and block them if necessary.\n\nWe have escalated this incident to our Security Team under the suspected breach protocol, and they will begin an investigation within the next hour. We will keep you updated on our findings and any additional steps required.\n\nIf you need assistance resetting the password or enabling 2FA, please let me know and I’ll guide you through the process.\n\nThank you for your vigilance. Please don’t hesitate to reach out if you have any further questions or concerns.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer\n[Company]",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the urgency and concern, follows escalation rules, provides actionable steps, cites relevant policy documents, and closes professionally.",
+      "citations": [
+        "[security-002]",
+        "[faq-security-1]"
+      ],
+      "knowledge_used": [
+        "security-002",
+        "faq-security-1"
+      ],
+      "tokens": 1210,
+      "latency_ms": 1206.16
+    },
+    "overall_latency_ms": 6376.33
+  },
+  {
+    "subject": "Suspicious login attempts on shared mailbox",
+    "intent": "security_incident",
+    "generated_reply": {
+      "reply": "Hello James,\n\nThank you for bringing this urgent security issue to our attention. I understand how concerning multiple failed login attempts from diverse IP ranges can be, especially when they target a shared mailbox.\n\n**Immediate actions you can take**:\n1. **Reset the mailbox password** and enable two‑factor authentication (2FA) for the account if it isn’t already active. This will prevent further unauthorized attempts.\n2. **Review the mailbox’s audit logs** (if available) to identify any successful logins or other suspicious activity.\n3. **Forward any related logs or screenshots** to our security team at security@company.com so we can investigate the source IPs and block them if necessary.\n\nWe have escalated this incident to our Security Team under the suspected breach protocol, and they will begin an investigation within the next hour. We will keep you updated on our findings and any additional steps required.\n\nIf you need assistance resetting the password or enabling 2FA, please let me know and I’ll guide you through the process.\n\nThank you for your vigilance. Please don’t hesitate to reach out if you have any further questions or concerns.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer\n[Company]",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the urgency and concern, follows escalation rules, provides actionable steps, cites relevant policy documents, and closes professionally.",
+      "citations": [
+        "[security-002]",
+        "[faq-security-1]"
+      ],
+      "knowledge_used": [
+        "security-002",
+        "faq-security-1"
+      ],
+      "tokens": 1210,
+      "latency_ms": 1152.16
+    },
+    "overall_latency_ms": 31051.66
+  },
+  {
+    "subject": "You shared some Google Account data with Clerk",
+    "intent": "security_incident",
+    "generated_reply": {
+      "reply": "Hi Shubh,\n\nThank you for reaching out. I understand you received a notification from Google about the data that was shared with Clerk when you signed in with Google. This is a normal part of the Sign‑in‑with‑Google flow.\n\nIf you would like to stop sharing data or delete the information Clerk has, you can do so in a few simple steps:\n\n1. **Revoke the Google permission** – Go to your Google Account’s linked apps page: <https://myaccount.google.com/linkedapps> and remove Clerk from the list of connected services.\n2. **Delete the data in Clerk** – Log in to your Clerk account, navigate to the account settings, and use the “Delete data” option to remove the profile information that was shared.\n3. **Review Clerk’s privacy policy** – For more details on how we process and protect your data, please review our Privacy Policy at <https://clerk.dev/privacy>.\n\nIf you suspect any unauthorized activity or have further questions, feel free to let us know. We’re here to help.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer, Clerk\n\nP.S. We never ask for passwords or 2FA codes via email. If you receive any suspicious messages, please forward them to abuse@clerk.dev.\n",
+      "confidence": 0.9,
+      "reasoning": "The reply acknowledges the user’s concern, explains the normal nature of the notification, provides clear next steps to revoke permissions and delete data, references Clerk’s privacy policy, and offers further assistance. It uses only the provided knowledge base entries for security policy and suspicious email handling, ensuring no hallucination of policies.",
+      "citations": [
+        "security-002",
+        "faq-security-0"
+      ],
+      "knowledge_used": [
+        "security-002",
+        "faq-security-0"
+      ],
+      "tokens": 3328,
+      "latency_ms": 17997.79
+    },
+    "overall_latency_ms": 59384.35
+  },
+  {
+    "subject": "You shared some Google Account data with Clerk",
+    "intent": "gdpr_deletion",
+    "generated_reply": {
+      "reply": "Hi Shubh,\n\nThank you for reaching out. I understand you’d like to manage the data that was shared with Clerk.\n\nHere are the options you can take right now:\n\n1. **Export your data** – In your Clerk account, go to **Settings > Privacy** and submit a data export request. We’ll deliver the export within 30 days. (See [faq-security-2])\n\n2. **Delete your Clerk account** – If you prefer to remove all personal data, navigate to **Settings > Account > Delete Account**. After you submit the request, your account will enter a 7‑day grace period before permanent deletion. Once deleted, all personal data will be removed in accordance with GDPR Article 17. (See [faq-account-2] and [security-003])\n\n3. **Revoke the Google sign‑in permission** – You can also revoke Clerk’s access directly from your Google account by visiting the linked apps page: https://myaccount.google.com/linkedapps. This stops Clerk from accessing any new data.\n\nPlease let me know which option you’d like to proceed with, or if you need any further assistance. I’m here to help.\n\nBest regards,\nSupport Team",
+      "confidence": 0.99,
+      "reasoning": "The reply acknowledges the customer, provides clear next steps for data export, account deletion, and revoking permissions, and cites the relevant policy documents from the knowledge base.",
+      "citations": [
+        "[faq-security-2]",
+        "[security-003]",
+        "[faq-account-2]"
+      ],
+      "knowledge_used": [
+        "faq-security-2",
+        "security-003",
+        "faq-account-2"
+      ],
+      "tokens": 2822,
+      "latency_ms": 1403.44
+    },
+    "overall_latency_ms": 75430.82
   }
 ]

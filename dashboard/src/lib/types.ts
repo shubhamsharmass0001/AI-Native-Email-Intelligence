@@ -20,10 +20,14 @@ export interface DashboardMetrics {
 export interface EvaluateResult {
   subject: string;
   email: string;
+  language?: string;
+  tone?: string;
+  persona?: string;
   generated_reply: {
     reply: string;
     confidence: number;
     reasoning: string;
+    language?: string;
     citations: string[];
     tokens: number;
     latency_ms: number;
@@ -47,10 +51,14 @@ export interface EvaluateResult {
 
 export interface GenerateResult {
   subject: string;
+  email?: string;
   intent: string;
   priority: string;
   sentiment: string;
   customer_type: string;
+  language?: string;
+  tone?: string;
+  persona?: string;
   retrieved_documents: { id: string; title: string; score: number; node: string }[];
   generated_reply: EvaluateResult["generated_reply"];
   validated_reply: EvaluateResult["validated_reply"];

@@ -15,6 +15,10 @@ class EmailState(TypedDict, total=False):
     priority: str
     customer_type: str
     sentiment: str
+    language: str
+    tone: str
+    persona: str
+    thread_turns: list[dict[str, str]]
     knowledge: dict[str, Any]
     retrieved_documents: list[dict[str, Any]]
     prompt: str

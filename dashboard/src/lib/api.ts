@@ -34,6 +34,14 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutForPath(path));
 
+  if (init?.signal) {
+    if (init.signal.aborted) {
+      controller.abort();
+    } else {
+      init.signal.addEventListener("abort", () => controller.abort());
+    }
+  }
+
   try {
     const res = await fetch(url, { ...init, headers, signal: controller.signal });
     if (!res.ok) {
@@ -42,6 +50,9 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     }
     return res.json() as Promise<T>;
   } catch (err) {
+    if (err instanceof Error && (err.name === "AbortError" || init?.signal?.aborted)) {
+      throw new Error("Request cancelled by user");
+    }
     if (err instanceof Error && err.message !== "Failed to fetch" && err.name !== "AbortError") {
       throw err;
     }
@@ -67,13 +78,46 @@ export const api = {
       vector_store?: { warning?: string };
     }>("/status"),
   dashboard: () => request<{ metrics: import("./types").DashboardMetrics }>("/dashboard"),
-  generate: (body: { subject: string; email: string; customer_name?: string; company?: string }) =>
-    request<import("./types").GenerateResult>("/generate", { method: "POST", body: JSON.stringify(body) }),
-  evaluate: (body: { subject: string; email: string; expected_response: string; customer_name?: string }) =>
-    request<import("./types").EvaluateResult>("/evaluate", { method: "POST", body: JSON.stringify(body) }),
+  generate: (
+    body: {
+      subject: string;
+      email: string;
+      customer_name?: string;
+      company?: string;
+      tone?: string;
+      persona?: string;
+    },
+    options?: { signal?: AbortSignal }
+  ) =>
+    request<import("./types").GenerateResult>("/generate", {
+      method: "POST",
+      body: JSON.stringify(body),
+      signal: options?.signal,
+    }),
+  evaluate: (
+    body: {
+      subject: string;
+      email: string;
+      expected_response: string;
+      customer_name?: string;
+      company?: string;
+      tone?: string;
+      persona?: string;
+    },
+    options?: { signal?: AbortSignal }
+  ) =>
+    request<import("./types").EvaluateResult>("/evaluate", {
+      method: "POST",
+      body: JSON.stringify(body),
+      signal: options?.signal,
+    }),
   predict: (body: { subject: string; email: string }) =>
-    request<{ intent: string; priority: string; sentiment: string; customer_type: string; latency_ms: number }>(
-      "/predict",
-      { method: "POST", body: JSON.stringify(body) },
-    ),
+    request<{
+      intent: string;
+      priority: string;
+      sentiment: string;
+      customer_type: string;
+      language?: string;
+      latency_ms: number;
+    }>("/predict", { method: "POST", body: JSON.stringify(body) }),
 };
