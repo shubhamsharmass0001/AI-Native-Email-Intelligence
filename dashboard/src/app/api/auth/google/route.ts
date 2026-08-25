@@ -1,18 +1,26 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? "";
-const REDIRECT_URI = process.env.NEXTAUTH_URL
-  ? `${process.env.NEXTAUTH_URL}/api/auth/google/callback`
-  : "http://localhost:3000/api/auth/google/callback";
 
-export async function GET() {
+function getRedirectUri(req: NextRequest): string {
+  if (process.env.NEXTAUTH_URL) {
+    return `${process.env.NEXTAUTH_URL.replace(/\/$/, "")}/api/auth/google/callback`;
+  }
+  const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || req.nextUrl.host;
+  const proto = req.headers.get("x-forwarded-proto") || (req.nextUrl.protocol.replace(":", "") || "http");
+  return `${proto}://${host}/api/auth/google/callback`;
+}
+
+export async function GET(req: NextRequest) {
   if (!GOOGLE_CLIENT_ID) {
     return NextResponse.json(
-      { error: "GOOGLE_CLIENT_ID not configured. Add it to dashboard/.env.local" },
+      { error: "GOOGLE_CLIENT_ID not configured. Add it to environment variables" },
       { status: 500 }
     );
   }
+
+  const redirectUri = getRedirectUri(req);
 
   // Generate a random state for CSRF protection
   const state = crypto.randomUUID();
@@ -27,7 +35,7 @@ export async function GET() {
 
   const params = new URLSearchParams({
     client_id: GOOGLE_CLIENT_ID,
-    redirect_uri: REDIRECT_URI,
+    redirect_uri: redirectUri,
     response_type: "code",
     scope: "https://www.googleapis.com/auth/gmail.readonly openid email",
     access_type: "offline",

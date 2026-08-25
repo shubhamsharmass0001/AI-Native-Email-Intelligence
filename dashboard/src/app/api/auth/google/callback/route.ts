@@ -3,9 +3,15 @@ import { cookies } from "next/headers";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? "";
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET ?? "";
-const REDIRECT_URI = process.env.NEXTAUTH_URL
-  ? `${process.env.NEXTAUTH_URL}/api/auth/google/callback`
-  : "http://localhost:3000/api/auth/google/callback";
+
+function getRedirectUri(req: NextRequest): string {
+  if (process.env.NEXTAUTH_URL) {
+    return `${process.env.NEXTAUTH_URL.replace(/\/$/, "")}/api/auth/google/callback`;
+  }
+  const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || req.nextUrl.host;
+  const proto = req.headers.get("x-forwarded-proto") || (req.nextUrl.protocol.replace(":", "") || "http");
+  return `${proto}://${host}/api/auth/google/callback`;
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -35,6 +41,8 @@ export async function GET(req: NextRequest) {
   }
   cookieStore.delete("gmail_oauth_state");
 
+  const redirectUri = getRedirectUri(req);
+
   // Exchange authorization code for access token
   const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
@@ -43,7 +51,7 @@ export async function GET(req: NextRequest) {
       code,
       client_id: GOOGLE_CLIENT_ID,
       client_secret: GOOGLE_CLIENT_SECRET,
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: redirectUri,
       grant_type: "authorization_code",
     }),
   });
