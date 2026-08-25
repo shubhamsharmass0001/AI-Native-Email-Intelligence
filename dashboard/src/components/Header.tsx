@@ -4,6 +4,7 @@ import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import { Activity, BarChart2, Brain, CircleHelp, Info, Mail, Moon, RefreshCw, Sun } from "lucide-react";
 import { useState } from "react";
 import { ClientOnly } from "@/components/ClientOnly";
+import { isClerkConfigured } from "@/components/ClerkWrapper";
 import { HowToUsePanel } from "@/components/HowToUsePanel";
 import { InfoPanel } from "@/components/InfoPanel";
 import { useTheme } from "@/components/ThemeProvider";
@@ -105,24 +106,7 @@ export function Header({ health, onRefresh, refreshing, onScrollToAnalytics }: H
             )}
 
             <div className="flex items-center gap-1.5">
-              <Show when="signed-out">
-                <SignInButton mode="modal">
-                  <button type="button" className="btn-outline h-8 rounded-lg px-2.5 text-[10px] font-semibold">
-                    Sign in
-                  </button>
-                </SignInButton>
-                <SignUpButton mode="modal">
-                  <button
-                    type="button"
-                    className="hidden h-8 rounded-lg bg-[var(--accent)] px-2.5 text-[10px] font-bold text-black sm:inline-flex sm:items-center"
-                  >
-                    Sign up
-                  </button>
-                </SignUpButton>
-              </Show>
-              <Show when="signed-in">
-                <UserButton />
-              </Show>
+              <AuthButtons />
               <button
                 type="button"
                 onClick={toggleTheme}
@@ -147,6 +131,34 @@ export function Header({ health, onRefresh, refreshing, onScrollToAnalytics }: H
 
       <InfoPanel open={infoOpen} onClose={() => setInfoOpen(false)} />
       <HowToUsePanel open={howToOpen} onClose={() => setHowToOpen(false)} />
+    </>
+  );
+}
+
+function AuthButtons() {
+  const hasClerk = isClerkConfigured();
+  if (!hasClerk) return null;
+
+  return (
+    <>
+      <Show when="signed-out">
+        <SignInButton mode="modal">
+          <button type="button" className="btn-outline h-8 rounded-lg px-2.5 text-[10px] font-semibold">
+            Sign in
+          </button>
+        </SignInButton>
+        <SignUpButton mode="modal">
+          <button
+            type="button"
+            className="hidden h-8 rounded-lg bg-[var(--accent)] px-2.5 text-[10px] font-bold text-black sm:inline-flex sm:items-center"
+          >
+            Sign up
+          </button>
+        </SignUpButton>
+      </Show>
+      <Show when="signed-in">
+        <UserButton />
+      </Show>
     </>
   );
 }

@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isPublicRoute = createRouteMatcher([
@@ -9,11 +11,21 @@ const isPublicRoute = createRouteMatcher([
   "/api/history(.*)",
 ]);
 
-export default clerkMiddleware(async (auth, req) => {
-  if (!isPublicRoute(req)) {
-    await auth.protect();
-  }
-});
+const hasClerk = Boolean(
+  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY &&
+  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.startsWith("pk_") &&
+  !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.includes("paste_from_clerk")
+);
+
+export default hasClerk
+  ? clerkMiddleware(async (auth, req) => {
+      if (!isPublicRoute(req)) {
+        await auth.protect();
+      }
+    })
+  : function middleware(req: NextRequest) {
+      return NextResponse.next();
+    };
 
 export const config = {
   matcher: [
