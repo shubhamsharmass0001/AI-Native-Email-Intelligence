@@ -96,6 +96,9 @@ export function EvaluateForm({ onResult, onLoading, onStreamEvent, onRegisterReg
           setGmailEmail(params.get("gmail_email"));
         }
       }
+      if (params.has("gmail_connected") || params.has("gmail_error") || params.has("gmail_email")) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
     }
     void checkGmailStatus();
   }, [checkGmailStatus]);
