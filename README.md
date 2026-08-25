@@ -229,34 +229,35 @@ pip install -r requirements-evaluation.txt
 
 ## Screenshots
 
-### Platform features
-Overview of all capabilities — LangGraph pipeline, RAG, validation, LLM judge, knowledge graph, and REST API.
+### 1. AI Operations Dashboard & Generation
+The Copilot Playground with 1-Click Gmail Connect, dynamic ticket inputs, persona/tone customization, and real-time generation output with grounded citations.
 
-![Platform features](./Screenshots/H0%20features.jpeg)
+![AI Operations Dashboard](./Screenshots/01_dashboard_generation.png)
 
-### Dashboard — generated reply
-Copilot Playground with sample tickets. After clicking **Generate Reply**, the right panel shows intent, priority, sentiment, and the AI-drafted response.
+### 2. AI Agent Persona & Tone Adjuster
+Fine-tune reply voice and tone across roles: **🎧 Tier 1 Support**, **💻 Software Engineer**, **🎓 Student**, and **🚀 Product Specialist** with structured tone styles (Formal, Friendly, Concise, Empathetic).
 
-![Dashboard with generated reply](./Screenshots/H1%20Dashboard%20with%20genereted%20reply%20after%20clicking%20genertee%20reply%20.jpeg)
+![Persona & Tone Adjuster](./Screenshots/02_persona_tone_adjuster.png)
 
-### Live pipeline visualization
-LangGraph nodes animate in sequence while the pipeline runs — each step shows latency, tokens, and status. Scrolling stays inside the panel.
+### 3. Real-Time Reply, Confidence & 1-Click Export Actions
+AI generated reply with multi-task classification badges (**Intent**, **Priority: Low/Medium/High**, **Sentiment**, **Language**), **`● Confidence: 80%`**, and 1-Click actions (`Open in Gmail`, `Open in Mail`, `Export MD`, `Export TXT`, `Compare`).
 
-![Running pipeline visualization](./Screenshots/h3%20running%20pipeline%20visualisation%20.jpeg)
+![Real-Time Reply & Badges](./Screenshots/03_realtime_reply_and_actions.png)
 
-![Pipeline step detail](./Screenshots/h3.1%20running%20visualtion%20.jpeg)
+### 4. Full Concurrent Evaluation (Evaluate Mode)
+Compares the generated reply against reference responses using **Parallel Evaluation** (BERTScore, Embedding Cosine Similarity, and LLM Judge) with weighted composite scoring.
 
-### Full evaluation
-**Evaluate** mode compares the generated reply against a reference response with BERTScore, embedding similarity, and LLM judge scores.
+![Evaluated Response & Metrics](./Screenshots/04_evaluated_response_metrics.png)
 
-![Evaluated response](./Screenshots/h4%20evaluated%20response.jpeg)
+### 5. Live Pipeline Visualization (SSE Streaming)
+LangGraph nodes execute in real-time sequence with linear progress, active spinners, per-node latency measurements, and token consumption tracking.
 
-![Evaluation metrics and per-node timing](./Screenshots/h5%20after%20evaluated%20respinse%20u%20can%20check%20the%20time%20taken%20by%20each%20response%20.jpeg)
+![Live Pipeline Visualization](./Screenshots/h3.1%20running%20visualtion%20.jpeg)
 
-### Analytics
-Historical quality trends, grounding scores, latency charts, and intent distributions — scroll down from the playground or use the **Analytics** button.
+### 6. Analytics & Telemetry Dashboard
+Explore personal evaluation history, grounding/hallucination rates, latency breakdowns, and intent distributions with auto-polling sync.
 
-![Analytics dashboard](./Screenshots/h2%20Analytics.jpeg)
+![Analytics Dashboard](./Screenshots/h2%20Analytics.jpeg)
 
 ---
 
