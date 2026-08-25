@@ -1,64 +1,13 @@
 {
-  "average_score": 0.7736,
-  "average_latency_ms": 56003.56,
-  "average_tokens": 2200.8,
-  "total_processed": 30,
-  "top_intents": [
-    {
-      "intent": "gdpr_deletion",
-      "avg_score": 0.99
-    },
-    {
-      "intent": "partial_refund",
-      "avg_score": 0.95
-    },
-    {
-      "intent": "phishing_report",
-      "avg_score": 0.95
-    },
-    {
-      "intent": "data_export_request",
-      "avg_score": 0.95
-    },
-    {
-      "intent": "security_incident",
-      "avg_score": 0.9375
-    }
-  ],
-  "worst_intents": [
-    {
-      "intent": "role_change_request",
-      "avg_score": 0.85
-    },
-    {
-      "intent": "bug_report",
-      "avg_score": 0.8359
-    },
-    {
-      "intent": "feature_request",
-      "avg_score": 0.825
-    },
-    {
-      "intent": "integration_error",
-      "avg_score": 0.7201
-    },
-    {
-      "intent": "none",
-      "avg_score": 0.378
-    }
-  ],
-  "hallucination_rate": 0.0333,
-  "judge_distribution": {
-    "correctness": 0.91,
-    "completeness": 0.725,
-    "empathy": 0.975,
-    "professionalism": 0.95,
-    "actionability": 0.55,
-    "safety": 1.0,
-    "hallucination": 0.825,
-    "policy_adherence": 0.775
-  },
-  "last_updated": "2026-08-25T10:46:31.656704",
+  "average_score": 0.0,
+  "average_latency_ms": 54188.67,
+  "average_tokens": 0.0,
+  "total_processed": 34,
+  "top_intents": [],
+  "worst_intents": [],
+  "hallucination_rate": 0.0294,
+  "judge_distribution": {},
+  "last_updated": "2026-08-25T17:32:47.146344",
   "llm_provider": "groq",
   "llm_model": "openai/gpt-oss-20b",
   "fallback_provider": "gemini",

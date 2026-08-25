@@ -930,5 +930,81 @@
       "latency_ms": 1827.86
     },
     "overall_latency_ms": 15023.12
+  },
+  {
+    "subject": "Apple India IS&T Internship Technical Assessment",
+    "intent": "bug_report",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi CoderPad,\n\nThank you for reaching out regarding the Apple India IS&T Internship Technical Assessment. I understand you would like to proceed with the assessment.\n\nUnfortunately, I do not have specific information about Apple's internship process or the technical assessment details. I recommend contacting Apple India Recruiting directly for further assistance.\n\nIf you have any questions about our platform or need support with any technical issues, please let me know and I’ll be happy to help.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer",
+      "confidence": 0.8,
+      "reasoning": "The customer is requesting a reply to an email about an internship assessment. The knowledge base does not contain any policy or information about Apple internships, so the appropriate response is to acknowledge the request, explain the lack of information, and direct the customer to the relevant party. The reply is professional, formal, and offers further assistance, aligning with the requested tone and persona.",
+      "language": "English",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 2075,
+      "latency_ms": 22183.23
+    },
+    "overall_latency_ms": 29794.46
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "bug_report",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Maria,\n\nThank you for reaching out. I’m sorry to hear that the shared mailbox support@acme.io is not syncing new Gmail threads and that this is impacting your agents and SLAs. I understand how critical this is.\n\nWe’ve logged this as a P1 bug (major feature broken) and will triage it within 24 hours. Our Engineering On‑Call team will investigate the issue and we aim to provide a status update within the next 4 hours, with a resolution target of 24 hours. In the meantime, could you please share:\n\n• The exact steps you followed after the Gmail update that led to the sync failure\n• Any error messages or screenshots you see in the UI\n• The time the issue first appeared\n\nThis information will help us reproduce the problem faster.\n\nYou will receive an email confirmation of this ticket (Ticket ID: …) and we’ll keep you posted on the progress. If you need to reach us urgently, you can also call our support line at 1‑800‑XXX‑XXXX.\n\nThank you for your patience. I’ll keep you updated and will let you know as soon as we have a fix.\n\nBest regards,\nAlex\nTier 1 Support Agent",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the issue, references the bug‑report handling policy for P1 incidents, escalates to Engineering On‑Call per the escalation rules, requests necessary reproduction details, and provides clear next steps and contact information. It follows the required tone, persona, and sign‑off format.",
+      "language": "English",
+      "citations": [
+        "technical-001",
+        "Escalation Rules"
+      ],
+      "knowledge_used": [
+        "technical-001",
+        "Escalation Rules"
+      ],
+      "tokens": 2121,
+      "latency_ms": 16552.72
+    },
+    "overall_latency_ms": 62956.83
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "bug_report",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Maria Lopez,\n\nThank you for reaching out and for bringing this issue to our attention. I understand how critical it is for your team to have the shared mailbox sync correctly, especially when SLAs are at risk.\n\n**What we’re doing now**\n1. We’ve logged this as a bug report and are treating it as a P1 (major feature broken) issue. According to our policy, we aim to respond within 4 hours and resolve within 24 hours. (See [technical-001])\n2. Because the problem is affecting multiple agents and impacting service availability, we are escalating it to our Engineering On‑Call team immediately. (Escalation rule: service_outage)\n3. We’ll keep you updated via email and on our status page.\n\n**Next steps for you**\n- Please provide any screenshots or logs that show the sync failure, and a brief description of the steps you followed after the Gmail update. This will help our engineers reproduce the issue faster. (See [faq-technical-2])\n- If you have any additional details about the Gmail update (e.g., version, specific changes), that would be very helpful.\n\nWe appreciate your patience and will keep you posted on progress. If you need immediate assistance or have more information to share, feel free to reply to this email or contact our support line.\n\nBest regards,\n[Your Name]\nStudent",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the issue, references the correct policy for bug triage and escalation, provides clear next steps, and follows the required persona and tone. It uses only the retrieved knowledge and cites the relevant documents.",
+      "language": "English",
+      "citations": [
+        "[technical-001]",
+        "[faq-technical-2]"
+      ],
+      "knowledge_used": [
+        "technical-001",
+        "faq-technical-2"
+      ],
+      "tokens": 1856,
+      "latency_ms": 1530.06
+    },
+    "overall_latency_ms": 12645.89
+  },
+  {
+    "subject": "ICPC 2026 Online Challenge 1 powered by Huawei",
+    "intent": "feature_request",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Codeforces,\n\nThank you for the invitation to the ICPC 2026 Online Challenge 1 powered by Huawei. I appreciate the opportunity and will review the details. If I decide to participate, I will register using the link you provided.\n\nPlease let me know if there are any prerequisites or additional information required for registration.\n\nThank you again for reaching out. I look forward to the challenge.\n\nBest regards,\n[Your Name]\nStudent",
+      "confidence": 0.95,
+      "reasoning": "The email is an invitation; the response acknowledges the invitation, offers next steps (registering), and asks for any prerequisites. The tone is professional and formal, and the sign‑off matches the Student persona. No policy question requires citations, so the citations array is left empty.",
+      "language": "English",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 2423,
+      "latency_ms": 33744.52
+    },
+    "overall_latency_ms": 56910.86
   }
 ]

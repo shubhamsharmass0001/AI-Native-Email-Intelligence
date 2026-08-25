@@ -3830,5 +3830,361 @@
       }
     },
     "overall_latency_ms": 15023.12
+  },
+  {
+    "subject": "Apple India IS&T Internship Technical Assessment",
+    "intent": "bug_report",
+    "priority": "low",
+    "sentiment": "neutral",
+    "customer_type": "individual",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi CoderPad,\n\nThank you for reaching out regarding the Apple India IS&T Internship Technical Assessment. I understand you would like to proceed with the assessment.\n\nUnfortunately, I do not have specific information about Apple's internship process or the technical assessment details. I recommend contacting Apple India Recruiting directly for further assistance.\n\nIf you have any questions about our platform or need support with any technical issues, please let me know and I’ll be happy to help.\n\nBest regards,\n[Your Name]\nSenior Customer Support Engineer",
+      "confidence": 0.8,
+      "reasoning": "The customer is requesting a reply to an email about an internship assessment. The knowledge base does not contain any policy or information about Apple internships, so the appropriate response is to acknowledge the request, explain the lack of information, and direct the customer to the relevant party. The reply is professional, formal, and offers further assistance, aligning with the requested tone and persona.",
+      "language": "English",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 2075,
+      "latency_ms": 22183.23
+    },
+    "overall_score": 0.8,
+    "node_metrics": {
+      "classification_agent": {
+        "node": "classification_agent",
+        "latency_ms": 2385.41,
+        "tokens": 2141,
+        "input_summary": "Apple India IS&T Internship Technical Assessment",
+        "output_summary": "intent=bug_report, priority=low, sentiment=neutral, customer_type=individual",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      },
+      "knowledge_agent": {
+        "node": "knowledge_agent",
+        "latency_ms": 3935.49,
+        "tokens": 0,
+        "input_summary": "Apple India IS&T Internship Technical Assessment Hello SHUBHAM,\n \nThanks for expressing an interest in internship opportunities at Apple\n \nApple is a place where people from all backgrounds get togeth",
+        "output_summary": "retrieved 3 docs",
+        "error": null
+      },
+      "prompt_builder": {
+        "node": "prompt_builder",
+        "latency_ms": 0.18,
+        "tokens": 0,
+        "input_summary": "Apple India IS&T Internship Technical Assessment",
+        "output_summary": "prompt built",
+        "error": null
+      },
+      "generator_agent": {
+        "node": "generator_agent",
+        "latency_ms": 22126.17,
+        "tokens": 2075,
+        "input_summary": "Apple India IS&T Internship Technical Assessment",
+        "output_summary": "Hi CoderPad,\n\nThank you for reaching out regarding the Apple India IS&T Internship Technical Assessment. I understand you would like to proceed with the assessment.\n\nUnfortunately, I do not have speci",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      },
+      "validator_agent": {
+        "node": "validator_agent",
+        "latency_ms": 1347.21,
+        "tokens": 1717,
+        "input_summary": "Hi CoderPad,\n\nThank you for reaching out regarding the Apple India IS&T Internship Technical Assessment. I understand you would like to proceed with the assessment.\n\nUnfortunately, I do not have speci",
+        "output_summary": "passed=True",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      }
+    },
+    "overall_latency_ms": 29794.46
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "bug_report",
+    "priority": "medium",
+    "sentiment": "negative",
+    "customer_type": "enterprise",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Maria,\n\nThank you for reaching out. I’m sorry to hear that the shared mailbox support@acme.io is not syncing new Gmail threads and that this is impacting your agents and SLAs. I understand how critical this is.\n\nWe’ve logged this as a P1 bug (major feature broken) and will triage it within 24 hours. Our Engineering On‑Call team will investigate the issue and we aim to provide a status update within the next 4 hours, with a resolution target of 24 hours. In the meantime, could you please share:\n\n• The exact steps you followed after the Gmail update that led to the sync failure\n• Any error messages or screenshots you see in the UI\n• The time the issue first appeared\n\nThis information will help us reproduce the problem faster.\n\nYou will receive an email confirmation of this ticket (Ticket ID: …) and we’ll keep you posted on the progress. If you need to reach us urgently, you can also call our support line at 1‑800‑XXX‑XXXX.\n\nThank you for your patience. I’ll keep you updated and will let you know as soon as we have a fix.\n\nBest regards,\nAlex\nTier 1 Support Agent",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the issue, references the bug‑report handling policy for P1 incidents, escalates to Engineering On‑Call per the escalation rules, requests necessary reproduction details, and provides clear next steps and contact information. It follows the required tone, persona, and sign‑off format.",
+      "language": "English",
+      "citations": [
+        "technical-001",
+        "Escalation Rules"
+      ],
+      "knowledge_used": [
+        "technical-001",
+        "Escalation Rules"
+      ],
+      "tokens": 2121,
+      "latency_ms": 16552.72
+    },
+    "overall_score": 0.95,
+    "node_metrics": {
+      "classification_agent": {
+        "node": "classification_agent",
+        "latency_ms": 1194.06,
+        "tokens": 1046,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "intent=bug_report, priority=medium, sentiment=negative, customer_type=enterprise",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      },
+      "knowledge_agent": {
+        "node": "knowledge_agent",
+        "latency_ms": 3398.84,
+        "tokens": 0,
+        "input_summary": "Shared inbox emails not syncing after Gmail update Hi Support,\n\nSince yesterday our shared mailbox (support@acme.io) stopped syncing new Gmail threads. 12 agents are affected and SLAs are breaching.\n\n",
+        "output_summary": "retrieved 3 docs",
+        "error": null
+      },
+      "prompt_builder": {
+        "node": "prompt_builder",
+        "latency_ms": 0.3,
+        "tokens": 0,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "prompt built",
+        "error": null
+      },
+      "generator_agent": {
+        "node": "generator_agent",
+        "latency_ms": 16302.79,
+        "tokens": 2121,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "Hi Maria Lopez,\n\nThank you for reaching out. I’m sorry to hear that the shared mailbox support@acme.io is not syncing new Gmail threads and that this is impacting your agents and SLAs. I understand ho",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      },
+      "validator_agent": {
+        "node": "validator_agent",
+        "latency_ms": 42060.84,
+        "tokens": 3107,
+        "input_summary": "Hi Maria Lopez,\n\nThank you for reaching out. I’m sorry to hear that the shared mailbox support@acme.io is not syncing new Gmail threads and that this is impacting your agents and SLAs. I understand ho",
+        "output_summary": "passed=False",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      }
+    },
+    "overall_latency_ms": 62956.83
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "bug_report",
+    "priority": "medium",
+    "sentiment": "negative",
+    "customer_type": "enterprise",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Maria Lopez,\n\nThank you for reaching out and for bringing this issue to our attention. I understand how critical it is for your team to have the shared mailbox sync correctly, especially when SLAs are at risk.\n\n**What we’re doing now**\n1. We’ve logged this as a bug report and are treating it as a P1 (major feature broken) issue. According to our policy, we aim to respond within 4 hours and resolve within 24 hours. (See [technical-001])\n2. Because the problem is affecting multiple agents and impacting service availability, we are escalating it to our Engineering On‑Call team immediately. (Escalation rule: service_outage)\n3. We’ll keep you updated via email and on our status page.\n\n**Next steps for you**\n- Please provide any screenshots or logs that show the sync failure, and a brief description of the steps you followed after the Gmail update. This will help our engineers reproduce the issue faster. (See [faq-technical-2])\n- If you have any additional details about the Gmail update (e.g., version, specific changes), that would be very helpful.\n\nWe appreciate your patience and will keep you posted on progress. If you need immediate assistance or have more information to share, feel free to reply to this email or contact our support line.\n\nBest regards,\n[Your Name]\nStudent",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the issue, references the correct policy for bug triage and escalation, provides clear next steps, and follows the required persona and tone. It uses only the retrieved knowledge and cites the relevant documents.",
+      "language": "English",
+      "citations": [
+        "[technical-001]",
+        "[faq-technical-2]"
+      ],
+      "knowledge_used": [
+        "technical-001",
+        "faq-technical-2"
+      ],
+      "tokens": 1856,
+      "latency_ms": 1530.06
+    },
+    "overall_score": 0.95,
+    "node_metrics": {
+      "classification_agent": {
+        "node": "classification_agent",
+        "latency_ms": 1194.06,
+        "tokens": 1046,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "intent=bug_report, priority=medium, sentiment=negative, customer_type=enterprise",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": true,
+        "success": true
+      },
+      "knowledge_agent": {
+        "node": "knowledge_agent",
+        "latency_ms": 1259.49,
+        "tokens": 0,
+        "input_summary": "Shared inbox emails not syncing after Gmail update Hi Support,\n\nSince yesterday our shared mailbox (support@acme.io) stopped syncing new Gmail threads. 12 agents are affected and SLAs are breaching.\n\n",
+        "output_summary": "retrieved 3 docs",
+        "error": null
+      },
+      "prompt_builder": {
+        "node": "prompt_builder",
+        "latency_ms": 0.23,
+        "tokens": 0,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "prompt built",
+        "error": null
+      },
+      "generator_agent": {
+        "node": "generator_agent",
+        "latency_ms": 1368.1,
+        "tokens": 1856,
+        "input_summary": "Shared inbox emails not syncing after Gmail update",
+        "output_summary": "Hi Maria Lopez,\n\nThank you for reaching out and for bringing this issue to our attention. I understand how critical it is for your team to have the shared mailbox sync correctly, especially when SLAs ",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      },
+      "validator_agent": {
+        "node": "validator_agent",
+        "latency_ms": 8824.01,
+        "tokens": 2158,
+        "input_summary": "Hi Maria Lopez,\n\nThank you for reaching out and for bringing this issue to our attention. I understand how critical it is for your team to have the shared mailbox sync correctly, especially when SLAs ",
+        "output_summary": "passed=True",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      }
+    },
+    "overall_latency_ms": 12645.89
+  },
+  {
+    "subject": "ICPC 2026 Online Challenge 1 powered by Huawei",
+    "intent": "feature_request",
+    "priority": "low",
+    "sentiment": "positive",
+    "customer_type": "individual",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Codeforces,\n\nThank you for the invitation to the ICPC 2026 Online Challenge 1 powered by Huawei. I appreciate the opportunity and will review the details. If I decide to participate, I will register using the link you provided.\n\nPlease let me know if there are any prerequisites or additional information required for registration.\n\nThank you again for reaching out. I look forward to the challenge.\n\nBest regards,\n[Your Name]\nStudent",
+      "confidence": 0.95,
+      "reasoning": "The email is an invitation; the response acknowledges the invitation, offers next steps (registering), and asks for any prerequisites. The tone is professional and formal, and the sign‑off matches the Student persona. No policy question requires citations, so the citations array is left empty.",
+      "language": "English",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 2423,
+      "latency_ms": 33744.52
+    },
+    "overall_score": 0.95,
+    "node_metrics": {
+      "classification_agent": {
+        "node": "classification_agent",
+        "latency_ms": 4127.38,
+        "tokens": 3453,
+        "input_summary": "ICPC 2026 Online Challenge 1 powered by Huawei",
+        "output_summary": "intent=feature_request, priority=low, sentiment=positive, customer_type=individual",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      },
+      "knowledge_agent": {
+        "node": "knowledge_agent",
+        "latency_ms": 3387.04,
+        "tokens": 0,
+        "input_summary": "ICPC 2026 Online Challenge 1 powered by Huawei From: Codeforces@codeforces.com <Codeforces@codeforces.com>\n\nHello shubhtiet,\r\n\r\nWelcome to the ICPC 2026 Online Challenge 1 powered by Huawei!\r\n\r\nWe inv",
+        "output_summary": "retrieved 3 docs",
+        "error": null
+      },
+      "prompt_builder": {
+        "node": "prompt_builder",
+        "latency_ms": 0.14,
+        "tokens": 0,
+        "input_summary": "ICPC 2026 Online Challenge 1 powered by Huawei",
+        "output_summary": "prompt built",
+        "error": null
+      },
+      "generator_agent": {
+        "node": "generator_agent",
+        "latency_ms": 33689.03,
+        "tokens": 2423,
+        "input_summary": "ICPC 2026 Online Challenge 1 powered by Huawei",
+        "output_summary": "Hi Codeforces,\n\nThank you for the invitation to the ICPC 2026 Online Challenge 1 powered by Huawei. I appreciate the opportunity and will review the details. If I decide to participate, I will registe",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      },
+      "validator_agent": {
+        "node": "validator_agent",
+        "latency_ms": 15707.27,
+        "tokens": 1933,
+        "input_summary": "Hi Codeforces,\n\nThank you for the invitation to the ICPC 2026 Online Challenge 1 powered by Huawei. I appreciate the opportunity and will review the details. If I decide to participate, I will registe",
+        "output_summary": "passed=True",
+        "error": null,
+        "model": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "retries": 0,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "role": "primary",
+        "cache_hit": false,
+        "success": true
+      }
+    },
+    "overall_latency_ms": 56910.86
   }
 ]
