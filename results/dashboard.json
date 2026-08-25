@@ -58,7 +58,7 @@
     "hallucination": 0.825,
     "policy_adherence": 0.775
   },
-  "last_updated": "2026-08-25T10:08:52.527070",
+  "last_updated": "2026-08-25T10:46:31.656704",
   "llm_provider": "groq",
   "llm_model": "openai/gpt-oss-20b",
   "fallback_provider": "gemini",
