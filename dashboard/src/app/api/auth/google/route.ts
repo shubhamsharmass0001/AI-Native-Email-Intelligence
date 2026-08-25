@@ -4,10 +4,14 @@ import { cookies } from "next/headers";
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?? "";
 
 function getRedirectUri(req: NextRequest): string {
-  if (process.env.NEXTAUTH_URL) {
+  const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || req.nextUrl.host;
+  if (host && !host.includes("localhost") && !host.includes("127.0.0.1")) {
+    const proto = req.headers.get("x-forwarded-proto") || "https";
+    return `${proto}://${host}/api/auth/google/callback`;
+  }
+  if (process.env.NEXTAUTH_URL && !process.env.NEXTAUTH_URL.includes("localhost")) {
     return `${process.env.NEXTAUTH_URL.replace(/\/$/, "")}/api/auth/google/callback`;
   }
-  const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || req.nextUrl.host;
   const proto = req.headers.get("x-forwarded-proto") || (req.nextUrl.protocol.replace(":", "") || "http");
   return `${proto}://${host}/api/auth/google/callback`;
 }
