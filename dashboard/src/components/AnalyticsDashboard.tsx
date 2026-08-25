@@ -181,6 +181,36 @@ export function AnalyticsDashboard({ metrics: _metrics }: Props) {
           })).sort((a, b) => b.avg_score - a.avg_score);
 
           setTopIntents(intentList);
+        } else if (_metrics && _metrics.total_processed > 0) {
+          const pDist = Object.entries(_metrics.priority_distribution || {}).map(([name, value]) => ({ name: formatLabel(name), value }));
+          const cDist = Object.entries(_metrics.customer_type_distribution || {}).map(([name, value]) => ({ name: formatLabel(name), value }));
+          const sDist = Object.entries(_metrics.sentiment_distribution || {}).map(([name, value]) => ({ name: formatLabel(name), value }));
+          const iDist = Object.entries(_metrics.intent_distribution || {}).map(([name, value]) => ({ name: formatLabel(name), value }));
+
+          setDistributions({
+            priority: pDist,
+            customer: cDist,
+            sentiment: sDist,
+            intent: iDist,
+          });
+
+          const mockHistory: HistoryPoint[] = [
+            {
+              id: "summary-1",
+              name: "Latest Runs",
+              subject: `${_metrics.total_processed} Analyzed Emails`,
+              score: _metrics.average_quality_score || 0.95,
+              latency: _metrics.average_latency_ms || 3500,
+              tokens: Math.round(_metrics.average_token_count || 1400),
+              grounded: Math.round((1 - (_metrics.hallucination_rate || 0)) * 100),
+              intent: _metrics.top_performing_intents?.[0] || "support",
+            }
+          ];
+          setHistory(mockHistory);
+          setTopIntents((_metrics.top_performing_intents || []).map((intent) => ({
+            intent,
+            avg_score: _metrics.average_quality_score || 0.95,
+          })));
         } else {
           setHistory([]);
           setDistributions({ priority: [], customer: [], sentiment: [], intent: [] });
@@ -194,7 +224,7 @@ export function AnalyticsDashboard({ metrics: _metrics }: Props) {
     }
 
     void loadData();
-  }, []);
+  }, [_metrics]);
 
   const PIE_COLORS = ["#eab308", "#22c55e", "#3b82f6", "#a855f7", "#ec4899", "#06b6d4"];
 
