@@ -308,6 +308,7 @@ async def _stream_pipeline(
             "validator_agent",
         ]
 
+    yield "data: ping\n\n"
     yield f"data: {json.dumps({'type': 'pipeline_start', 'nodes': expected_nodes})}\n\n"
 
     try:
@@ -396,7 +397,7 @@ async def _stream_pipeline(
                 sentiment=accumulated_state.get("sentiment", ""),
                 customer_type=accumulated_state.get("customer_type", ""),
                 language=accumulated_state.get("language", "English"),
-                tone=accumulated_state.get("tone", "professional"),
+                tone=accumulated_state.get("tone", "formal"),
                 persona=accumulated_state.get("persona", "tier1"),
                 retrieved_documents=accumulated_state.get("retrieved_documents", []),
                 generated_reply=accumulated_state.get("generated_reply", {}),
@@ -430,7 +431,11 @@ async def generate_stream(
     return StreamingResponse(
         _stream_pipeline("get_generate_graph", state, user_id, is_evaluate=False),
         media_type="text/event-stream",
-        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"},
+        headers={
+            "Cache-Control": "no-cache, no-transform",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
     )
 
 
@@ -454,7 +459,11 @@ async def evaluate_stream(
     return StreamingResponse(
         _stream_pipeline("get_full_graph", state, user_id, is_evaluate=True),
         media_type="text/event-stream",
-        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"},
+        headers={
+            "Cache-Control": "no-cache, no-transform",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
     )
 
 

@@ -122,7 +122,7 @@ async function streamRequest<T>(
       const trimmed = chunk.trim();
       if (!trimmed.startsWith("data:")) continue;
       const jsonStr = trimmed.slice(5).trim();
-      if (!jsonStr) continue;
+      if (!jsonStr || jsonStr === "ping") continue;
 
       try {
         const parsed: StreamEvent = JSON.parse(jsonStr);
