@@ -1,5 +1,6 @@
-"""Reply generation agent using Claude Sonnet."""
+"""Reply generation agent using Claude / Gemini / Groq."""
 
+import re
 import time
 
 from .base import get_llm_client
@@ -9,6 +10,51 @@ from ..utils.helpers import merge_node_metrics
 from ..utils.logger import get_logger, log_node_execution
 
 logger = get_logger(__name__)
+
+
+def clean_customer_name(raw_name: str) -> str:
+    """Extract clean display name from 'Name <email@domain>' or 'email@domain'."""
+    if not raw_name:
+        return "Customer"
+    # If in format "Priya Gupta <noreply@unstop.news>" -> "Priya Gupta"
+    cleaned = re.sub(r"<[^>]+>", "", raw_name).strip()
+    if "@" in cleaned:
+        cleaned = cleaned.split("@")[0].replace(".", " ").replace("_", " ").title()
+    cleaned = cleaned.strip()
+    return cleaned if cleaned else "Customer"
+
+
+def enforce_correct_greeting(reply_text: str, customer_name: str) -> str:
+    """Ensure the greeting line strictly addresses the customer and not a 3rd party from the email body."""
+    if not reply_text:
+        return reply_text
+
+    clean_name = clean_customer_name(customer_name)
+    if not clean_name or clean_name.lower() == "customer":
+        return reply_text
+
+    first_name = clean_name.split()[0]
+    lines = reply_text.splitlines()
+
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if not stripped:
+            continue
+
+        greeting_match = re.match(r"^(Hi|Hello|Dear|Hey)\b\s*([^,\n]*),?", stripped, re.IGNORECASE)
+        if greeting_match:
+            salutation = greeting_match.group(1).capitalize()
+            current_target = greeting_match.group(2).strip()
+
+            # If greeting doesn't contain the clean customer name or first name, replace it
+            if clean_name.lower() not in current_target.lower() and first_name.lower() not in current_target.lower():
+                lines[idx] = f"{salutation} {clean_name},"
+                return "\n".join(lines)
+            return reply_text
+        else:
+            return f"Hi {clean_name},\n\n{reply_text}"
+
+    return reply_text
 
 
 async def prompt_builder(state: EmailState) -> dict:
@@ -34,14 +80,16 @@ async def prompt_builder(state: EmailState) -> dict:
 
 
 async def generator_agent(state: EmailState) -> dict:
-    """Generate customer support reply using Claude."""
+    """Generate customer support reply."""
     knowledge = state.get("knowledge", {})
     knowledge_context = knowledge.get("context", "No knowledge retrieved.")
+    raw_customer_name = state.get("customer_name", "Customer")
+    clean_name = clean_customer_name(raw_customer_name)
 
     with log_node_execution(logger, "generator_agent", state.get("subject", "")) as metrics:
         client = get_llm_client()
         prompt = GENERATION_PROMPT.format(
-            customer_name=state.get("customer_name", "Customer"),
+            customer_name=clean_name,
             company=state.get("company", ""),
             subject=state.get("subject", ""),
             email=state.get("email", ""),
@@ -59,8 +107,11 @@ async def generator_agent(state: EmailState) -> dict:
         result, llm_metrics = await client.invoke(prompt, system=SYSTEM_PROMPT, parse_json=True)
         latency_ms = round((time.perf_counter() - start) * 1000, 2)
 
+        raw_reply = result.get("reply", "")
+        guaranteed_reply = enforce_correct_greeting(raw_reply, clean_name)
+
         generated_reply = {
-            "reply": result.get("reply", ""),
+            "reply": guaranteed_reply,
             "confidence": result.get("confidence", 0.0),
             "reasoning": result.get("reasoning", ""),
             "language": result.get("language", state.get("language", "English")),

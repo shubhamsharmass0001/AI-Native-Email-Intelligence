@@ -87,6 +87,27 @@ export default function DashboardPage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [scrollToAnalytics]);
 
+  const [streamActiveNode, setStreamActiveNode] = useState<string | null>(null);
+  const [streamNodeMetrics, setStreamNodeMetrics] = useState<Record<string, any>>({});
+
+  const handleStreamEvent = useCallback((event: import("@/lib/api").StreamEvent) => {
+    if (event.type === "pipeline_start") {
+      setStreamNodeMetrics({});
+      setStreamActiveNode(event.nodes[0] || null);
+    } else if (event.type === "node_start") {
+      setStreamActiveNode(event.node);
+    } else if (event.type === "node_complete") {
+      setStreamNodeMetrics((prev) => ({
+        ...prev,
+        [event.node]: {
+          latency_ms: event.metrics?.latency_ms || 0,
+          tokens: event.metrics?.tokens || 0,
+          output_summary: event.summary || event.metrics?.output_summary || "",
+        },
+      }));
+    }
+  }, []);
+
   return (
     <div className="flex h-dvh flex-col overflow-hidden bg-[var(--bg)]">
       <div className="z-40 shrink-0 bg-[var(--bg)]/95 shadow-[var(--shadow)] backdrop-blur-md">
@@ -106,12 +127,20 @@ export default function DashboardPage() {
         <main className="grid grid-cols-1 gap-3 p-3 lg:grid-cols-12 lg:items-start">
           <div className="lg:col-span-5">
             <EvaluateForm
-              onLoading={setPipelineLoading}
+              onLoading={(loading) => {
+                setPipelineLoading(loading);
+                if (loading) {
+                  setStreamActiveNode(null);
+                  setStreamNodeMetrics({});
+                }
+              }}
+              onStreamEvent={handleStreamEvent}
               onRegisterRegenerate={registerRegenerate}
               onResult={(r, mode) => {
                 setResult(r);
                 setResultMode(mode);
                 setPipelineLoading(false);
+                setStreamActiveNode(null);
                 refresh();
               }}
             />
@@ -121,6 +150,8 @@ export default function DashboardPage() {
               result={result}
               mode={resultMode}
               loading={pipelineLoading}
+              activeNode={streamActiveNode}
+              nodeMetrics={streamNodeMetrics}
               onRegenerate={() => regenerateRef.current?.()}
             />
           </div>

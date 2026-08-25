@@ -33,11 +33,26 @@ async function proxyRequest(req: NextRequest, pathSegments: string[], method: st
       cache: "no-store",
     });
 
+    const responseContentType = res.headers.get("content-type") ?? "application/json";
+    if (
+      responseContentType.includes("text/event-stream") ||
+      responseContentType.includes("application/x-ndjson")
+    ) {
+      return new Response(res.body, {
+        status: res.status,
+        headers: {
+          "Content-Type": responseContentType,
+          "Cache-Control": "no-cache, no-transform",
+          Connection: "keep-alive",
+        },
+      });
+    }
+
     const text = await res.text();
     return new NextResponse(text, {
       status: res.status,
       headers: {
-        "Content-Type": res.headers.get("content-type") ?? "application/json",
+        "Content-Type": responseContentType,
       },
     });
   } catch (err) {

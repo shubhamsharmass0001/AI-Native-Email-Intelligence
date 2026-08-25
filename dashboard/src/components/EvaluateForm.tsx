@@ -12,6 +12,7 @@ import type { EvaluateResult, GenerateResult } from "@/lib/types";
 interface Props {
   onResult: (result: EvaluateResult | GenerateResult, mode: "generate" | "evaluate") => void;
   onLoading?: (loading: boolean) => void;
+  onStreamEvent?: (event: import("@/lib/api").StreamEvent) => void;
   onRegisterRegenerate?: (fn: () => void) => void;
 }
 
@@ -21,7 +22,7 @@ const DEFAULT_EMAIL =
 const DEFAULT_EXPECTED =
   "Hi Maria,\n\nThank you for reaching out — I understand how disruptive sync issues can be for your team.\n\nI've escalated this to our engineering team as a high-priority integration issue. In the meantime:\n\n1. Disconnect and reconnect your Gmail account under Settings > Integrations\n2. Clear browser cache and retry\n3. Confirm no new Google Workspace admin policies are blocking API access\n\nI'll update you within 2 hours with a status report.\n\nBest regards,\nSupport Team";
 
-export function EvaluateForm({ onResult, onLoading, onRegisterRegenerate }: Props) {
+export function EvaluateForm({ onResult, onLoading, onStreamEvent, onRegisterRegenerate }: Props) {
   const [subject, setSubject] = useState("Shared inbox emails not syncing after Gmail update");
   const [email, setEmail] = useState(DEFAULT_EMAIL);
   const [expected, setExpected] = useState("");
@@ -42,7 +43,7 @@ export function EvaluateForm({ onResult, onLoading, onRegisterRegenerate }: Prop
   const PERSONAS = [
     { id: "Tier 1 Support Agent", label: "🎧 Tier 1 Support", desc: "Helpful, clear & friendly" },
     { id: "Software Engineer", label: "💻 Software Engineer", desc: "Technical, APIs & debugging" },
-    { id: "Billing Specialist", label: "💳 Billing Specialist", desc: "Refunds, invoices & plans" },
+    { id: "Student", label: "🎓 Student", desc: "Academic, projects & learning inquiries" },
     { id: "Product Specialist", label: "🚀 Product Specialist", desc: "Features & roadmap workarounds" },
   ];
 
@@ -124,7 +125,13 @@ export function EvaluateForm({ onResult, onLoading, onRegisterRegenerate }: Prop
         setError(data.message || data.error);
         return;
       }
-      if (data.customer_name) setCustomerName(data.customer_name);
+      if (data.customer_name) {
+        if (data.sender_email && !data.customer_name.includes(data.sender_email)) {
+          setCustomerName(`${data.customer_name} <${data.sender_email}>`);
+        } else {
+          setCustomerName(data.customer_name);
+        }
+      }
       if (data.subject) setSubject(data.subject);
       if (data.email_body) setEmail(data.email_body);
     } catch {
@@ -173,13 +180,16 @@ export function EvaluateForm({ onResult, onLoading, onRegisterRegenerate }: Prop
 
       try {
         if (mode === "generate") {
-          const result = await api.generate(
+          const result = await api.generateStream(
             { subject, email, customer_name: customerName, tone, persona },
+            (event) => {
+              onStreamEvent?.(event);
+            },
             { signal: controller.signal }
           );
           onResult(result, "generate");
         } else {
-          const result = await api.evaluate(
+          const result = await api.evaluateStream(
             {
               subject,
               email,
@@ -187,6 +197,9 @@ export function EvaluateForm({ onResult, onLoading, onRegisterRegenerate }: Prop
               customer_name: customerName,
               tone,
               persona,
+            },
+            (event) => {
+              onStreamEvent?.(event);
             },
             { signal: controller.signal }
           );
@@ -201,7 +214,7 @@ export function EvaluateForm({ onResult, onLoading, onRegisterRegenerate }: Prop
         onLoading?.(false);
       }
     },
-    [mode, subject, email, expected, customerName, tone, persona, onResult, onLoading]
+    [mode, subject, email, expected, customerName, tone, persona, onResult, onLoading, onStreamEvent]
   );
 
   useEffect(() => {

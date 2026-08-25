@@ -37,7 +37,7 @@ DATABASE_URL=postgresql://...
 CLERK_SECRET_KEY=sk_live_...
 CLERK_ISSUER=https://xxx.clerk.accounts.dev
 CLERK_JWKS_URL=https://xxx.clerk.accounts.dev/.well-known/jwks.json
-CORS_ORIGINS=https://ainativeemail.vercel.app
+CORS_ORIGINS=https://your-frontend-app.vercel.app
 CHROMA_PERSIST_DIR=./knowledge/vectorstore
 ```
 

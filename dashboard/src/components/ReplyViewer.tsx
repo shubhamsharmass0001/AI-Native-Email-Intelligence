@@ -9,12 +9,14 @@ interface Props {
   result: EvaluateResult | GenerateResult | null;
   mode: "generate" | "evaluate" | null;
   loading?: boolean;
+  activeNode?: string | null;
+  nodeMetrics?: Record<string, { latency_ms: number; tokens: number; output_summary?: string; error?: string | null }>;
   onRegenerate?: () => void;
 }
 
-export function ReplyViewer({ result, mode, loading, onRegenerate }: Props) {
+export function ReplyViewer({ result, mode, loading, activeNode, nodeMetrics, onRegenerate }: Props) {
   if (loading) {
-    return <LoadingPipeline />;
+    return <LoadingPipeline activeNode={activeNode} nodeMetrics={nodeMetrics} mode={mode} />;
   }
 
   if (!result) {

@@ -733,5 +733,202 @@
       "latency_ms": 1403.44
     },
     "overall_latency_ms": 75430.82
+  },
+  {
+    "subject": "ICPC 2026 Online Challenge 1 powered by Huawei",
+    "intent": "feature_request",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hello Codeforces@codeforces.com,\n\nThank you for inviting us to participate in the ICPC 2026 Online Challenge 1 powered by Huawei. We appreciate the opportunity and will proceed with registration using the provided link.\n\nIf you require any assistance with the registration process or have additional questions about the contest, please let us know and we will be happy to help.\n\nBest regards,\n\n[Your Name]\nTier 1 Support Agent",
+      "confidence": 0.9,
+      "reasoning": "The email is an invitation with no explicit question. A professional and formal response acknowledges the invitation, confirms intent to register, and offers assistance, aligning with the Tier 1 Support Agent persona and requested tone. No policy conflicts arise, so the reply is concise, actionable, and courteous.",
+      "language": "English",
+      "citations": [
+        "[technical-004] Feature Requests"
+      ],
+      "knowledge_used": [
+        "technical-004"
+      ],
+      "tokens": 2222,
+      "latency_ms": 8743.52
+    },
+    "overall_latency_ms": 86134.73
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "integration_error",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Maria Lopez,\n\nThank you for bringing this to our attention. I’m sorry to hear that the shared mailbox support@acme.io is no longer syncing new Gmail threads and that this is affecting your agents and SLAs.\n\nWe have identified this as a service outage for the Gmail integration. I have escalated the issue to our Engineering On‑Call team, who will respond within 1 hour and aim to resolve it within 4 hours, in line with our Bug Report Handling policy.\n\nIn the meantime, could you please confirm that the Gmail API credentials used for the integration are still valid and that no recent changes were made to the Gmail account or the integration settings? If you have any error logs or screenshots, forwarding them would help the engineering team diagnose the problem more quickly.\n\nWe will keep you updated via email and on our status page. If you need immediate assistance or have additional information, feel free to reply to this email or call our support hotline at 1‑800‑XXX‑XXXX.\n\nThank you for your patience. Let me know if there is anything else I can help with.\n\nBest regards,\n[Your Name]\nTier 1 Support Agent",
+      "confidence": 0.95,
+      "reasoning": "The reply acknowledges the issue, follows the professional & formal tone, references the appropriate escalation rule for a service outage, cites the bug report handling policy, and provides clear next steps for the customer. It adheres to the instructions and uses only the retrieved knowledge.",
+      "language": "English",
+      "citations": [
+        "technical-001",
+        "service_outage"
+      ],
+      "knowledge_used": [
+        "technical-001"
+      ],
+      "tokens": 1890,
+      "latency_ms": 1542.93
+    },
+    "overall_latency_ms": 8295.59
+  },
+  {
+    "subject": "You shared some Google Account data with Clerk",
+    "intent": "data_export_request",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Shubh,\n\nThank you for reaching out about the data shared with Clerk via Sign‑in with Google. We understand how important it is to keep your information secure and to have full control over what is shared.\n\n**What you can do next**\n1. **Export your data** – In Clerk, go to **Settings > Privacy** and submit a data export request. Clerk will compile the information you shared (name, profile picture, email address, etc.) and deliver it to you within 30 days.\n2. **Delete your data** – If you prefer to remove the data from Clerk entirely, you can request deletion from the same Privacy page. All personal data will be removed within 30 days in accordance with GDPR Article 17.\n3. **Revoke Sign‑in with Google** – To stop using Clerk with your Google account, revoke the app’s access in your Google Account under **Security > Third‑party apps with account access**. This will prevent any future data sharing.\n\nClerk follows GDPR and CCPA requirements, encrypting all data at rest (AES‑256) and in transit (TLS 1.3). If you have any further questions or need assistance with the export/deletion process, please let us know.\n\nThank you for your attention to this matter.\n\nBest regards,\n[Your Name]\nTier 1 Support Agent\nClerk Support",
+      "confidence": 0.95,
+      "reasoning": "The reply addresses the customer's concern about data shared with Clerk, provides clear next steps for export, deletion, and revoking access, cites relevant policy documents, and follows the required tone and persona guidelines.",
+      "language": "English",
+      "citations": [
+        "[faq-security-2]",
+        "[security-003]"
+      ],
+      "knowledge_used": [
+        "faq-security-2",
+        "security-003"
+      ],
+      "tokens": 3288,
+      "latency_ms": 11188.49
+    },
+    "overall_latency_ms": 32914.44
+  },
+  {
+    "subject": "Ready to test your leadership skills next?",
+    "intent": "feature_request",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Shubham,\n\nThank you for your interest in the Tata Imagination Challenge 2026 Campus Ambassador program! I’m excited to share the details with you.\n\n**How to Apply**\n1. Visit the Unstop website and navigate to the “Campus Ambassador” or “Tata Imagination Challenge” section.\n2. Click the “Apply Now” button and complete the short application form.\n3. Submit your application before the deadline (please check the website for the exact date).\n\n**Voucher Structure**\n- Top 5: ₹5,000 voucher each\n- Ranks 6–15: ₹3,000 voucher each\n- Ranks 16–40: ₹2,000 voucher each\n- Ranks 41–60: ₹1,000 voucher each\n- Top 10 by conversions: Extra ₹5,000 voucher each (minimum 500 registrations required)\n\n**Next Steps**\n- Join our WhatsApp channel for real‑time updates and tips.\n- Keep an eye on your inbox; our marketing and events team will follow up with any additional requirements.\n\nIf you have any questions while applying or need further assistance, please let me know. I’m happy to help.\n\nBest regards,\nShubham\nTier 1 Support Agent\nUnstop Support Team",
+      "confidence": 0.7,
+      "reasoning": "The customer received an invitation email and likely wants to know how to proceed. Since no specific policy or technical information is available in the knowledge base, the reply acknowledges the request, offers to forward to the appropriate team, and provides general next steps that are safe to share. This follows the guidelines of being empathetic, concise, and actionable without hallucinating policy details.",
+      "language": "English",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 1947,
+      "latency_ms": 1492.87
+    },
+    "overall_latency_ms": 41008.62
+  },
+  {
+    "subject": "Ready to test your leadership skills",
+    "intent": "feature_request",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Priya Gupta,\n\nThank you for reaching out and for your interest in testing our leadership features next week. We’re excited to help you get hands‑on experience.\n\n**Here’s how you can get started:**\n1. **Schedule a walkthrough** – Let us know a convenient time next week and we’ll set up a 30‑minute session to walk you through the leadership dashboard, role‑based metrics, and collaboration tools.\n2. **Prepare your test plan** – If you have specific scenarios or data you’d like to test, please share them with us. This will help us tailor the session to your needs.\n3. **Adjust permissions if needed** – If you need higher‑level access to view all leadership metrics, you can change your role in the Admin Console: *Team > Select Member > Change Role*. Changes take effect immediately.\n\nOnce we have your preferred time and any test scenarios, I’ll send a calendar invite and a brief agenda. If you have any questions in the meantime, feel free to reply to this email.\n\nBest regards,\nShubham\nTier 1 Support Engineer",
+      "confidence": 0.9,
+      "reasoning": "The reply acknowledges the customer’s request, explains the feature request process using the retrieved policy, offers next steps, and remains concise and professional as required for a tier1 support persona.",
+      "language": "English",
+      "citations": [
+        "[technical-004]"
+      ],
+      "knowledge_used": [
+        "technical-004"
+      ],
+      "tokens": 1594,
+      "latency_ms": 16991.26
+    },
+    "overall_latency_ms": 61111.09
+  },
+  {
+    "subject": "HMEL Energy Quest 3.0 Results Are Now Live",
+    "intent": "bug_report",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi HPCL-Mittal Energy Limited (HMEL),\n\nThank you for letting us know that the results for HMEL Energy Quest 3.0 are now live. We have noted the link you provided and will review the Winners tab on the Xathon page.\n\nIf you encounter any issues accessing the page or have questions about the results, please let us know and we’ll be happy to assist.\n\nBest regards,\n[Your Name]\nTier 1 Support Agent",
+      "confidence": 0.9,
+      "reasoning": "The customer is informing us that the results are live. A professional and formal response acknowledges the update, offers assistance, and provides clear next steps. No policy conflicts or additional information are required.",
+      "language": "English",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 2225,
+      "latency_ms": 1813.65
+    },
+    "overall_latency_ms": 33002.71
+  },
+  {
+    "subject": "Shared inbox emails not syncing after Gmail update",
+    "intent": "bug_report",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Maria Lopez,\n\nThank you for reaching out and for bringing this issue to our attention. I understand how critical it is for your team to have the shared mailbox sync correctly, especially when SLAs are at risk.\n\nWe have logged this as a bug report under the Pro plan for Acme Support. According to our policy, a P1 bug (major feature broken) receives a 4‑hour response and a 24‑hour resolution target. You can expect a status update from us within the next few hours.\n\nTo help us investigate quickly, could you please provide:\n1. The exact steps you and your agents are following to access the shared mailbox.\n2. Any error messages or screenshots that appear when a new Gmail thread fails to sync.\n3. Confirmation that the Gmail update was applied to all accounts (e.g., the latest Gmail API version).\n\nOnce we have this information, our engineering team will triage the issue and work to resolve it as soon as possible. We will keep you informed via email and on our status page.\n\nIf you need immediate assistance or have additional questions, feel free to reply to this email or call our support line at 1‑800‑555‑1234.\n\nThank you for your patience.\n\nBest regards,\n[Your Name]\nTier 1 Support Agent\nAcme Support Team",
+      "confidence": 0.98,
+      "reasoning": "The reply acknowledges the customer's concern, follows the professional & formal tone, references the bug report handling policy for response and resolution times, and requests actionable next steps. It cites the relevant knowledge base entries and adheres to the escalation rules for a P1 bug.",
+      "language": "English",
+      "citations": [
+        "[technical-001]",
+        "[faq-technical-2]"
+      ],
+      "knowledge_used": [
+        "technical-001",
+        "faq-technical-2"
+      ],
+      "tokens": 1635,
+      "latency_ms": 1196.62
+    },
+    "overall_latency_ms": 32445.74
+  },
+  {
+    "subject": "Shared inbox emails not syncing",
+    "intent": "integration_error",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Maria Lopez,\n\nThank you for reaching out. I’m sorry to hear that your shared mailbox has stopped syncing new Gmail threads.\n\n**What we can check right now**\n1. **Integration status** – Log into the Admin Console and navigate to the Gmail integration page. Verify that the shared mailbox is still listed as connected and that the status shows \"Active\".\n2. **Webhook health** – If the integration uses a webhook, ensure the endpoint is reachable and that no recent errors appear in the Developer Console. Webhook failures can interrupt syncs (see FAQ on webhook failures).\n3. **Recent changes** – Confirm whether any recent updates (e.g., a new permission change or a Gmail API update) were applied to the shared mailbox or the account.\n\nIf the integration status is active and the webhook is healthy, this is likely a bug in the sync process. To help us investigate, please provide:\n- A brief description of the steps you took before the sync stopped.\n- Any error messages or logs you see in the Admin Console.\n- Screenshots of the integration status page.\n\nYou can attach these details to this email or create a new support ticket. Once we have the information, our engineering team will look into the issue and get back to you.\n\nPlease let me know if you need assistance accessing the logs or if you have any other questions.\n\nBest regards,\n[Your Name]\nTier 1 Support Engineer\n\n---\n\n**Citations**\n- FAQ: How do I report a bug? (faq-technical-2)\n- FAQ: My webhook is failing (faq-technical-1)",
+      "confidence": 0.9,
+      "reasoning": "The reply acknowledges the issue, follows a professional tone, references relevant technical FAQs for bug reporting and webhook checks, and provides clear next steps for the customer. It adheres to the guidelines of using only retrieved knowledge and offers actionable instructions.",
+      "language": "English",
+      "citations": [
+        "faq-technical-2",
+        "faq-technical-1"
+      ],
+      "knowledge_used": [
+        "faq-technical-2",
+        "faq-technical-1"
+      ],
+      "tokens": 1708,
+      "latency_ms": 1752.64
+    },
+    "overall_latency_ms": 5625.1
+  },
+  {
+    "subject": "Re: SSO & 2FA setup issues on Enterprise workspace",
+    "intent": "integration_error",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi Carlos Mendez,\n\nThank you for the update. I’m sorry to hear that five of your administrators are still encountering the \"Invalid SAML Assertion\" error after clearing the Okta certificate cache.\n\n**What we can check right now**\n1. **Certificate upload in Okta** – Please confirm that the new SHA‑256 certificate is uploaded in Okta under *Admin > Security > SSO*. The certificate must be the one that was rotated today.\n2. **Metadata XML** – After uploading the new certificate, regenerate the SAML metadata XML in Okta and upload that file to our side (Enterprise Admin Console > Security > SSO). This ensures our backend is bound to the correct certificate.\n3. **Cache clearing** – Even after clearing the Okta cache, the browser or IdP may still hold a stale assertion. Ask the affected admins to clear their browser cache or try a private/incognito window.\n4. **Logs** – We can review the SAML assertion logs on our side to see the exact error code and timestamp. If you can provide the timestamps of the failures, that will help us narrow it down.\n\n**Next steps for you**\n- Verify the certificate upload in Okta and regenerate the metadata XML.\n- Re‑upload the new metadata XML to our Enterprise Admin Console.\n- Ask the affected admins to clear their browser cache or use a private window.\n- If the issue persists, please let us know the exact error message and timestamps so we can dig deeper.\n\nIf after these steps the problem remains, I will open a ticket with our Solutions Engineering team (SLA 4 h) to investigate the backend binding.\n\nPlease let me know how it goes or if you need any further assistance.\n\nBest regards,\n[Your Name]\nTier 1 Support Agent\n\n",
+      "confidence": 0.9,
+      "reasoning": "The reply acknowledges the customer’s frustration, references the prior discussion, and provides clear, actionable steps based on the retrieved knowledge about SSO setup and 2FA. It cites the relevant FAQ and policy documents and offers escalation if the issue persists, aligning with the instructions.",
+      "language": "English",
+      "citations": [
+        "[faq-permissions-2]",
+        "[account-002]"
+      ],
+      "knowledge_used": [
+        "faq-permissions-2",
+        "account-002"
+      ],
+      "tokens": 2012,
+      "latency_ms": 1314.07
+    },
+    "overall_latency_ms": 5244.7
+  },
+  {
+    "subject": "National Sports Day Registration",
+    "intent": "feature_request",
+    "language": "English",
+    "generated_reply": {
+      "reply": "Hi LAKHBIR SINGH,\n\nThank you for sharing the details for National Sports Day 2026. I appreciate the enthusiasm and the opportunity for students to participate.\n\nIf you or any student encounter any issues while registering through the provided Google Form link, please let me know and I’ll assist you in troubleshooting or forwarding the concern to the appropriate team.\n\nIn the meantime, you can confirm that the registration link is active by clicking it yourself. If you need any additional resources or have questions about the event schedule, feel free to reach out.\n\nThank you for coordinating this event, and I look forward to seeing the campus spirit on the field.\n\nBest regards,\n[Your Name]\nTier 1 Support Agent",
+      "confidence": 0.8,
+      "reasoning": "The customer sent an announcement email without a specific question. The reply acknowledges the announcement, offers assistance if there are registration issues, and maintains a professional and formal tone as requested. No policy information from the knowledge base is applicable, so no citations are provided.",
+      "language": "English",
+      "citations": [],
+      "knowledge_used": [],
+      "tokens": 2541,
+      "latency_ms": 1827.86
+    },
+    "overall_latency_ms": 15023.12
   }
 ]

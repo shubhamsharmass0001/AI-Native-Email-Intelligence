@@ -261,6 +261,7 @@ async def generate(
     return GenerateResponse(
         subject=request.subject,
         email=request.email,
+        customer_name=request.customer_name,
         intent=result.get("intent", ""),
         priority=result.get("priority", ""),
         sentiment=result.get("sentiment", ""),
@@ -272,6 +273,188 @@ async def generate(
         generated_reply=result.get("generated_reply", {}),
         validated_reply=result.get("validated_reply", {}),
         overall_latency_ms=latency,
+    )
+
+
+async def _stream_pipeline(
+    graph_name: str,
+    state: EmailState,
+    user_id: str,
+    is_evaluate: bool = False,
+) -> AsyncGenerator[str, None]:
+    import json
+    from fastapi.encoders import jsonable_encoder
+
+    graph = _get_graph(graph_name)
+    dashboard = get_dashboard_service(user_id)
+    accumulated_state: dict[str, Any] = dict(state)
+
+    if is_evaluate:
+        expected_nodes = [
+            "classification_agent",
+            "knowledge_agent",
+            "prompt_builder",
+            "generator_agent",
+            "validator_agent",
+            "parallel_evaluation",
+            "final_report",
+        ]
+    else:
+        expected_nodes = [
+            "classification_agent",
+            "knowledge_agent",
+            "prompt_builder",
+            "generator_agent",
+            "validator_agent",
+        ]
+
+    yield f"data: {json.dumps({'type': 'pipeline_start', 'nodes': expected_nodes})}\n\n"
+
+    try:
+        if expected_nodes:
+            yield f"data: {json.dumps({'type': 'node_start', 'node': expected_nodes[0]})}\n\n"
+
+        async for chunk in graph.astream(state, stream_mode="updates"):
+            for node_name, updates in chunk.items():
+                accumulated_state.update(updates)
+                node_metrics = accumulated_state.get("node_metrics", {}).get(node_name, {})
+
+                yield f"data: {json.dumps({'type': 'node_complete', 'node': node_name, 'metrics': node_metrics, 'summary': node_metrics.get('output_summary', '')})}\n\n"
+
+                if node_name in expected_nodes:
+                    idx = expected_nodes.index(node_name)
+                    if idx + 1 < len(expected_nodes):
+                        next_node = expected_nodes[idx + 1]
+                        yield f"data: {json.dumps({'type': 'node_start', 'node': next_node})}\n\n"
+
+        node_metrics = accumulated_state.get("node_metrics", {})
+        latency = _total_latency(node_metrics)
+        accumulated_state["overall_latency_ms"] = latency
+
+        if is_evaluate:
+            eval_data = {
+                "subject": accumulated_state.get("subject", ""),
+                "intent": accumulated_state.get("intent", ""),
+                "priority": accumulated_state.get("priority", ""),
+                "sentiment": accumulated_state.get("sentiment", ""),
+                "customer_type": accumulated_state.get("customer_type", ""),
+                "language": accumulated_state.get("language", "English"),
+                "generated_reply": accumulated_state.get("generated_reply", {}),
+                "validated_reply": accumulated_state.get("validated_reply", {}),
+                "overall_score": accumulated_state.get("overall_score", 0.0),
+                "judge_score": accumulated_state.get("judge_score", {}),
+                "node_metrics": accumulated_state.get("node_metrics", {}),
+            }
+            dashboard.append_evaluation(eval_data)
+
+            final_res = EvaluateResponse(
+                subject=accumulated_state.get("subject", ""),
+                email=accumulated_state.get("email", ""),
+                customer_name=accumulated_state.get("customer_name", "Customer"),
+                language=accumulated_state.get("language", "English"),
+                tone=accumulated_state.get("tone", "professional"),
+                persona=accumulated_state.get("persona", "tier1"),
+                generated_reply=accumulated_state.get("generated_reply", {}),
+                validated_reply=accumulated_state.get("validated_reply", {}),
+                bertscore=accumulated_state.get("bertscore", {}),
+                embedding_score=accumulated_state.get("embedding_score", {}),
+                judge_score=accumulated_state.get("judge_score", {}),
+                overall_score=accumulated_state.get("overall_score", 0.0),
+                feedback=accumulated_state.get("feedback", ""),
+                node_metrics=accumulated_state.get("node_metrics", {}),
+            )
+        else:
+            response_data = {
+                "subject": accumulated_state.get("subject", ""),
+                "intent": accumulated_state.get("intent", ""),
+                "language": accumulated_state.get("language", "English"),
+                "generated_reply": accumulated_state.get("generated_reply", {}),
+                "overall_latency_ms": latency,
+            }
+            dashboard.append_generation(response_data)
+
+            eval_record = {
+                "subject": accumulated_state.get("subject", ""),
+                "intent": accumulated_state.get("intent", ""),
+                "priority": accumulated_state.get("priority", ""),
+                "sentiment": accumulated_state.get("sentiment", ""),
+                "customer_type": accumulated_state.get("customer_type", ""),
+                "language": accumulated_state.get("language", "English"),
+                "generated_reply": accumulated_state.get("generated_reply", {}),
+                "overall_score": accumulated_state.get("generated_reply", {}).get("confidence", 0.0),
+                "node_metrics": accumulated_state.get("node_metrics", {}),
+                "overall_latency_ms": latency,
+            }
+            dashboard.append_evaluation(eval_record)
+
+            final_res = GenerateResponse(
+                subject=accumulated_state.get("subject", ""),
+                email=accumulated_state.get("email", ""),
+                customer_name=accumulated_state.get("customer_name", "Customer"),
+                intent=accumulated_state.get("intent", ""),
+                priority=accumulated_state.get("priority", ""),
+                sentiment=accumulated_state.get("sentiment", ""),
+                customer_type=accumulated_state.get("customer_type", ""),
+                language=accumulated_state.get("language", "English"),
+                tone=accumulated_state.get("tone", "professional"),
+                persona=accumulated_state.get("persona", "tier1"),
+                retrieved_documents=accumulated_state.get("retrieved_documents", []),
+                generated_reply=accumulated_state.get("generated_reply", {}),
+                validated_reply=accumulated_state.get("validated_reply", {}),
+                overall_latency_ms=latency,
+            )
+
+        yield f"data: {json.dumps({'type': 'final_result', 'result': jsonable_encoder(final_res)})}\n\n"
+
+    except Exception as exc:
+        logger.error("Streaming pipeline error: %s", exc, exc_info=True)
+        yield f"data: {json.dumps({'type': 'error', 'error': str(exc)})}\n\n"
+
+
+@app.post("/generate/stream")
+async def generate_stream(
+    request: EmailInput,
+    user_id: str = Depends(get_current_user_id),
+):
+    """Stream generate pipeline execution in real-time via Server-Sent Events."""
+    from fastapi.responses import StreamingResponse
+
+    state = _build_state(
+        request.subject,
+        request.email,
+        request.customer_name,
+        request.company,
+        tone=request.tone,
+        persona=request.persona,
+    )
+    return StreamingResponse(
+        _stream_pipeline("get_generate_graph", state, user_id, is_evaluate=False),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"},
+    )
+
+
+@app.post("/evaluate/stream")
+async def evaluate_stream(
+    request: EvaluateRequest,
+    user_id: str = Depends(get_current_user_id),
+):
+    """Stream evaluate pipeline execution in real-time via Server-Sent Events."""
+    from fastapi.responses import StreamingResponse
+
+    state = _build_state(
+        request.subject,
+        request.email,
+        request.customer_name,
+        request.company,
+        request.expected_response,
+        tone=request.tone,
+        persona=request.persona,
+    )
+    return StreamingResponse(
+        _stream_pipeline("get_full_graph", state, user_id, is_evaluate=True),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"},
     )
 
 
@@ -320,6 +503,7 @@ async def evaluate(
     return EvaluateResponse(
         subject=request.subject,
         email=request.email,
+        customer_name=request.customer_name,
         language=result.get("language", "English"),
         tone=request.tone,
         persona=request.persona,

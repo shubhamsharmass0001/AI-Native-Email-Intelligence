@@ -4,7 +4,6 @@
 
 Production-quality AI email reply platform inspired by **Hiver AI Copilot**. It ingests customer support emails, runs a multi-agent LangGraph pipeline, retrieves company knowledge, generates validated replies, and scores quality with BERTScore, embeddings, and an LLM judge — all exposed through a FastAPI backend and a polished Next.js AI Operations dashboard.
 
-**Live app:** [https://ainativeemail.vercel.app/](https://ainativeemail.vercel.app/)  
 **Repository:** [github.com/shubhamsharmass0001/AI-Native-Email-Intelligence](https://github.com/shubhamsharmass0001/AI-Native-Email-Intelligence)
 
 ---
@@ -13,7 +12,7 @@ Production-quality AI email reply platform inspired by **Hiver AI Copilot**. It 
 
 ```mermaid
 flowchart TB
-    subgraph UI["Next.js Dashboard — ainativeemail.vercel.app"]
+    subgraph UI["Next.js Dashboard"]
         PG[Copilot Playground]
         PM[Premium Metrics]
         PV[Pipeline Visualization]
@@ -263,11 +262,11 @@ Historical quality trends, grounding scores, latency charts, and intent distribu
 
 ## Quick Start
 
-### Use the live app
+### Use the app
 
-1. Open **[https://ainativeemail.vercel.app/](https://ainativeemail.vercel.app/)**
+1. Open your local or deployed dashboard (e.g. `http://localhost:3000` or your Vercel URL)
 2. **Sign in** with Clerk (top-right) — your history is private to your account
-3. Pick a sample ticket → **Generate Reply** or switch to **Evaluate**
+3. Pick a sample ticket or connect Gmail → **Generate Reply** or switch to **Evaluate**
 4. Click **Sync** if metrics show dashes (Render free tier may need a moment to wake)
 
 See **[RENDER_DEPLOY.md](./RENDER_DEPLOY.md)** for full production setup (Render + Vercel + Neon + Clerk).
@@ -736,7 +735,7 @@ git push origin main
 | `EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Sentence transformer |
 | `RETRIEVAL_TOP_K` | `3` | Documents retrieved per query |
 | `LOG_LEVEL` | `INFO` | Logging verbosity |
-| `CORS_ORIGINS` | `http://localhost:3000,https://ainativeemail.vercel.app` | Comma-separated allowed frontend origins |
+| `CORS_ORIGINS` | `http://localhost:3000,https://your-frontend-app.vercel.app` | Comma-separated allowed frontend origins |
 | `CORS_ORIGIN_REGEX` | `https://.*\.vercel\.app` | Regex for Vercel preview/production URLs |
 | `DATABASE_URL` | — | Neon PostgreSQL connection string (**Render only**) |
 | `CLERK_SECRET_KEY` | — | Clerk secret key for JWT verification |
@@ -763,7 +762,7 @@ See **[RENDER_DEPLOY.md](./RENDER_DEPLOY.md)** for Render checklist, env vars, a
 
 The repo includes a [Render Blueprint](https://render.com/docs/blueprint-spec) (`render.yaml`).
 
-1. Push the repo to [GitHub](https://github.com/shubhamsharmass0001/AI-Native-Email-Intelligence)
+1. Push the repo to [GitHub](https://github.com/shubhamsharma/AI-Native-Email-Intelligence)
 2. In Render: **New → Blueprint** → connect the repo
 3. Set secret env vars in the Render dashboard:
 
@@ -783,7 +782,7 @@ CLERK_ISSUER=https://xxx.clerk.accounts.dev
 CLERK_JWKS_URL=https://xxx.clerk.accounts.dev/.well-known/jwks.json
 
 # Frontend CORS
-CORS_ORIGINS=https://ainativeemail.vercel.app
+CORS_ORIGINS=https://your-frontend-app.vercel.app
 ```
 
 4. Deploy — build runs `pip install -r requirements.txt` (no Torch/BERTScore)
@@ -799,13 +798,11 @@ CORS_ORIGINS=https://ainativeemail.vercel.app
 | Health Check | `/health` |
 | Python Version | 3.12.8 (`runtime.txt`) |
 
-> Generate/Evaluate requests take **30–120 seconds**. Free Render tiers may timeout or sleep — first request after idle can take 30–60s.
+> Generate/Evaluate requests take **5–15 seconds** with optimized unified classification and parallel evaluation.
 
 ---
 
 ### Frontend → [Vercel](https://vercel.com)
-
-**Production URL:** [https://ainativeemail.vercel.app/](https://ainativeemail.vercel.app/)
 
 1. Import the GitHub repo in Vercel
 2. Set **Root Directory** to `dashboard`
@@ -822,7 +819,7 @@ CLERK_SECRET_KEY=sk_live_...
 
 Copy `dashboard/.env.local.example` for the full commented template.
 
-4. Deploy — Vercel auto-detects Next.js via `dashboard/vercel.json`
+4. Deploy — Vercel auto-detects Next.js
 
 **After deploy:** update Render `CORS_ORIGINS` with your exact Vercel production URL.
 
@@ -832,7 +829,7 @@ Copy `dashboard/.env.local.example` for the full commented template.
 
 ```bash
 curl https://your-api.onrender.com/health
-# Open https://ainativeemail.vercel.app → Sign in → Sync → Generate Reply
+# Open your Vercel URL → Sign in → Sync → Generate Reply
 ```
 
 ```bash

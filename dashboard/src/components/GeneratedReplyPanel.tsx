@@ -25,6 +25,7 @@ interface Props {
   confidence?: number;
   subject?: string;
   emailText?: string;
+  customerName?: string;
   onRegenerate?: () => void;
 }
 
@@ -56,17 +57,24 @@ function highlightReply(text: string, citations: string[] = []) {
   return parts;
 }
 
-function extractEmailAddress(text?: string): string {
+function extractEmailAddress(text?: string, customerName?: string): string {
+  // Priority 1: From customer column e.g. "Priya Gupta <noreply@unstop.news>" or "user@domain.com"
+  if (customerName) {
+    const custEmailMatch = customerName.match(/<([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})>/i);
+    if (custEmailMatch) return custEmailMatch[1].trim();
+    const custPlainMatch = customerName.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/i);
+    if (custPlainMatch) return custPlainMatch[0].trim();
+  }
   if (!text) return "";
-  // Priority 1: From: Name <email@domain.com>
+  // Priority 2: From: Name <email@domain.com>
   const fromMatch = text.match(/From:\s*[^<\n]*<([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})>/i);
   if (fromMatch) return fromMatch[1].trim();
 
-  // Priority 2: From: email@domain.com
+  // Priority 3: From: email@domain.com
   const fromSimple = text.match(/From:\s*([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/i);
   if (fromSimple) return fromSimple[1].trim();
 
-  // Priority 3: First valid email found in text
+  // Priority 4: First valid email found in text
   const match = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
   return match ? match[0].trim() : "";
 }
@@ -77,6 +85,7 @@ export function GeneratedReplyPanel({
   confidence,
   subject = "",
   emailText = "",
+  customerName = "",
   onRegenerate,
 }: Props) {
   const [displayed, setDisplayed] = useState("");
@@ -85,15 +94,18 @@ export function GeneratedReplyPanel({
   const [expanded, setExpanded] = useState(true);
   const [compare, setCompare] = useState(false);
 
-  // Recipient email extraction
-  const defaultRecipient = useMemo(() => extractEmailAddress(emailText), [emailText]);
+  // Recipient email extraction (from customer column or email text)
+  const defaultRecipient = useMemo(
+    () => extractEmailAddress(emailText, customerName),
+    [emailText, customerName]
+  );
   const [recipient, setRecipient] = useState(defaultRecipient);
 
   useEffect(() => {
-    if (defaultRecipient && !recipient) {
+    if (defaultRecipient) {
       setRecipient(defaultRecipient);
     }
-  }, [defaultRecipient, recipient]);
+  }, [defaultRecipient]);
 
   // Formatted subject
   const replySubject = useMemo(() => {

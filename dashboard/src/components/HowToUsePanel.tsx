@@ -7,59 +7,57 @@ interface HowToUsePanelProps {
   onClose: () => void;
 }
 
-const LIVE_URL = "https://ainativeemail.vercel.app";
-
 const STEPS = [
   {
     step: 1,
-    title: "Open the live dashboard",
-    body: "The platform is deployed and ready to use. Sign in with your account to get started:",
-    code: LIVE_URL,
-    note: "Each user has private history — your evaluations and metrics are not visible to others.",
+    title: "Open the dashboard",
+    body: "Open your local or deployed dashboard in your browser to get started:",
+    code: "http://localhost:3000",
+    note: "Each user has private session history — your evaluations, analytics, and telemetry are isolated.",
   },
   {
     step: 2,
-    title: "Confirm backend is healthy",
-    body: "Check the header status badges. Green “healthy” means the Render API is connected. “Indexed” means ChromaDB knowledge is loaded.",
-    note: "If status shows unhealthy, click Sync or wait ~30s for the Render free tier to wake up.",
+    title: "Connect Gmail or pick a ticket",
+    body: "Connect your Google account to fetch live incoming Gmail messages with 1 click, or choose from pre-loaded enterprise support scenarios. The customer name and sender email (e.g. Name <email@domain.com>) are automatically populated into the form.",
+    note: "1-Click Send in the reply panel automatically extracts the recipient email address for effortless drafting.",
   },
   {
     step: 3,
-    title: "Generate a reply (quick test)",
-    body: "In Copilot Playground, keep “Generate” selected. Fill in customer name, subject, and email body (or pick a sample ticket). Click Generate Reply.",
-    note: "Wait ~30–60s. The right panel shows intent, priority, sentiment, the AI reply, validation checks, and retrieved knowledge docs.",
+    title: "Generate reply with real-time streaming",
+    body: "In the Playground, keep “Generate” selected. Choose your Persona (🎧 Tier 1 Support, 💻 Software Engineer, 🎓 Student, 🚀 Product Specialist) and Tone (Formal, Friendly, Concise, Empathetic). Click Generate Reply.",
+    note: "Watches real-time SSE streaming as LangGraph runs Unified Multi-Task Classification (intent, priority, sentiment), Hybrid RAG retrieval, and validation in sequence.",
   },
   {
     step: 4,
-    title: "Run full evaluation",
-    body: "Switch to “Evaluate”. Paste an expected reference reply (ground truth). Click Run Evaluation.",
-    note: "Gets BERTScore, embedding similarity, LLM judge scores, and an overall weighted score. Your metrics update in the top strip and charts.",
+    title: "Review AI reply & grounded knowledge",
+    body: "The output strictly addresses the recipient by their clean name (e.g. Hi Priya Gupta,), preventing body greeting confusion. Inspect retrieved knowledge graph policies, confidence percentages, and policy compliance validation checks.",
+    note: "Compare with the original email, edit the draft, copy to clipboard, export as Markdown/TXT, or open directly in Gmail/Mail.",
   },
   {
     step: 5,
-    title: "Explore analytics",
-    body: "Scroll down or click Analytics to view quality trends, grounding scores, latency charts, and intent distributions from your personal history.",
-    note: "History is stored in Neon PostgreSQL and scoped to your Clerk user ID.",
+    title: "Run concurrent evaluation",
+    body: "Switch to “Evaluate” mode, enter an expected reference response (ground truth), and click Run Evaluation.",
+    note: "Runs BERTScore, Embedding Cosine Similarity, and LLM Judge concurrently via parallel evaluation nodes, cutting evaluation latency by ~50%.",
   },
   {
     step: 6,
-    title: "Local development (optional)",
-    body: "To run locally, start the backend and dashboard in separate terminals:",
-    code: "uvicorn app.main:app --reload --port 8000\ncd dashboard && npm run dev",
-    note: "Set NEXT_PUBLIC_API_URL=http://127.0.0.1:8000 in dashboard/.env.local. Without DATABASE_URL, history uses local JSON files.",
+    title: "Explore real-time analytics",
+    body: "Scroll down or click Analytics to view latency breakdowns, token consumption, intent distributions, grounding/hallucination metrics, and historical quality trends.",
+    note: "Auto-syncs every 30 seconds in the background or on-demand via the header Sync button.",
   },
   {
     step: 7,
-    title: "Index knowledge (local first-time)",
-    body: "If “Indexing” shows instead of “Indexed” on a fresh local install, run once:",
-    code: "python scripts/embed_knowledge.py embed",
-    note: "Production Render deploy runs this automatically during build.",
+    title: "Local development (optional)",
+    body: "To run locally, start the FastAPI backend and Next.js dashboard in separate terminals:",
+    code: ".venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload\ncd dashboard && npm run dev",
+    note: "Set NEXT_PUBLIC_API_URL=http://127.0.0.1:8000 in dashboard/.env.local.",
   },
   {
     step: 8,
-    title: "API reference",
-    body: "Authenticated endpoints: POST /generate, /evaluate, /predict · GET /dashboard, /evaluations · GET /health (public).",
-    note: "Send Clerk session token as Authorization: Bearer <token> from the dashboard (handled automatically).",
+    title: "Production API & streaming reference",
+    body: "Interactive REST and Server-Sent Events (SSE) streaming endpoints are fully documented:",
+    code: "POST /generate/stream  ·  POST /evaluate/stream\nPOST /generate  ·  POST /evaluate  ·  POST /predict\nGET /dashboard  ·  GET /status  ·  GET /health",
+    note: "Full OpenAPI documentation and Swagger UI are accessible at /docs.",
   },
 ];
 

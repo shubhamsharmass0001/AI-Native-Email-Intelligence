@@ -88,19 +88,32 @@ export function deriveGroundedMetrics(
 }
 
 export const PIPELINE_NODES = [
-  { id: "intent_agent", label: "Intent", key: "intent_agent" },
-  { id: "priority_agent", label: "Priority", key: "priority_agent" },
-  { id: "sentiment_agent", label: "Sentiment", key: "sentiment_agent" },
-  { id: "customer_agent", label: "Customer", key: "customer_agent" },
-  { id: "knowledge_agent", label: "Retrieval", key: "knowledge_agent" },
-  { id: "prompt_builder", label: "Prompt", key: "prompt_builder" },
-  { id: "generator_agent", label: "Claude", key: "generator_agent" },
+  { id: "classification_agent", label: "Classifier", key: "classification_agent" },
+  { id: "knowledge_agent", label: "Hybrid RAG", key: "knowledge_agent" },
+  { id: "prompt_builder", label: "Prompt Builder", key: "prompt_builder" },
+  { id: "generator_agent", label: "Reply Generator", key: "generator_agent" },
   { id: "validator_agent", label: "Validator", key: "validator_agent" },
-  { id: "embedding_evaluation", label: "Embedding", key: "embedding_evaluation" },
-  { id: "bertscore", label: "BERTScore", key: "bertscore" },
-  { id: "judge_agent", label: "LLM Judge", key: "judge_agent" },
-  { id: "final_report", label: "Report", key: "final_report" },
+  { id: "parallel_evaluation", label: "Parallel Evaluator", key: "parallel_evaluation" },
+  { id: "final_report", label: "Final Report", key: "final_report" },
 ] as const;
+
+export const GENERATE_NODES = [
+  "classification_agent",
+  "knowledge_agent",
+  "prompt_builder",
+  "generator_agent",
+  "validator_agent",
+];
+
+export const EVALUATE_NODES = [
+  "classification_agent",
+  "knowledge_agent",
+  "prompt_builder",
+  "generator_agent",
+  "validator_agent",
+  "parallel_evaluation",
+  "final_report",
+];
 
 export function extractConcepts(text: string): string[] {
   const keywords = ["OAuth", "Gmail", "Webhook", "API", "SLA", "Permissions", "Sync", "Integration", "Billing", "Refund", "Security"];

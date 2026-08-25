@@ -25,6 +25,44 @@ Detect the primary language of the email (e.g. English, Spanish, German, French,
 Return JSON only:
 {{"intent": "<intent>", "language": "<detected language, default English>", "confidence": <0-1>, "reasoning": "<brief explanation>"}}"""
 
+UNIFIED_CLASSIFICATION_PROMPT = """Analyze this customer support email and extract all classification dimensions in a single step.
+
+Subject: {subject}
+Email: {email}
+Company: {company}
+
+1. Intent: Choose the most specific intent from:
+{intents}
+
+2. Language: Detect primary language (e.g. English, Spanish, German, French, Hindi, Japanese, etc. default English).
+
+3. Priority: Choose from: critical, high, medium, low
+- critical: security breach, data loss, complete service outage, legal threat
+- high: payment failures, account lockouts, shipping errors affecting business
+- medium: billing questions, feature issues, general complaints
+- low: feature requests, general inquiries, feedback
+
+4. Sentiment: Choose from: very_negative, negative, neutral, positive, very_positive
+
+5. Customer Type: Choose from: enterprise, business, startup, individual, trial, churned
+- enterprise: SLA mentions, dedicated AM, compliance, large team
+- business: small team, paid plan, regular usage
+- startup: early stage, budget focus, growth
+- individual: personal use, single user
+- trial: evaluation, demo, trial period
+- churned: cancellation, leaving
+
+Return JSON only:
+{{
+  "intent": "<intent>",
+  "language": "<language>",
+  "priority": "<priority>",
+  "sentiment": "<sentiment>",
+  "customer_type": "<customer_type>",
+  "confidence": <0.0-1.0>,
+  "reasoning": "<brief explanation of key signals>"
+}}"""
+
 PRIORITY_CLASSIFICATION_PROMPT = """Analyze this customer support email and determine urgency priority.
 
 Subject: {subject}
@@ -93,9 +131,11 @@ Retrieved Knowledge:
 {knowledge_context}
 
 Instructions:
-1. Address the customer ({customer_name}) by name in the opening greeting (e.g., "Hi {customer_name}," or "Hello {customer_name},"). Never address yourself or any other party found in the email body.
+1. Address the customer ({customer_name}) by name in the opening greeting (e.g., "Hi {customer_name}," or "Hello {customer_name},").
+   - CRITICAL: You are drafting a reply TO {customer_name}. Always address the greeting specifically to {customer_name}.
+   - Never copy or address any person named inside the incoming email body (for instance, if the incoming email says "Hi Shubh,", do NOT write "Hi Shubh," — you must address the customer who sent the message: "Hi {customer_name},").
 2. Tone & Persona Guidelines:
-   - Persona: Adopt the perspective and technical role of: {persona} (e.g. Tier 1 Support Agent, Software Engineer, Billing Specialist, Product Specialist).
+   - Persona: Adopt the perspective and technical role of: {persona} (e.g. Tier 1 Support Agent, Software Engineer, Student, Product Specialist).
    - Tone: Follow the style: {tone} (e.g. Professional & Formal, Friendly & Conversational, Concise & Direct, Empathetic & Reassuring).
 3. Multi-Turn Thread Awareness: If the email contains a conversation thread or prior back-and-forth messages, reference past discussion points accurately and focus on resolving the latest question.
 4. Multi-Language Reply: If Customer Language is NOT English (e.g. Spanish, German, Hindi, French, Japanese, etc.), draft the reply fluently and naturally in the customer's language ({language}), while keeping policy terms and citations grounded in the English knowledge base.
@@ -114,6 +154,8 @@ Return JSON only:
 
 VALIDATION_PROMPT = """Validate this customer support reply against quality standards.
 
+Recipient / Customer: {customer_name}
+
 Customer Email:
 Subject: {subject}
 {email}
@@ -125,12 +167,13 @@ Retrieved Knowledge (ground truth for policies):
 {knowledge_context}
 
 Validate these criteria:
-1. no_hallucination - Reply doesn't invent policies not in knowledge
-2. action_items_present - Reply includes clear next steps
-3. professional_tone - Reply is professional and courteous
-4. grammar - Reply has correct grammar and spelling
-5. completeness - Reply fully addresses the customer's concern
-6. policy_compliance - Reply follows stated policies
+1. correct_recipient - Reply is properly addressed to the customer ({customer_name}). Do not consider addressing {customer_name} as an error even if the customer email body mentions another name.
+2. no_hallucination - Reply doesn't invent policies not in knowledge
+3. action_items_present - Reply includes clear next steps
+4. professional_tone - Reply is professional and courteous
+5. grammar - Reply has correct grammar and spelling
+6. completeness - Reply fully addresses the customer's concern
+7. policy_compliance - Reply follows stated policies
 
 Return JSON only:
 {{

@@ -40,6 +40,7 @@ class GenerateResponse(BaseModel):
 
     subject: str
     email: str
+    customer_name: str = "Customer"
     intent: str
     priority: str
     sentiment: str
@@ -70,6 +71,7 @@ class EvaluateResponse(BaseModel):
 
     subject: str
     email: str
+    customer_name: str = "Customer"
     language: str = "English"
     tone: str = "professional"
     persona: str = "tier1"

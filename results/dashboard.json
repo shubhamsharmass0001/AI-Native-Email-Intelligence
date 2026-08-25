@@ -1,8 +1,8 @@
 {
-  "average_score": 0.7164,
-  "average_latency_ms": 67965.05,
-  "average_tokens": 2248.1,
-  "total_processed": 20,
+  "average_score": 0.7736,
+  "average_latency_ms": 56003.56,
+  "average_tokens": 2200.8,
+  "total_processed": 30,
   "top_intents": [
     {
       "intent": "gdpr_deletion",
@@ -17,37 +17,37 @@
       "avg_score": 0.95
     },
     {
-      "intent": "security_incident",
-      "avg_score": 0.9375
+      "intent": "data_export_request",
+      "avg_score": 0.95
     },
     {
-      "intent": "subscription_cancel",
-      "avg_score": 0.9
+      "intent": "security_incident",
+      "avg_score": 0.9375
     }
   ],
   "worst_intents": [
-    {
-      "intent": "subscription_cancel",
-      "avg_score": 0.9
-    },
     {
       "intent": "role_change_request",
       "avg_score": 0.85
     },
     {
       "intent": "bug_report",
-      "avg_score": 0.6278
+      "avg_score": 0.8359
+    },
+    {
+      "intent": "feature_request",
+      "avg_score": 0.825
     },
     {
       "intent": "integration_error",
-      "avg_score": 0.5235
+      "avg_score": 0.7201
     },
     {
       "intent": "none",
       "avg_score": 0.378
     }
   ],
-  "hallucination_rate": 0.05,
+  "hallucination_rate": 0.0333,
   "judge_distribution": {
     "correctness": 0.91,
     "completeness": 0.725,
@@ -58,7 +58,7 @@
     "hallucination": 0.825,
     "policy_adherence": 0.775
   },
-  "last_updated": "2026-08-24T12:32:01.857105",
+  "last_updated": "2026-08-25T10:08:52.527070",
   "llm_provider": "groq",
   "llm_model": "openai/gpt-oss-20b",
   "fallback_provider": "gemini",

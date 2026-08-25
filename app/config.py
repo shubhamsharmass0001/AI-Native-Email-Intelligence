@@ -72,7 +72,7 @@ class Settings(BaseSettings):
     clerk_jwks_url: str = Field(default="", alias="CLERK_JWKS_URL")
 
     cors_origins: str = Field(
-        default="http://localhost:3000,http://127.0.0.1:3000,https://ainativeemail.vercel.app",
+        default="http://localhost:3000,http://127.0.0.1:3000",
         alias="CORS_ORIGINS",
     )
     cors_origin_regex: str = Field(

@@ -1,6 +1,7 @@
 """Agent package — lazy exports to avoid heavy import chains."""
 
 __all__ = [
+    "classification_agent",
     "customer_agent",
     "generator_agent",
     "intent_agent",
@@ -14,6 +15,9 @@ __all__ = [
 
 
 def __getattr__(name: str):
+    if name == "classification_agent":
+        from .classification_agent import classification_agent
+        return classification_agent
     if name == "customer_agent":
         from .customer_agent import customer_agent
         return customer_agent

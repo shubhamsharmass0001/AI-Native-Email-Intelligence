@@ -62,6 +62,91 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   }
 }
 
+export type StreamEvent =
+  | { type: "pipeline_start"; nodes: string[] }
+  | { type: "node_start"; node: string }
+  | {
+      type: "node_complete";
+      node: string;
+      metrics: { latency_ms: number; tokens: number; output_summary?: string };
+      summary?: string;
+    }
+  | { type: "final_result"; result: any }
+  | { type: "error"; error: string };
+
+async function streamRequest<T>(
+  path: string,
+  body: unknown,
+  onEvent: (event: StreamEvent) => void,
+  options?: { signal?: AbortSignal }
+): Promise<T> {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    Accept: "text/event-stream",
+  };
+
+  if (tokenGetter) {
+    const token = await tokenGetter();
+    if (token) headers.Authorization = `Bearer ${token}`;
+  }
+
+  const url = `${apiBase()}${path}`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+    signal: options?.signal,
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(parseApiError(text || `Request failed (${res.status})`));
+  }
+
+  if (!res.body) throw new Error("No response body");
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let finalResult: T | null = null;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    const chunks = buffer.split("\n\n");
+    buffer = chunks.pop() || "";
+
+    for (const chunk of chunks) {
+      const trimmed = chunk.trim();
+      if (!trimmed.startsWith("data:")) continue;
+      const jsonStr = trimmed.slice(5).trim();
+      if (!jsonStr) continue;
+
+      try {
+        const parsed: StreamEvent = JSON.parse(jsonStr);
+        onEvent(parsed);
+        if (parsed.type === "final_result") {
+          finalResult = parsed.result as T;
+        } else if (parsed.type === "error") {
+          throw new Error(parsed.error);
+        }
+      } catch (err) {
+        if (err instanceof Error && err.message && !err.message.startsWith("Unexpected")) {
+          throw err;
+        }
+      }
+    }
+  }
+
+  if (!finalResult) {
+    throw new Error("Pipeline finished without returning a result");
+  }
+
+  return finalResult;
+}
+
 export const api = {
   backendUrl: BACKEND_URL,
   health: () => request<{ status: string; version: string }>("/health"),
@@ -94,6 +179,19 @@ export const api = {
       body: JSON.stringify(body),
       signal: options?.signal,
     }),
+  generateStream: (
+    body: {
+      subject: string;
+      email: string;
+      customer_name?: string;
+      company?: string;
+      tone?: string;
+      persona?: string;
+    },
+    onEvent: (event: StreamEvent) => void,
+    options?: { signal?: AbortSignal }
+  ) =>
+    streamRequest<import("./types").GenerateResult>("/generate/stream", body, onEvent, options),
   evaluate: (
     body: {
       subject: string;
@@ -111,6 +209,20 @@ export const api = {
       body: JSON.stringify(body),
       signal: options?.signal,
     }),
+  evaluateStream: (
+    body: {
+      subject: string;
+      email: string;
+      expected_response: string;
+      customer_name?: string;
+      company?: string;
+      tone?: string;
+      persona?: string;
+    },
+    onEvent: (event: StreamEvent) => void,
+    options?: { signal?: AbortSignal }
+  ) =>
+    streamRequest<import("./types").EvaluateResult>("/evaluate/stream", body, onEvent, options),
   predict: (body: { subject: string; email: string }) =>
     request<{
       intent: string;

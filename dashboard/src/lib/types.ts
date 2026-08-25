@@ -20,6 +20,7 @@ export interface DashboardMetrics {
 export interface EvaluateResult {
   subject: string;
   email: string;
+  customer_name?: string;
   language?: string;
   tone?: string;
   persona?: string;
@@ -52,6 +53,7 @@ export interface EvaluateResult {
 export interface GenerateResult {
   subject: string;
   email?: string;
+  customer_name?: string;
   intent: string;
   priority: string;
   sentiment: string;
