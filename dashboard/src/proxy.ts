@@ -18,11 +18,7 @@ const hasClerk = Boolean(
 );
 
 export default hasClerk
-  ? clerkMiddleware(async (auth, req) => {
-      if (!isPublicRoute(req)) {
-        await auth.protect();
-      }
-    })
+  ? clerkMiddleware()
   : function middleware(req: NextRequest) {
       return NextResponse.next();
     };
