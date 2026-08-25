@@ -24,6 +24,50 @@ def clean_customer_name(raw_name: str) -> str:
     return cleaned if cleaned else "Customer"
 
 
+def enforce_persona_signoff(reply_text: str, persona: str) -> str:
+    """Ensure the signoff title strictly reflects the selected persona."""
+    if not reply_text:
+        return reply_text
+
+    p = (persona or "").lower()
+    if "student" in p:
+        # Replace common customer support sign-offs with Student
+        reply_text = re.sub(
+            r"(Senior\s+)?Customer\s+Support\s+Engineer(\s*,\s*[^,\n]+)?",
+            "Student",
+            reply_text,
+            flags=re.IGNORECASE,
+        )
+        reply_text = re.sub(
+            r"\[Company\s*Name\]\s*Support\s*Team",
+            "Student",
+            reply_text,
+            flags=re.IGNORECASE,
+        )
+        reply_text = re.sub(
+            r"Customer\s+Support\s+(Agent|Representative|Engineer|Team)",
+            "Student",
+            reply_text,
+            flags=re.IGNORECASE,
+        )
+    elif "software engineer" in p:
+        reply_text = re.sub(
+            r"(Senior\s+)?Customer\s+Support\s+Engineer",
+            "Software Engineer",
+            reply_text,
+            flags=re.IGNORECASE,
+        )
+    elif "product specialist" in p:
+        reply_text = re.sub(
+            r"(Senior\s+)?Customer\s+Support\s+Engineer",
+            "Product Specialist",
+            reply_text,
+            flags=re.IGNORECASE,
+        )
+
+    return reply_text
+
+
 def enforce_correct_greeting(reply_text: str, customer_name: str) -> str:
     """Ensure the greeting line strictly addresses the customer and not a 3rd party from the email body."""
     if not reply_text:
@@ -108,7 +152,9 @@ async def generator_agent(state: EmailState) -> dict:
         latency_ms = round((time.perf_counter() - start) * 1000, 2)
 
         raw_reply = result.get("reply", "")
+        persona_val = state.get("persona", "Tier 1 Support Agent")
         guaranteed_reply = enforce_correct_greeting(raw_reply, clean_name)
+        guaranteed_reply = enforce_persona_signoff(guaranteed_reply, persona_val)
 
         generated_reply = {
             "reply": guaranteed_reply,
