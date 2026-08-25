@@ -21,6 +21,7 @@ import {
   Legend,
 } from "recharts";
 import { useTheme } from "@/components/ThemeProvider";
+import { api } from "@/lib/api";
 import type { DashboardMetrics } from "@/lib/types";
 
 interface DistItem {
@@ -122,10 +123,20 @@ export function AnalyticsDashboard({ metrics: _metrics }: Props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/history")
-      .then((r) => r.json())
-      .then((data) => {
-        const evals: Array<Record<string, unknown>> = data.evaluations ?? [];
+    async function loadData() {
+      try {
+        let evals: Array<Record<string, unknown>> = [];
+        try {
+          const data = await api.evaluations();
+          evals = (data as { evaluations?: Array<Record<string, unknown>> })?.evaluations ?? [];
+        } catch {
+          const res = await fetch("/api/history");
+          if (res.ok) {
+            const data = await res.json();
+            evals = (data as { evaluations?: Array<Record<string, unknown>> })?.evaluations ?? [];
+          }
+        }
+
         if (evals.length) {
           const pts: HistoryPoint[] = evals.map((e, i) => {
             const nodeMetrics = (e.node_metrics as Record<string, { latency_ms: number }>) ?? {};
@@ -175,11 +186,14 @@ export function AnalyticsDashboard({ metrics: _metrics }: Props) {
           setDistributions({ priority: [], customer: [], sentiment: [], intent: [] });
           setTopIntents([]);
         }
-      })
-      .catch(() => {
+      } catch {
         setHistory([]);
-      })
-      .finally(() => setLoading(false));
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    void loadData();
   }, []);
 
   const PIE_COLORS = ["#eab308", "#22c55e", "#3b82f6", "#a855f7", "#ec4899", "#06b6d4"];

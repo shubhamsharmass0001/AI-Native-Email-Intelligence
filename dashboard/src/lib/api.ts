@@ -163,6 +163,7 @@ export const api = {
       vector_store?: { warning?: string };
     }>("/status"),
   dashboard: () => request<{ metrics: import("./types").DashboardMetrics }>("/dashboard"),
+  evaluations: () => request<{ evaluations: Array<Record<string, unknown>> }>("/evaluations"),
   generate: (
     body: {
       subject: string;
