@@ -257,7 +257,7 @@ LangGraph nodes execute in real-time sequence with linear progress, active spinn
 ### 6. Analytics & Telemetry Dashboard
 Explore personal evaluation history, grounding/hallucination rates, latency breakdowns, and intent distributions with auto-polling sync.
 
-![Analytics Dashboard](./Screenshots/h2%20Analytics.jpeg)
+![Analytics Dashboard](./Screenshots/06_analytics_dashboard.png)
 
 ---
 
