@@ -179,7 +179,7 @@ export const api = {
       body: JSON.stringify(body),
       signal: options?.signal,
     }),
-  generateStream: (
+  generateStream: async (
     body: {
       subject: string;
       email: string;
@@ -190,8 +190,16 @@ export const api = {
     },
     onEvent: (event: StreamEvent) => void,
     options?: { signal?: AbortSignal }
-  ) =>
-    streamRequest<import("./types").GenerateResult>("/generate/stream", body, onEvent, options),
+  ) => {
+    try {
+      return await streamRequest<import("./types").GenerateResult>("/generate/stream", body, onEvent, options);
+    } catch (err) {
+      if (err instanceof Error && (err.message.includes("404") || err.message.includes("Not Found"))) {
+        return await api.generate(body, options);
+      }
+      throw err;
+    }
+  },
   evaluate: (
     body: {
       subject: string;
@@ -209,7 +217,7 @@ export const api = {
       body: JSON.stringify(body),
       signal: options?.signal,
     }),
-  evaluateStream: (
+  evaluateStream: async (
     body: {
       subject: string;
       email: string;
@@ -221,8 +229,16 @@ export const api = {
     },
     onEvent: (event: StreamEvent) => void,
     options?: { signal?: AbortSignal }
-  ) =>
-    streamRequest<import("./types").EvaluateResult>("/evaluate/stream", body, onEvent, options),
+  ) => {
+    try {
+      return await streamRequest<import("./types").EvaluateResult>("/evaluate/stream", body, onEvent, options);
+    } catch (err) {
+      if (err instanceof Error && (err.message.includes("404") || err.message.includes("Not Found"))) {
+        return await api.evaluate(body, options);
+      }
+      throw err;
+    }
+  },
   predict: (body: { subject: string; email: string }) =>
     request<{
       intent: string;
