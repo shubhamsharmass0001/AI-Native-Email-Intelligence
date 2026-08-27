@@ -12,7 +12,7 @@ const STEPS = [
     step: 1,
     title: "Open the dashboard",
     body: "Open your local or deployed dashboard in your browser to get started:",
-    code: "http://localhost:3000",
+    code: "https://ai-native-email-intelligence-omega.vercel.app",
     note: "Each user has private session history — your evaluations, analytics, and telemetry are isolated.",
   },
   {
