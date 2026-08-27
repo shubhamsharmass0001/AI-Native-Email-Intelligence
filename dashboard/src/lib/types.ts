@@ -7,6 +7,13 @@ export interface DashboardMetrics {
   worst_intents: { intent: string; avg_score: number }[];
   hallucination_rate: number;
   judge_distribution: Record<string, number>;
+  priority_distribution?: Record<string, number>;
+  customer_type_distribution?: Record<string, number>;
+  sentiment_distribution?: Record<string, number>;
+  intent_distribution?: Record<string, number>;
+  average_quality_score?: number;
+  average_token_count?: number;
+  top_performing_intents?: string[];
   last_updated?: string;
   llm_provider?: string;
   llm_model?: string;
