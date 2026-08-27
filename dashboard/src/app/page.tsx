@@ -13,6 +13,8 @@ import { PremiumMetrics } from "@/components/PremiumMetrics";
 import { ANALYTICS_HELP } from "@/lib/section-help";
 import { ReplyViewer } from "@/components/ReplyViewer";
 
+import { DEFAULT_SAMPLE_METRICS } from "@/lib/sample-evaluations";
+
 const AnalyticsDashboard = dynamic(
   () => import("@/components/AnalyticsDashboard").then((m) => m.AnalyticsDashboard),
   { ssr: false, loading: () => <div className="h-96 animate-pulse rounded-xl bg-[var(--surface-muted)]" /> }
@@ -20,7 +22,7 @@ const AnalyticsDashboard = dynamic(
 
 export default function DashboardPage() {
   const [health, setHealth] = useState<HealthStatus | null>(null);
-  const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
+  const [metrics, setMetrics] = useState<DashboardMetrics | null>(DEFAULT_SAMPLE_METRICS);
   const [result, setResult] = useState<EvaluateResult | GenerateResult | null>(null);
   const [resultMode, setResultMode] = useState<"generate" | "evaluate" | null>(null);
   const [refreshing, setRefreshing] = useState(false);

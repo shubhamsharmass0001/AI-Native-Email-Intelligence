@@ -23,6 +23,7 @@ import {
 import { useTheme } from "@/components/ThemeProvider";
 import { api } from "@/lib/api";
 import type { DashboardMetrics } from "@/lib/types";
+import { SAMPLE_EVALUATION_RECORDS } from "@/lib/sample-evaluations";
 
 interface DistItem {
   name: string;
@@ -135,6 +136,10 @@ export function AnalyticsDashboard({ metrics: _metrics }: Props) {
             const data = await res.json();
             evals = (data as { evaluations?: Array<Record<string, unknown>> })?.evaluations ?? [];
           }
+        }
+
+        if (!evals.length) {
+          evals = SAMPLE_EVALUATION_RECORDS as unknown as Array<Record<string, unknown>>;
         }
 
         if (evals.length) {
