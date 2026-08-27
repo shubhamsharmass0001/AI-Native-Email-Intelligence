@@ -74,6 +74,48 @@ IT-Sicherheitsbeauftragter`,
 राहुल शर्मा`,
   },
   {
+    id: "webhook-rate-limit",
+    label: "⚡ Webhook Outage & 429",
+    subject: "CRITICAL: Webhook deliverability drops & 429 rate limit spike on production cluster",
+    customer_name: "Rachel Vance",
+    email: `Hi Platform Engineering Team,
+
+Since 08:00 UTC, our production payment reconciliation service has been receiving 429 Too Many Requests errors on your /v2/events endpoint. Our dead-letter queue is backing up (over 18,000 unhandled webhook payloads) and impacting checkout settlements.
+
+Details:
+- Organization: FinTech Core Infrastructure (Enterprise Tier)
+- API Key ID: key_live_89f92a01ce
+- Cluster: us-east-1 prod-worker-04
+
+Could you please temporarily burst our rate limit ceiling from 2,000 req/min to 5,000 req/min and verify if any upstream egress throttling is active on your load balancers?
+
+Thanks,
+Rachel Vance
+Principal SRE, FinTech Core`,
+  },
+  {
+    id: "scim-rbac-audit",
+    label: "🔒 SCIM & RBAC Audit",
+    subject: "SOC2 Audit: SCIM auto-deprovisioning failing for offboarded employees",
+    customer_name: "Marcus Thorne",
+    email: `Hi Security & Compliance Support,
+
+We are currently undergoing our annual SOC2 Type II compliance audit and identified an urgent issue with automated SCIM user provisioning.
+
+When employees are deactivated in Microsoft Entra ID (Azure AD), their corresponding seat licenses in our shared workspace remain active with "Read/Write" permissions instead of being suspended.
+
+Workspace: Apex Health Systems (Enterprise Health Plan)
+Tenant ID: tenant_77a901-scim-v2
+
+Please provide:
+1. The root cause for the SCIM 403 Forbidden sync error on the /scim/v2/Users endpoint.
+2. An encrypted audit log export of all deprovisioning events from the past 90 days for our compliance auditors.
+
+Best regards,
+Marcus Thorne
+VP of Information Security, Apex Health Systems`,
+  },
+  {
     id: "enterprise-billing",
     label: "Enterprise Billing",
     subject: "Invoice discrepancy on Enterprise plan — Q1 renewal",
@@ -95,3 +137,4 @@ IT-Sicherheitsbeauftragter`,
     email: `Hi Support,\n\nOur shared mailbox lost Gmail sync. Console shows OAuth token expired. 12 agents blocked.\n\nWorkspace: Acme Support\nPlan: Pro\n\nMaria Lopez`,
   },
 ] as const;
+
