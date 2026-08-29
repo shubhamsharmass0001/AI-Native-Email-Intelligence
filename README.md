@@ -6,6 +6,7 @@ Production-quality AI email reply platform inspired by **Hiver AI Copilot**. It 
 
 **Repository:** [github.com/shubhamsharmass0001/AI-Native-Email-Intelligence](https://github.com/shubhamsharmass0001/AI-Native-Email-Intelligence)
 
+**Live:**  (https://ai-native-email-intelligence-omega.vercel.app/)
 ---
 
 ## Architecture
